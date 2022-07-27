@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ApplicationName" xml:space="preserve">
+    <value>PopStudio</value>
+  </data>
+  <data name="FolderSavePickerBrowse" xml:space="preserve">
+    <value>浏览..</value>
+  </data>
+  <data name="FolderSavePickerCancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="FolderSavePickerCreateFailedText" xml:space="preserve">
+    <value>文件'{0}'无法在'{1}'中保存，请换一个名字</value>
+  </data>
+  <data name="FolderSavePickerCreateFailedTitle" xml:space="preserve">
+    <value>无法保存</value>
+  </data>
+  <data name="FolderSavePickerFileExistsText" xml:space="preserve">
+    <value>文件'{0}'在'{1}'中已经存在，你想覆盖它吗？</value>
+  </data>
+  <data name="FolderSavePickerFileExistsTitle" xml:space="preserve">
+    <value>文件存在</value>
+  </data>
+  <data name="FolderSavePickerFileName" xml:space="preserve">
+    <value>文件名</value>
+  </data>
+  <data name="FolderSavePickerFileType" xml:space="preserve">
+    <value>文件类型</value>
+  </data>
+  <data name="FolderSavePickerFolderExistsText" xml:space="preserve">
+    <value>文件夹'{0}'在'{1}'中已经存在，请换一个名字</value>
+  </data>
+  <data name="FolderSavePickerFolderExistsTitle" xml:space="preserve">
+    <value>文件夹存在</value>
+  </data>
+  <data name="FolderSavePickerNo" xml:space="preserve">
+    <value>否</value>
+  </data>
+  <data name="FolderSavePickerOk" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="FolderSavePickerPickFolder" xml:space="preserve">
+    <value>选择文件夹</value>
+  </data>
+  <data name="FolderSavePickerSave" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="FolderSavePickerTitle" xml:space="preserve">
+    <value>保存文件</value>
+  </data>
+  <data name="FolderSavePickerYes" xml:space="preserve">
+    <value>是</value>
+  </data>
+  <data name="Rron_Introduction" xml:space="preserve">
+    <value>通过Rton转码功能，将Rton文件解码为Json文件或者将Json文件编码为Rton文件，如果需要解码或编码加密Rton，请自行在设置中输入密钥。</value>
+  </data>
+  <data name="Rton_Choose" xml:space="preserve">
+    <value>选择</value>
+  </data>
+  <data name="Rton_ChooseMode" xml:space="preserve">
+    <value>请选择运行模式</value>
+  </data>
+  <data name="Rton_DecodeChooseInFile" xml:space="preserve">
+    <value>请选择被解码的文件</value>
+  </data>
+  <data name="Rton_DecodeChooseMode" xml:space="preserve">
+    <value>请选择解码模式</value>
+  </data>
+  <data name="Rton_DecodeChooseOutFile" xml:space="preserve">
+    <value>请选择解码生成文件</value>
+  </data>
+  <data name="Rton_DecodeMode" xml:space="preserve">
+    <value>解码模式</value>
+  </data>
+  <data name="Rton_EncodeChooseInFile" xml:space="preserve">
+    <value>请选择被编码的文件</value>
+  </data>
+  <data name="Rton_EncodeChooseMode" xml:space="preserve">
+    <value>请选择编码模式</value>
+  </data>
+  <data name="Rton_EncodeChooseOutFile" xml:space="preserve">
+    <value>请选择编码生成文件</value>
+  </data>
+  <data name="Rton_EncodeMode" xml:space="preserve">
+    <value>编码模式</value>
+  </data>
+  <data name="Rton_ModeEncryptedRton" xml:space="preserve">
+    <value>加密Rton</value>
+  </data>
+  <data name="Rton_ModeSimpleRton" xml:space="preserve">
+    <value>普通Rton</value>
+  </data>
+  <data name="Rton_Run" xml:space="preserve">
+    <value>运行</value>
+  </data>
+  <data name="Rton_Title" xml:space="preserve">
+    <value>Rton转码</value>
+  </data>
+  <data name="RunStatue_Fail" xml:space="preserve">
+    <value>执行失败：{0}</value>
+  </data>
+  <data name="RunStatue_Run" xml:space="preserve">
+    <value>执行中...</value>
+  </data>
+  <data name="RunStatue_Succeed" xml:space="preserve">
+    <value>执行成功，用时{0}秒</value>
+  </data>
+  <data name="RunStatue_Title" xml:space="preserve">
+    <value>执行状态：</value>
+  </data>
+  <data name="RunStatue_Wait" xml:space="preserve">
+    <value>等待中...</value>
+  </data>
+</root>
