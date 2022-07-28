@@ -92,4 +92,38 @@
   </Choose>
   <Import Condition="'$(TargetFramework)'=='net6.0-ios'" Project="..\PopStudio.PlatformIOS\PopStudio.PlatformIOS.projitems" Label="Shared" />
   <Import Project="..\PopStudio.Shared\PopStudio.Shared.projitems" Label="Shared" />
+  <ItemGroup>
+    <None Remove="App.xaml" />
+    <None Remove="App.xaml.cs" />
+    <None Remove="MainPage.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <UpToDateCheckInput Remove="App.xaml" />
+    <UpToDateCheckInput Remove="MainPage.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <XamlRuntime>WinUI</XamlRuntime>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="MainPage.xaml.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="MainPage.xaml">
+      <XamlRuntime>WinUI</XamlRuntime>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
 </Project>

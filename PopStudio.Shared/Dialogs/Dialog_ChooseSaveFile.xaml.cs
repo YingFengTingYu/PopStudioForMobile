@@ -99,6 +99,9 @@ namespace PopStudio.Dialogs
                 CloseButtonText = "取消",
                 PrimaryButtonText = "确定"
             };
+#if WinUI
+            createFileDialog.XamlRoot = this.Content.XamlRoot;
+#endif
             ContentDialogResult result = await createFileDialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
             {
@@ -111,6 +114,9 @@ namespace PopStudio.Dialogs
                         Content = "创建文件夹失败，文件夹已存在",
                         CloseButtonText = "取消"
                     };
+#if WinUI
+                    fileExistDialog.XamlRoot = this.Content.XamlRoot;
+#endif
                     await fileExistDialog.ShowAsync();
                 }
                 else
@@ -124,6 +130,9 @@ namespace PopStudio.Dialogs
         private async void MenuLoadFile_Click(object sender, RoutedEventArgs e)
         {
             var fileOpenPicker = new FileOpenPicker();
+#if WinUI
+            WinRT.Interop.InitializeWithWindow.Initialize(fileOpenPicker, WinUI.MainWindow.Handle);
+#endif
             fileOpenPicker.SuggestedStartLocation = PickerLocationId.ComputerFolder;
             fileOpenPicker.FileTypeFilter.Add("*");
             StorageFile pickedFile = await fileOpenPicker.PickSingleFileAsync();
@@ -143,6 +152,9 @@ namespace PopStudio.Dialogs
                         CloseButtonText = "取消",
                         PrimaryButtonText = "重命名"
                     };
+#if WinUI
+                    fileExistDialog.XamlRoot = this.Content.XamlRoot;
+#endif
                     if ((mode & 2) == 0)
                     {
                         fileExistDialog.SecondaryButtonText = "覆盖";
@@ -237,6 +249,9 @@ namespace PopStudio.Dialogs
                 CloseButtonText = "取消",
                 PrimaryButtonText = "确定"
             };
+#if WinUI
+            createFileDialog.XamlRoot = this.Content.XamlRoot;
+#endif
             ContentDialogResult result = await createFileDialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
             {
@@ -267,6 +282,9 @@ namespace PopStudio.Dialogs
                         Content = "有同名文件夹存在，无法创建文件！",
                         CloseButtonText = "确定"
                     };
+#if WinUI
+                    noWifiDialog.XamlRoot = this.Content.XamlRoot;
+#endif
                     await noWifiDialog.ShowAsync();
                 }
                 else if (CurrentDirectory.FileExist(enterredName))
@@ -278,6 +296,9 @@ namespace PopStudio.Dialogs
                         PrimaryButtonText = "确定",
                         CloseButtonText = "取消"
                     };
+#if WinUI
+                    noWifiDialog.XamlRoot = this.Content.XamlRoot;
+#endif
                     ContentDialogResult result = await noWifiDialog.ShowAsync();
                     if (result == ContentDialogResult.Primary)
                     {

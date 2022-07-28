@@ -91,6 +91,9 @@ namespace PopStudio.Dialogs
                 CloseButtonText = "取消",
                 PrimaryButtonText = "确定"
             };
+#if WinUI
+            createFileDialog.XamlRoot = this.Content.XamlRoot;
+#endif
             ContentDialogResult result = await createFileDialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
             {
@@ -103,6 +106,9 @@ namespace PopStudio.Dialogs
                         Content = "创建文件夹失败，文件夹已存在",
                         CloseButtonText = "取消"
                     };
+#if WinUI
+                    fileExistDialog.XamlRoot = this.Content.XamlRoot;
+#endif
                     await fileExistDialog.ShowAsync();
                 }
                 else
@@ -158,6 +164,9 @@ namespace PopStudio.Dialogs
                 CloseButtonText = "取消",
                 PrimaryButtonText = "确定"
             };
+#if WinUI
+            createFileDialog.XamlRoot = this.Content.XamlRoot;
+#endif
             ContentDialogResult result = await createFileDialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
             {

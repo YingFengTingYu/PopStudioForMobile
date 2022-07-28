@@ -11,6 +11,7 @@ using PopStudio.PlatformAPI;
 using PopStudio.Pages;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using Windows.Storage.Pickers.Provider;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -96,6 +97,9 @@ namespace PopStudio.Dialogs
                 CloseButtonText = "取消",
                 PrimaryButtonText = "确定"
             };
+#if WinUI
+            createFileDialog.XamlRoot = this.Content.XamlRoot;
+#endif
             ContentDialogResult result = await createFileDialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
             {
@@ -108,6 +112,9 @@ namespace PopStudio.Dialogs
                         Content = "创建文件夹失败，文件夹已存在",
                         CloseButtonText = "取消"
                     };
+#if WinUI
+                    fileExistDialog.XamlRoot = this.Content.XamlRoot;
+#endif
                     await fileExistDialog.ShowAsync();
                 }
                 else
@@ -121,6 +128,9 @@ namespace PopStudio.Dialogs
         private async void MenuLoadFile_Click(object sender, RoutedEventArgs e)
         {
             var fileOpenPicker = new FileOpenPicker();
+#if WinUI
+            WinRT.Interop.InitializeWithWindow.Initialize(fileOpenPicker, WinUI.MainWindow.Handle);
+#endif
             fileOpenPicker.SuggestedStartLocation = PickerLocationId.ComputerFolder;
             fileOpenPicker.FileTypeFilter.Add("*");
             StorageFile pickedFile = await fileOpenPicker.PickSingleFileAsync();
@@ -140,6 +150,9 @@ namespace PopStudio.Dialogs
                         CloseButtonText = "取消",
                         PrimaryButtonText = "重命名"
                     };
+#if WinUI
+                    fileExistDialog.XamlRoot = this.Content.XamlRoot;
+#endif
                     if ((mode & 2) == 0)
                     {
                         fileExistDialog.SecondaryButtonText = "覆盖";
@@ -234,6 +247,9 @@ namespace PopStudio.Dialogs
                 CloseButtonText = "取消",
                 PrimaryButtonText = "确定"
             };
+#if WinUI
+            createFileDialog.XamlRoot = this.Content.XamlRoot;
+#endif
             ContentDialogResult result = await createFileDialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
             {

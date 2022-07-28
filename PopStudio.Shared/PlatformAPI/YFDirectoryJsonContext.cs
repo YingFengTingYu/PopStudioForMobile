@@ -2,7 +2,7 @@
 
 namespace PopStudio.PlatformAPI
 {
-    [JsonSourceGenerationOptions(DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull, WriteIndented = true, GenerationMode = JsonSourceGenerationMode.Metadata)]
+    [JsonSourceGenerationOptions(DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull, WriteIndented = true)]
     [JsonSerializable(typeof(YFFileSystem.YFDirectory))]
     public partial class YFDirectoryJsonContext : JsonSerializerContext
     {

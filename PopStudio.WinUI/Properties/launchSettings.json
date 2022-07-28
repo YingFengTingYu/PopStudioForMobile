@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "PopStudio.WinUI (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "PopStudio.WinUI (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

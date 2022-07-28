@@ -58,6 +58,9 @@ namespace PopStudio.Dialogs
                         SecondaryButtonText = "丢弃",
                         CloseButtonText = "取消"
                     };
+#if WinUI
+                    fileExistDialog.XamlRoot = this.Content.XamlRoot;
+#endif
                     ContentDialogResult result = await fileExistDialog.ShowAsync();
                     if (result == ContentDialogResult.Primary)
                     {

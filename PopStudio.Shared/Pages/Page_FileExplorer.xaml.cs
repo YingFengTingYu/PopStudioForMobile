@@ -11,6 +11,7 @@ using System.Text;
 using PopStudio.PlatformAPI;
 using System.Collections.ObjectModel;
 using Windows.ApplicationModel.DataTransfer;
+using Windows.Storage.Pickers.Provider;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -55,6 +56,9 @@ namespace PopStudio.Pages
                         PrimaryButtonText = "确定",
                         CloseButtonText = "取消"
                     };
+#if WinUI
+            noWifiDialog.XamlRoot = this.Content.XamlRoot;
+#endif
                     ContentDialogResult result = await noWifiDialog.ShowAsync();
                     if (result == ContentDialogResult.Primary)
                     {
@@ -76,6 +80,9 @@ namespace PopStudio.Pages
                                 lst[0] = ".popstudio";
                             }
                             FileSavePicker fileSavePicker = new FileSavePicker();
+#if WinUI
+                            WinRT.Interop.InitializeWithWindow.Initialize(fileSavePicker, WinUI.MainWindow.Handle);
+#endif
                             fileSavePicker.SuggestedStartLocation = PickerLocationId.ComputerFolder;
                             fileSavePicker.SuggestedFileName = name;
                             fileSavePicker.FileTypeChoices.Add("File", lst);
@@ -189,6 +196,9 @@ namespace PopStudio.Pages
                                 CloseButtonText = "取消",
                                 PrimaryButtonText = "确定"
                             };
+#if WinUI
+                            createFileDialog.XamlRoot = this.Content.XamlRoot;
+#endif
                             await createFileDialog.ShowAsync();
                         }
                         else if (mode == 5)
@@ -219,6 +229,9 @@ namespace PopStudio.Pages
                                 CloseButtonText = "取消",
                                 PrimaryButtonText = "确定"
                             };
+#if WinUI
+            createFileDialog.XamlRoot = this.Content.XamlRoot;
+#endif
                             ContentDialogResult result2 = await createFileDialog.ShowAsync();
                             if (result == ContentDialogResult.Primary)
                             {
@@ -306,6 +319,9 @@ namespace PopStudio.Pages
                 CloseButtonText = "取消",
                 PrimaryButtonText = "确定"
             };
+#if WinUI
+            createFileDialog.XamlRoot = this.Content.XamlRoot;
+#endif
             ContentDialogResult result = await createFileDialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
             {
@@ -318,6 +334,9 @@ namespace PopStudio.Pages
                         Content = "创建文件失败，文件已存在",
                         CloseButtonText = "取消"
                     };
+#if WinUI
+            fileExistDialog.XamlRoot = this.Content.XamlRoot;
+#endif
                     await fileExistDialog.ShowAsync();
                 }
                 else
@@ -360,6 +379,9 @@ namespace PopStudio.Pages
                 CloseButtonText = "取消",
                 PrimaryButtonText = "确定"
             };
+#if WinUI
+            createFileDialog.XamlRoot = this.Content.XamlRoot;
+#endif
             ContentDialogResult result = await createFileDialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
             {
@@ -372,6 +394,9 @@ namespace PopStudio.Pages
                         Content = "创建文件夹失败，文件夹已存在",
                         CloseButtonText = "取消"
                     };
+#if WinUI
+            fileExistDialog.XamlRoot = this.Content.XamlRoot;
+#endif
                     await fileExistDialog.ShowAsync();
                 }
                 else
@@ -396,6 +421,9 @@ namespace PopStudio.Pages
                 CloseButtonText = "取消",
                 PrimaryButtonText = "确定"
             };
+#if WinUI
+            fileExistDialog.XamlRoot = this.Content.XamlRoot;
+#endif
             ContentDialogResult result = await fileExistDialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
             {
@@ -407,6 +435,9 @@ namespace PopStudio.Pages
         private async void MenuLoadFile_Click(object sender, RoutedEventArgs e)
         {
             var fileOpenPicker = new FileOpenPicker();
+#if WinUI
+            WinRT.Interop.InitializeWithWindow.Initialize(fileOpenPicker, WinUI.MainWindow.Handle);
+#endif
             fileOpenPicker.SuggestedStartLocation = PickerLocationId.ComputerFolder;
             fileOpenPicker.FileTypeFilter.Add("*");
             StorageFile pickedFile = await fileOpenPicker.PickSingleFileAsync();
@@ -430,6 +461,9 @@ namespace PopStudio.Pages
                     {
                         fileExistDialog.SecondaryButtonText = "覆盖";
                     }
+#if WinUI
+            fileExistDialog.XamlRoot = this.Content.XamlRoot;
+#endif
                     ContentDialogResult result = await fileExistDialog.ShowAsync();
                     if (result == ContentDialogResult.Primary)
                     {
@@ -529,6 +563,9 @@ namespace PopStudio.Pages
                 CloseButtonText = "取消",
                 PrimaryButtonText = "确定"
             };
+#if WinUI
+            createFileDialog.XamlRoot = this.Content.XamlRoot;
+#endif
             ContentDialogResult result = await createFileDialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
             {

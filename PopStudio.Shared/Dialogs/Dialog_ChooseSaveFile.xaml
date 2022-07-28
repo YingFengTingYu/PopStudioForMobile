@@ -31,7 +31,7 @@
             </ScrollViewer>
 
             <Image Grid.Column="1"
-                   Source="Assets/Images/filemenu.png"
+                   Source="../Assets/Images/filemenu.png"
                    Margin="10 0 10 0"
                    VerticalAlignment="Center"
                    Width="25"

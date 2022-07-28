@@ -9,15 +9,6 @@
     <Import_RootNamespace>PopStudio</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="$(MSBuildThisFileDirectory)App.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </ApplicationDefinition>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Dialogs\Dialog_ChooseFolder.xaml.cs">
       <DependentUpon>Dialog_ChooseFolder.xaml</DependentUpon>
     </Compile>
@@ -31,9 +22,6 @@
       <DependentUpon>Dialog_ViewDocument.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Dialogs\IDialogClosable.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Pages\IMenuChoosable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Page_FileExplorer.xaml.cs">
       <DependentUpon>Page_FileExplorer.xaml</DependentUpon>
@@ -98,10 +86,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Dialogs\Dialog_ViewDocument.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

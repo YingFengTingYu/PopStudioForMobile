@@ -33,8 +33,8 @@
             </StackPanel>
             <ContentControl x:Name="PageControl"
                             Grid.Row="1"
-                            HorizontalAlignment="Stretch"
-                            VerticalAlignment="Stretch"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch"
                             Background="White" />
         </Grid>
 
@@ -79,7 +79,9 @@
                             <RowDefinition Height="*" />
                             <RowDefinition Height="40" />
                         </Grid.RowDefinitions>
-                        <ContentControl x:Name="YFDialogControl" />
+                        <ContentControl x:Name="YFDialogControl"
+                                        HorizontalContentAlignment="Stretch"
+                                        VerticalContentAlignment="Stretch" />
                         <Button x:Name="YFDialongCancel"
                             Grid.Row="1"
                             Foreground="White"
@@ -88,7 +90,6 @@
                             HorizontalAlignment="Stretch"
                             Content="关闭"
                             Click="YFDialongCancel_Click" />
-
                     </Grid>
                 </Border>
             </Grid>

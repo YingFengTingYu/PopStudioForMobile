@@ -2,7 +2,7 @@
 {
     internal class Trail
     {
-        [JsonProperty]
+        
         public int? MaxPoints;
         public float? MinPointDistance;
         public int TrailFlags;
