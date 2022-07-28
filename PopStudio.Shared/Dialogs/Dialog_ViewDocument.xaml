@@ -19,7 +19,9 @@
                 <ColumnDefinition Width="45" />
             </Grid.ColumnDefinitions>
 
-            <ScrollViewer HorizontalScrollBarVisibility="Hidden"
+            <ScrollViewer HorizontalScrollMode="Enabled"
+                          HorizontalScrollBarVisibility="Auto"
+                          VerticalScrollMode="Disabled"
                           VerticalScrollBarVisibility="Disabled">
                 <TextBlock Margin="10 0 10 0"
                        FontSize="22"
@@ -44,6 +46,11 @@
             </Image>
         </Grid>
         <TextBox Grid.Row="1"
-                 x:Name="text" />
+                 x:Name="text"
+                 ScrollViewer.HorizontalScrollMode="Disabled"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 ScrollViewer.VerticalScrollMode="Enabled"
+                 ScrollViewer.VerticalScrollBarVisibility="Auto"
+                 />
     </Grid>
 </Page>

@@ -7,11 +7,10 @@ using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Input;
 using Windows.Storage.Pickers;
 using Windows.Storage;
-using System.Text;
 using PopStudio.PlatformAPI;
 using System.Collections.ObjectModel;
 using Windows.ApplicationModel.DataTransfer;
-using Windows.Storage.Pickers.Provider;
+using System.Diagnostics;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -41,14 +40,23 @@ namespace PopStudio.Pages
                     ListView listView = new ListView();
                     listView.SelectionMode = ListViewSelectionMode.Single;
                     listView.Items.Add("导出");
-                    listView.Items.Add("以文本文件形式编辑");
-                    listView.Items.Add("复制名称");
-                    listView.Items.Add("复制路径");
-                    listView.Items.Add("查看信息");
-                    listView.Items.Add("删除文件");
-                    listView.Items.Add("重命名");
                     listView.Items.Add("剪切");
                     listView.Items.Add("复制");
+                    listView.Items.Add("重命名");
+                    listView.Items.Add("删除");
+                    listView.Items.Add("查看信息");
+                    int openMode = -1;
+                    string nnnnn = info.Name.ToLower();
+                    if (nnnnn.EndsWith(".json")
+                        || nnnnn.EndsWith(".txt")
+                        || nnnnn.EndsWith(".xml")
+                        || nnnnn.EndsWith(".trail")
+                        || nnnnn.EndsWith(".reanim")
+                        || nnnnn.EndsWith(".csv"))
+                    {
+                        openMode = 0;
+                        listView.Items.Add("编辑");
+                    }
                     ContentDialog noWifiDialog = new ContentDialog
                     {
                         Title = "请选择进行的操作",
@@ -57,7 +65,7 @@ namespace PopStudio.Pages
                         CloseButtonText = "取消"
                     };
 #if WinUI
-            noWifiDialog.XamlRoot = this.Content.XamlRoot;
+                    noWifiDialog.XamlRoot = this.Content.XamlRoot;
 #endif
                     ContentDialogResult result = await noWifiDialog.ShowAsync();
                     if (result == ContentDialogResult.Primary)
@@ -94,29 +102,65 @@ namespace PopStudio.Pages
                         }
                         else if (mode == 1)
                         {
-                            // 以文本文件形式编辑
-                            YFFileSystem.YFFile m_file = CurrentDirectory.GetYFFile(info.Name);
-                            if (m_file is not null)
+                            // 剪贴
+                            string newPath = await YFFileSystem.ChooseSaveFile(info.Name);
+                            if (!string.IsNullOrEmpty(newPath))
                             {
-                                await YFDialogHelper.OpenDialog<Dialogs.Dialog_ViewDocument>(m_file);
+                                YFFileSystem.MoveYFFileFromPath(CurrentDirectory.GetPath() + "/" + info.Name, newPath);
+                                Update();
                             }
                         }
                         else if (mode == 2)
                         {
-                            // 复制名称
-                            DataPackage dataPackage = new DataPackage();
-                            dataPackage.SetText(info.Name);
-                            Clipboard.SetContent(dataPackage);
+                            // 复制
+                            string newPath = await YFFileSystem.ChooseSaveFile(info.Name);
+                            if (!string.IsNullOrEmpty(newPath))
+                            {
+                                YFFileSystem.CopyYFFileFromPath(CurrentDirectory.GetPath() + "/" + info.Name, newPath);
+                                Update();
+                            }
                         }
                         else if (mode == 3)
                         {
-                            // 复制路径
-                            DataPackage dataPackage = new DataPackage();
-                            dataPackage.SetText(CurrentDirectory.GetPath() + "/" + info.Name);
-                            Clipboard.SetContent(dataPackage);
+                            // 重命名
+                            TextBlock textBlock = new TextBlock
+                            {
+                                Text = "请输入文件名"
+                            };
+                            TextBox textBox = new TextBox
+                            {
+                                Text = info.Name,
+                                Width = 400
+                            };
+                            StackPanel panel = new StackPanel();
+                            panel.Children.Add(textBlock);
+                            panel.Children.Add(textBox);
+                            ContentDialog createFileDialog = new ContentDialog
+                            {
+                                Title = "新建文件",
+                                Content = panel,
+                                CloseButtonText = "取消",
+                                PrimaryButtonText = "确定"
+                            };
+#if WinUI
+                            createFileDialog.XamlRoot = this.Content.XamlRoot;
+#endif
+                            ContentDialogResult result2 = await createFileDialog.ShowAsync();
+                            if (result == ContentDialogResult.Primary)
+                            {
+                                CurrentDirectory.RenameYFFile(info.Name, textBox.Text);
+                                Update();
+                            }
                         }
                         else if (mode == 4)
                         {
+                            // 删除文件
+                            CurrentDirectory.DeleteYFFile(info.Name);
+                            Update();
+                        }
+                        else if (mode == 5)
+                        {
+                            // 查看信息
                             TextBlock CreateCopyTextBlock(string format, string str)
                             {
                                 TextBlock tblock = new TextBlock
@@ -129,7 +173,6 @@ namespace PopStudio.Pages
                                 tblock.Tapped += CopyTextBlock_Tapped;
                                 return tblock;
                             }
-                            // 查看信息
                             YFFileSystem.YFFile m_file = CurrentDirectory.GetYFFile(info.Name);
                             // 获取文件名
                             string m4FileName = m_file.Name;
@@ -166,62 +209,16 @@ namespace PopStudio.Pages
 #endif
                             await createFileDialog.ShowAsync();
                         }
-                        else if (mode == 5)
-                        {
-                            // 删除文件
-                            CurrentDirectory.DeleteYFFile(info.Name);
-                            Update();
-                        }
                         else if (mode == 6)
                         {
-                            // 重命名
-                            TextBlock textBlock = new TextBlock
+                            // 编辑
+                            if (openMode == 0)
                             {
-                                Text = "请输入文件名"
-                            };
-                            TextBox textBox = new TextBox
-                            {
-                                Text = info.Name,
-                                Width = 400
-                            };
-                            StackPanel panel = new StackPanel();
-                            panel.Children.Add(textBlock);
-                            panel.Children.Add(textBox);
-                            ContentDialog createFileDialog = new ContentDialog
-                            {
-                                Title = "新建文件",
-                                Content = panel,
-                                CloseButtonText = "取消",
-                                PrimaryButtonText = "确定"
-                            };
-#if WinUI
-            createFileDialog.XamlRoot = this.Content.XamlRoot;
-#endif
-                            ContentDialogResult result2 = await createFileDialog.ShowAsync();
-                            if (result == ContentDialogResult.Primary)
-                            {
-                                CurrentDirectory.RenameYFFile(info.Name, textBox.Text);
-                                Update();
-                            }
-                        }
-                        else if (mode == 7)
-                        {
-                            // 剪贴
-                            string newPath = await YFFileSystem.ChooseSaveFile(info.Name);
-                            if (!string.IsNullOrEmpty(newPath))
-                            {
-                                YFFileSystem.MoveYFFileFromPath(CurrentDirectory.GetPath() + "/" + info.Name, newPath);
-                                Update();
-                            }
-                        }
-                        else if (mode == 8)
-                        {
-                            // 复制
-                            string newPath = await YFFileSystem.ChooseSaveFile(info.Name);
-                            if (!string.IsNullOrEmpty(newPath))
-                            {
-                                YFFileSystem.CopyYFFileFromPath(CurrentDirectory.GetPath() + "/" + info.Name, newPath);
-                                Update();
+                                YFFileSystem.YFFile m_file = CurrentDirectory.GetYFFile(info.Name);
+                                if (m_file is not null)
+                                {
+                                    await YFDialogHelper.OpenDialog<Dialogs.Dialog_ViewDocument>(m_file);
+                                }
                             }
                         }
                     }
@@ -229,8 +226,12 @@ namespace PopStudio.Pages
                 }
                 else if (info.Kind == SingleFileItem.FileItemKind.Folder)
                 {
-                    CurrentDirectory = CurrentDirectory.GetYFDirectory(info.Name) ?? CurrentDirectory;
-                    Update();
+                    YFFileSystem.YFDirectory dir = CurrentDirectory.GetYFDirectory(info.Name);
+                    if (dir is not null && dir.CanEnter)
+                    {
+                        CurrentDirectory = dir;
+                        Update();
+                    }
                 }
                 else if (info.Kind == SingleFileItem.FileItemKind.Back)
                 {
@@ -372,9 +373,27 @@ namespace PopStudio.Pages
             }
         }
 
-        private void MenuCompress_Click(object sender, RoutedEventArgs e)
+        private async void MenuExport_Click(object sender, RoutedEventArgs e)
         {
+            // 导出
+            try
+            {
+                string name = CurrentDirectory.Name;
+                FolderPicker fileSavePicker = new FolderPicker();
+#if WinUI
+                WinRT.Interop.InitializeWithWindow.Initialize(fileSavePicker, WinUI.MainWindow.Handle);
+#endif
+                fileSavePicker.SuggestedStartLocation = PickerLocationId.ComputerFolder;
+                StorageFolder saveFile = await fileSavePicker.PickSingleFolderAsync();
+                if (saveFile != null)
+                {
+                    await YFFileSystem.ExportDirectoryAsync(CurrentDirectory, saveFile);
+                }
+            }
+            catch (Exception)
+            {
 
+            }
         }
 
         private async void MenuDelete_Click(object sender, RoutedEventArgs e)
@@ -392,7 +411,13 @@ namespace PopStudio.Pages
             ContentDialogResult result = await fileExistDialog.ShowAsync();
             if (result == ContentDialogResult.Primary)
             {
-                CurrentDirectory = CurrentDirectory.DeleteSelf();
+                YFFileSystem.YFDirectory back = CurrentDirectory;
+                if (CurrentDirectory.Parent is not null)
+                {
+                    CurrentDirectory = CurrentDirectory.Parent;
+                    Update();
+                }
+                await back.DeleteSelfAsync();
                 Update();
             }
         }
@@ -417,8 +442,8 @@ namespace PopStudio.Pages
                 {
                     ContentDialog fileExistDialog = new ContentDialog
                     {
-                        Title = "文件已存在",
-                        Content = "文件" + name + "已存在，请选择进行的操作",
+                        Title = "无法创建",
+                        Content = "文件/文件夹" + name + "已存在，请选择进行的操作",
                         CloseButtonText = "取消",
                         PrimaryButtonText = "重命名"
                     };
@@ -464,6 +489,86 @@ namespace PopStudio.Pages
                 {
                     await YFFileSystem.ImportFileAsync(pickedFile, CurrentDirectory, name);
                     Update();
+                }
+            }
+        }
+
+        private async void MenuLoadDirectory_Click(object sender, RoutedEventArgs e)
+        {
+            var fileOpenPicker = new FolderPicker();
+#if WinUI
+            WinRT.Interop.InitializeWithWindow.Initialize(fileOpenPicker, WinUI.MainWindow.Handle);
+#endif
+            fileOpenPicker.SuggestedStartLocation = PickerLocationId.ComputerFolder;
+            fileOpenPicker.FileTypeFilter.Add("*");
+            StorageFolder pickedFile = await fileOpenPicker.PickSingleFolderAsync();
+            if (pickedFile != null)
+            {
+                string name = pickedFile.Name;
+                int mode = 0;
+                if (CurrentDirectory.FileExist(name)) mode |= 1;
+                if (CurrentDirectory.DirectoryExist(name)) mode |= 2;
+                bool create = true;
+                if (mode != 0)
+                {
+                    ContentDialog fileExistDialog = new ContentDialog
+                    {
+                        Title = "无法创建",
+                        Content = "文件/文件夹" + name + "已存在，请选择进行的操作",
+                        CloseButtonText = "取消",
+                        PrimaryButtonText = "重命名"
+                    };
+                    if ((mode & 2) == 0)
+                    {
+                        fileExistDialog.SecondaryButtonText = "合并";
+                    }
+#if WinUI
+            fileExistDialog.XamlRoot = this.Content.XamlRoot;
+#endif
+                    ContentDialogResult result = await fileExistDialog.ShowAsync();
+                    if (result == ContentDialogResult.Primary)
+                    {
+                        string name_filename = name;
+                        int i = 2;
+                        do
+                        {
+                            name = name_filename + " (" + (i++) + ")";
+                        }
+                        while (CurrentDirectory.Exist(name));
+                    }
+                    else if (result == ContentDialogResult.Secondary)
+                    {
+
+                    }
+                    else
+                    {
+                        create = false;
+                    }
+                }
+                if (create)
+                {
+                    long i = 0;
+                    bool flash = false;
+                    Stopwatch sw = new Stopwatch();
+                    await foreach (YFFileSystem.IFileDirectory d in YFFileSystem.ImportDirectoryAsyncEnumerable(pickedFile, CurrentDirectory, name))
+                    {
+                        if (d.Parent == CurrentDirectory)
+                        {
+                            flash = true;
+                        }
+                        // 每1024毫秒可以刷新一次显示，保证不闪烁的同时更新屏幕
+                        if (sw.ElapsedMilliseconds >= (i << 10) && flash)
+                        {
+                            Update();
+                            i = sw.ElapsedMilliseconds >> 10;
+                            flash = false;
+                        }
+                    }
+                    if (flash)
+                    {
+                        Update();
+                    }
+                    sw.Stop();
                 }
             }
         }

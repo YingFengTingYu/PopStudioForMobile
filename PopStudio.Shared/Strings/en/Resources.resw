@@ -301,12 +301,108 @@
     <value>Android TV Compiled(.trail.compiled)</value>
   </data>
   <data name="Trail_ModeWPXnb" xml:space="preserve">
-    <value>Windows Phone Content(.trail.compiled)</value>
+    <value>Windows Phone Content(.xnb)</value>
   </data>
   <data name="Trail_Run" xml:space="preserve">
     <value>Run</value>
   </data>
   <data name="Trail_Title" xml:space="preserve">
     <value>Trail Transcode</value>
+  </data>
+  <data name="Particle_Choose" xml:space="preserve">
+    <value>Choose</value>
+  </data>
+  <data name="Particle_ChooseInFile" xml:space="preserve">
+    <value>Please choose transcoded file</value>
+  </data>
+  <data name="Particle_ChooseInMode" xml:space="preserve">
+    <value>Please choose format of transcoded file</value>
+  </data>
+  <data name="Particle_ChooseOutFile" xml:space="preserve">
+    <value>Please choose generated file</value>
+  </data>
+  <data name="Particle_ChooseOutMode" xml:space="preserve">
+    <value>Please choose format of generated file</value>
+  </data>
+  <data name="Particle_Introduction" xml:space="preserve">
+    <value>Through Particle Transcoding, obtain and modify the particle effect of the game!</value>
+  </data>
+  <data name="Particle_ModeGameConsoleCompiled" xml:space="preserve">
+    <value>Game Console Compiled(.xml.compiled)</value>
+  </data>
+  <data name="Particle_ModePCCompiled" xml:space="preserve">
+    <value>PC Compiled(.xml.compiled)</value>
+  </data>
+  <data name="Particle_ModePhone32Compiled" xml:space="preserve">
+    <value>Phone 32-bit Compiled(.xml.compiled)</value>
+  </data>
+  <data name="Particle_ModePhone64Compiled" xml:space="preserve">
+    <value>Phone 64-bit Compiled(.xml.compiled)</value>
+  </data>
+  <data name="Particle_ModeRawXml" xml:space="preserve">
+    <value>Raw Xml(.xml)</value>
+  </data>
+  <data name="Particle_ModeStudioJson" xml:space="preserve">
+    <value>Json(.xml.json)</value>
+  </data>
+  <data name="Particle_ModeTVCompiled" xml:space="preserve">
+    <value>Android TV Compiled(.xml.compiled)</value>
+  </data>
+  <data name="Particle_ModeWPXnb" xml:space="preserve">
+    <value>Windows Phone Content(.xnb)</value>
+  </data>
+  <data name="Particle_Run" xml:space="preserve">
+    <value>Run</value>
+  </data>
+  <data name="Particle_Title" xml:space="preserve">
+    <value>Particle Transcode</value>
+  </data>
+  <data name="Reanim_Choose" xml:space="preserve">
+    <value>Choose</value>
+  </data>
+  <data name="Reanim_ChooseInFile" xml:space="preserve">
+    <value>Please choose transcoded file</value>
+  </data>
+  <data name="Reanim_ChooseInMode" xml:space="preserve">
+    <value>Please choose format of transcoded file</value>
+  </data>
+  <data name="Reanim_ChooseOutFile" xml:space="preserve">
+    <value>Please choose generated file</value>
+  </data>
+  <data name="Reanim_ChooseOutMode" xml:space="preserve">
+    <value>Please choose format of generated file</value>
+  </data>
+  <data name="Reanim_Introduction" xml:space="preserve">
+    <value>Through Reanim Transcoding, obtain and modify the animation of the game!</value>
+  </data>
+  <data name="Reanim_ModeGameConsoleCompiled" xml:space="preserve">
+    <value>Game Console Compiled(.reanim.compiled)</value>
+  </data>
+  <data name="Reanim_ModePCCompiled" xml:space="preserve">
+    <value>PC Compiled(.reanim.compiled)</value>
+  </data>
+  <data name="Reanim_ModePhone32Compiled" xml:space="preserve">
+    <value>Phone 32-bit Compiled(.reanim.compiled)</value>
+  </data>
+  <data name="Reanim_ModePhone64Compiled" xml:space="preserve">
+    <value>Phone 64-bit Compiled(.reanim.compiled)</value>
+  </data>
+  <data name="Reanim_ModeRawXml" xml:space="preserve">
+    <value>Raw Xml(.reanim)</value>
+  </data>
+  <data name="Reanim_ModeStudioJson" xml:space="preserve">
+    <value>Json(.reanim.json)</value>
+  </data>
+  <data name="Reanim_ModeTVCompiled" xml:space="preserve">
+    <value>Android TV Compiled(.reanim.compiled)</value>
+  </data>
+  <data name="Reanim_ModeWPXnb" xml:space="preserve">
+    <value>Windows Phone Content(.xnb)</value>
+  </data>
+  <data name="Reanim_Run" xml:space="preserve">
+    <value>Run</value>
+  </data>
+  <data name="Reanim_Title" xml:space="preserve">
+    <value>Reanim Transcode</value>
   </data>
 </root>

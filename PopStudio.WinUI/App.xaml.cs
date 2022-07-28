@@ -33,6 +33,7 @@ namespace PopStudio.WinUI
         public App()
         {
             this.InitializeComponent();
+            // Load YFFileSystem
             PlatformAPI.YFFileSystem.Init();
         }
 

@@ -1,18 +1,18 @@
 ﻿using System.Collections.Generic;
 
-namespace PopStudio.Trail
+namespace PopStudio.Settings
 {
-    public class TrailSetting
+    public class ImageLabelSetting
     {
         public Dictionary<int, string> ImageIndexToNameMap { get; set; }
         public Dictionary<string, int> ImageNameToIndexMap { get; set; }
 
-        public TrailSetting()
+        public ImageLabelSetting()
         {
 
         }
 
-        public TrailSetting(Dictionary<int, string> s1, Dictionary<string, int> s2)
+        public ImageLabelSetting(Dictionary<int, string> s1, Dictionary<string, int> s2)
         {
             ImageIndexToNameMap = s1;
             ImageNameToIndexMap = s2;

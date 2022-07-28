@@ -1,11 +1,40 @@
 ﻿using System;
+using PopStudio.Settings;
 using static PopStudio.PlatformAPI.YFFileSystem;
 
 namespace PopStudio
 {
     public static class YFAPI
     {
-        public static void TranscodeTrail(YFFile inFile, YFFile outFile, int inFormat, int outFormat, Trail.TrailSetting setting)
+        public static void TranscodeParticle(YFFile inFile, YFFile outFile, int inFormat, int outFormat, ImageLabelSetting setting)
+        {
+            Particle.Particle trail = inFormat switch
+            {
+                0 => Particle.PC.Decode(inFile),
+                1 => Particle.TV.Decode(inFile),
+                2 => Particle.Phone32.Decode(inFile, setting.GetStringFromIndex),
+                3 => Particle.Phone64.Decode(inFile, setting.GetStringFromIndex),
+                4 => Particle.GameConsole.Decode(inFile),
+                5 => Particle.WP.Decode(inFile),
+                6 => Particle.ParticleJson.Decode(inFile),
+                7 => Particle.RawXml.Decode(inFile),
+                _ => throw new NotImplementedException()
+            };
+            switch (outFormat)
+            {
+                case 0: Particle.PC.Encode(trail, outFile); break;
+                case 1: Particle.TV.Encode(trail, outFile); break;
+                case 2: Particle.Phone32.Encode(trail, outFile, setting.GetIndexFromString); break;
+                case 3: Particle.Phone64.Encode(trail, outFile, setting.GetIndexFromString); break;
+                case 4: Particle.GameConsole.Encode(trail, outFile); break;
+                case 5: Particle.WP.Encode(trail, outFile); break;
+                case 6: Particle.ParticleJson.Encode(trail, outFile); break;
+                case 7: Particle.RawXml.Encode(trail, outFile); break;
+                default: throw new NotImplementedException();
+            }
+        }
+
+        public static void TranscodeTrail(YFFile inFile, YFFile outFile, int inFormat, int outFormat, ImageLabelSetting setting)
         {
             Trail.Trail trail = inFormat switch
             {
@@ -43,7 +72,7 @@ namespace PopStudio
             PopAnim.Pam.Encode(inFile, outFile);
         }
 
-        public static void DecodeRton(YFFile inFile, YFFile outFile, int format, Rton.RtonSetting setting)
+        public static void DecodeRton(YFFile inFile, YFFile outFile, int format, RtonSetting setting)
         {
             switch (format)
             {
@@ -53,7 +82,7 @@ namespace PopStudio
             }
         }
 
-        public static void EncodeRton(YFFile inFile, YFFile outFile, int format, Rton.RtonSetting setting)
+        public static void EncodeRton(YFFile inFile, YFFile outFile, int format, RtonSetting setting)
         {
             switch (format)
             {

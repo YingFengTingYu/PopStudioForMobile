@@ -32,6 +32,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Page_Pam.xaml.cs">
       <DependentUpon>Page_Pam.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Page_Particle.xaml.cs">
+      <DependentUpon>Page_Particle.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Page_Rton.xaml.cs">
       <DependentUpon>Page_Rton.xaml</DependentUpon>
     </Compile>
@@ -43,6 +46,20 @@
     <Compile Include="$(MSBuildThisFileDirectory)PlatformAPI\YFString.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PlatformAPI\YFThread.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PlatformAPI\YFDirectoryJsonContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Particle\GameConsole.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Particle\Particle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Particle\ParticleEmitter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Particle\ParticleField.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Particle\ParticleJson.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Particle\ParticleTrackNode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Particle\PC.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Particle\Phone32.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Particle\Phone64.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Particle\RawXml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Particle\ParticleSetting.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Particle\ParticleJsonContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Particle\TV.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Particle\WP.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Plugin\BinaryStream.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Plugin\EncodeHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Plugin\Endian.cs" />
@@ -58,16 +75,15 @@
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\PopAnim\SpriteInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\PopAnim\PopAnimJsonContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Rton\Rton.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Rton\RtonSetting.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Settings\RtonSetting.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Trail\GameConsole.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Trail\PC.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Trail\Phone32.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Trail\Phone64.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Trail\TrailJsonContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Trail\RawXml.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Trail\TrailSetting.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Settings\ImageLabelSetting.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Trail\Trail.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Trail\TrailFormat.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Trail\TrailJson.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Trail\TrailTrackNode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Trail\TV.cs" />
@@ -104,6 +120,10 @@
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Pages\Page_Pam.xaml">
       <XamlRuntime>WinUI</XamlRuntime>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Pages\Page_Particle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -151,5 +171,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)YFLib\Image\Texture\" />
+    <Folder Include="$(MSBuildThisFileDirectory)YFLib\Settings\" />
   </ItemGroup>
 </Project>

@@ -112,12 +112,6 @@ namespace PopStudio.Trail
         public TrailTrackNode[] TrailDuration { get; set; }
 
         private TrailTrackNode[] Check(TrailTrackNode[] v)
-        {
-            if (v is null || v.Length <= 0)
-            {
-                return null;
-            }
-            return v;
-        }
+            => (v is null || v.Length <= 0) ? null : v;
     }
 }

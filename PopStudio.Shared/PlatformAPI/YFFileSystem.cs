@@ -16,11 +16,24 @@ namespace PopStudio.PlatformAPI
             return value.Replace("\\", "_").Replace("/", "_");
         }
 
-        public class YFFile
+        public interface IFileDirectory
         {
-            public string Name { get => _name ??= "_"; set => _name = NormalizeName(value); }
-            public string RealFileName { get; set; }
+            public string Name { get; set; }
             public DateTime Time { get; set; }
+            public YFDirectory Parent { get; set; }
+        }
+
+        public class YFFile : IFileDirectory
+        {
+            [JsonPropertyName("name")]
+            public string Name { get => _name ??= "_"; set => _name = NormalizeName(value); }
+
+            [JsonPropertyName("native_name")]
+            public string RealFileName { get; set; }
+
+            [JsonPropertyName("create_time")]
+            public DateTime Time { get; set; }
+
             [JsonIgnore]
             public YFDirectory Parent { get; set; }
 
@@ -111,15 +124,28 @@ namespace PopStudio.PlatformAPI
             }
         }
 
-        public class YFDirectory
+        public class YFDirectory : IFileDirectory
         {
+            [JsonPropertyName("name")]
             public string Name { get => _name ??= "_"; set => _name = NormalizeName(value); }
+
+            [JsonPropertyName("subfolders")]
             public List<YFDirectory> DirectoryMap { get => _directoryMap ??= new List<YFDirectory>(); set => _directoryMap = value; }
+
+            [JsonPropertyName("subfiles")]
             public List<YFFile> FileMap { get => _fileMap ??= new List<YFFile>(); set => _fileMap = value; }
+
+            [JsonPropertyName("create_time")]
             public DateTime Time { get; set; }
+
             [JsonIgnore]
             public YFDirectory Parent { get; set; }
+
+            [JsonIgnore]
             public bool IsRoot => Parent == null;
+
+            [JsonIgnore]
+            public bool CanEnter { get; set; } = true;
 
             private string _name;
             private List<YFDirectory> _directoryMap;
@@ -242,6 +268,19 @@ namespace PopStudio.PlatformAPI
                 }
             }
 
+            public async Task<YFDirectory> DeleteSelfAsync()
+            {
+                if (Parent is null)
+                {
+                    return this;
+                }
+                else
+                {
+                    await Parent.DeleteYFDirectoryAsync(this);
+                    return Parent;
+                }
+            }
+
             public void DeleteYFDirectory(string name)
             {
                 DeleteYFDirectory(GetYFDirectory(NormalizeName(name)));
@@ -251,6 +290,7 @@ namespace PopStudio.PlatformAPI
             {
                 if (yfDirectory?.Parent is not null)
                 {
+                    yfDirectory.CanEnter = false;
                     if (yfDirectory.Parent == this)
                     {
                         // 删除文件
@@ -269,6 +309,38 @@ namespace PopStudio.PlatformAPI
                     else
                     {
                         yfDirectory.Parent.DeleteYFDirectory(yfDirectory);
+                    }
+                }
+            }
+
+            public async Task DeleteYFDirectoryAsync(string name)
+            {
+                await DeleteYFDirectoryAsync(GetYFDirectory(NormalizeName(name)));
+            }
+
+            public async Task DeleteYFDirectoryAsync(YFDirectory yfDirectory)
+            {
+                if (yfDirectory?.Parent is not null)
+                {
+                    yfDirectory.CanEnter = false;
+                    if (yfDirectory.Parent == this)
+                    {
+                        // 删除文件
+                        while (yfDirectory.FileMap.Count > 0)
+                        {
+                            await yfDirectory.DeleteYFFileAsync(yfDirectory.FileMap[0]);
+                        }
+                        // 删除文件夹
+                        while (yfDirectory.DirectoryMap.Count > 0)
+                        {
+                            await yfDirectory.DeleteYFDirectoryAsync(yfDirectory.DirectoryMap[0]);
+                        }
+                        DirectoryMap.Remove(yfDirectory);
+                        Save();
+                    }
+                    else
+                    {
+                        await yfDirectory.Parent.DeleteYFDirectoryAsync(yfDirectory);
                     }
                 }
             }
@@ -292,6 +364,29 @@ namespace PopStudio.PlatformAPI
                     else
                     {
                         yfFile.Parent.DeleteYFFile(yfFile);
+                    }
+                }
+            }
+
+            public async void DeleteYFFileAsync(string name)
+            {
+                await DeleteYFFileAsync(GetYFFile(NormalizeName(name)));
+            }
+
+            public async Task DeleteYFFileAsync(YFFile yfFile)
+            {
+                if (yfFile is not null)
+                {
+                    if (yfFile.Parent == this)
+                    {
+                        await Task.Run(() => File.Delete(yfFile.GetNativePath()));
+                        RealNameList.Remove(yfFile.RealFileName);
+                        FileMap.Remove(yfFile);
+                        Save();
+                    }
+                    else
+                    {
+                        await yfFile.Parent.DeleteYFFileAsync(yfFile);
                     }
                 }
             }
@@ -597,6 +692,86 @@ namespace PopStudio.PlatformAPI
                 }
             }
             return yfFile;
+        }
+
+        public static async Task<YFDirectory> ImportDirectoryAsync(
+            Windows.Storage.StorageFolder m_folder,
+            YFDirectory directory,
+            string name = null
+            )
+        {
+            IFileDirectory ans = null;
+            await foreach (IFileDirectory folder in ImportDirectoryAsyncEnumerable(m_folder, directory, name))
+            {
+                ans ??= folder;
+            }
+            return ans as YFDirectory;
+        }
+
+        public static async IAsyncEnumerable<IFileDirectory> ImportDirectoryAsyncEnumerable(
+            Windows.Storage.StorageFolder m_folder,
+            YFDirectory directory,
+            string name = null
+            )
+        {
+            YFDirectory yfDirectory = directory.CreateYFDirectory(name ?? m_folder.Name);
+            yield return yfDirectory;
+            foreach (Windows.Storage.StorageFile sfile in await m_folder.GetFilesAsync())
+            {
+                string nName = NormalizeName(sfile.Name);
+                if (directory.DirectoryExist(nName))
+                {
+                    string name_filename, name_fileextension;
+                    int index = nName.IndexOf('.');
+                    if (index >= 0)
+                    {
+                        name_filename = nName[..index];
+                        name_fileextension = nName[index..];
+                    }
+                    else
+                    {
+                        name_filename = nName;
+                        name_fileextension = string.Empty;
+                    }
+                    int i = 2;
+                    do
+                    {
+                        nName = name_filename + " (" + (i++) + ")" + name_fileextension;
+                    }
+                    while (yfDirectory.Exist(nName));
+                }
+                yield return await ImportFileAsync(sfile, yfDirectory, nName);
+            }
+            foreach (Windows.Storage.StorageFolder sfolder in await m_folder.GetFoldersAsync())
+            {
+                string nName = NormalizeName(sfolder.Name);
+                if (directory.FileExist(nName))
+                {
+                    string name_filename = nName;
+                    int i = 2;
+                    do
+                    {
+                        nName = name_filename + " (" + (i++) + ")";
+                    }
+                    while (yfDirectory.Exist(nName));
+                }
+                await foreach (IFileDirectory fd in ImportDirectoryAsyncEnumerable(sfolder, yfDirectory, nName))
+                {
+                    yield return fd;
+                }
+            }
+        }
+
+        public static async Task ExportDirectoryAsync(YFDirectory yfDirectory, Windows.Storage.StorageFolder m_folder)
+        {
+            foreach (YFFile m_file in yfDirectory.FileMap)
+            {
+                await ExportFileAsync(m_file, await m_folder.CreateFileAsync(m_file.Name));
+            }
+            foreach (YFDirectory dir in yfDirectory.DirectoryMap)
+            {
+                await ExportDirectoryAsync(dir, await m_folder.CreateFolderAsync(dir.Name));
+            }
         }
 
         public static async Task ExportFileAsync(YFFile yfFile, Windows.Storage.StorageFile m_file)
