@@ -18,8 +18,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)Dialogs\Dialog_ChooseSaveFile.xaml.cs">
       <DependentUpon>Dialog_ChooseSaveFile.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Dialogs\Dialog_CompressSetting.xaml.cs">
+      <DependentUpon>Dialog_CompressSetting.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Dialogs\Dialog_ViewDocument.xaml.cs">
       <DependentUpon>Dialog_ViewDocument.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Dialogs\Dialog_Wait.xaml.cs">
+      <DependentUpon>Dialog_Wait.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Dialogs\IDialogClosable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\IMenuChoosable.cs" />
@@ -96,6 +102,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Dialogs\Dialog_CompressSetting.xaml">
+      <XamlRuntime>WinUI</XamlRuntime>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Dialogs\Dialog_ChooseSaveFile.xaml">
       <XamlRuntime>WinUI</XamlRuntime>
       <SubType>Designer</SubType>
@@ -107,6 +118,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Dialogs\Dialog_ViewDocument.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Dialogs\Dialog_Wait.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -11,13 +11,18 @@
   <Import Project="PopStudio.Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\CodeSharing\Microsoft.CodeSharing.CSharp.targets" />
   <ItemGroup>
+    <UpToDateCheckInput Remove="Dialogs\Dialog_CompressSetting.xaml" />
     <UpToDateCheckInput Remove="Dialogs\Dialog_ViewDocument.xaml" />
+    <UpToDateCheckInput Remove="Dialogs\Dialog_Wait.xaml" />
     <UpToDateCheckInput Remove="MainPage.xaml" />
     <UpToDateCheckInput Remove="Pages\Page_Trail.xaml" />
   </ItemGroup>
   <ItemGroup>
     <_Globbed_Compile Remove="Dialogs\Dialog_ChooseOpenFile - 复制.xaml.cs" />
+    <_Globbed_Compile Remove="Dialogs\Dialog_ChooseSaveFile - 复制.xaml.cs" />
+    <_Globbed_Compile Remove="Dialogs\Dialog_CompressSetting.xaml.cs" />
     <_Globbed_Compile Remove="Dialogs\Dialog_ViewDocument.xaml.cs" />
+    <_Globbed_Compile Remove="Dialogs\Dialog_Wait.xaml.cs" />
     <_Globbed_Compile Remove="Dialogs\IDialogClosable.cs" />
     <_Globbed_Compile Remove="Dialogs\Page_FileExplorer.xaml.cs" />
     <_Globbed_Compile Remove="MainPage.xaml.cs" />
@@ -52,7 +57,9 @@
     <_Globbed_Compile Remove="YFLib\Trail\WP.cs" />
   </ItemGroup>
   <ItemGroup>
+    <_Globbled_Page Remove="Dialogs\Dialog_CompressSetting.xaml" />
     <_Globbled_Page Remove="Dialogs\Dialog_ViewDocument.xaml" />
+    <_Globbled_Page Remove="Dialogs\Dialog_Wait.xaml" />
     <_Globbled_Page Remove="MainPage.xaml" />
     <_Globbled_Page Remove="Pages\Page_Trail.xaml" />
   </ItemGroup>

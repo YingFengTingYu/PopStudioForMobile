@@ -62,12 +62,24 @@ namespace PopStudio
                 YFDialogControl.Content = page;
             }
             YFDialogGrid.Visibility = Visibility.Visible;
+            YFDialongCancel.Visibility = Visibility.Visible;
+        }
+
+        public void BeginDialog(IDialogClosable p, bool v)
+        {
+            if (p is Page page)
+            {
+                YFDialogControl.Content = page;
+            }
+            YFDialogGrid.Visibility = Visibility.Visible;
+            YFDialongCancel.Visibility = v ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public void EndDialog()
         {
             YFDialogControl.Content = null;
             YFDialogGrid.Visibility = Visibility.Collapsed;
+            YFDialongCancel.Visibility = Visibility.Collapsed;
         }
 
         public async void ChangeShellState(bool? state = null)

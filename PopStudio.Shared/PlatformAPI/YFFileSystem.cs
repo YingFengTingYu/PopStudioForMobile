@@ -63,6 +63,19 @@ namespace PopStudio.PlatformAPI
                 return str;
             }
 
+            public string GetPath(YFDirectory over)
+            {
+                string str = "/" + this.Name;
+                YFDirectory currentDirectory = this.Parent;
+                while ((!currentDirectory.IsRoot) && (currentDirectory != over))
+                {
+                    str = "/" + currentDirectory.Name + str;
+                    currentDirectory = currentDirectory.Parent;
+                }
+                str = "/" + currentDirectory.Name + str;
+                return str;
+            }
+
             public string GetNativePath()
             {
                 return Path.Combine(
@@ -487,14 +500,19 @@ namespace PopStudio.PlatformAPI
 
         private static List<string> RealNameList;
 
+        private static object thisLock = new object();//创建对象锁
+
         public static void Save()
         {
-            string path = Path.Combine(
+            lock (thisLock)
+            {
+                string path = Path.Combine(
                     Windows.Storage.ApplicationData.Current.LocalFolder.Path,
                     "PopStudioSetting(Type(YFDirectory)_Name(Home))");
-            using (FileStream fs = new FileStream(path, FileMode.Create))
-            {
-                JsonSerializer.Serialize(fs, Home, YFDirectoryJsonContext.Default.YFDirectory);
+                using (FileStream fs = new FileStream(path, FileMode.Create))
+                {
+                    JsonSerializer.Serialize(fs, Home, YFDirectoryJsonContext.Default.YFDirectory);
+                }
             }
         }
 
