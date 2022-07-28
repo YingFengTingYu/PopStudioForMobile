@@ -8,6 +8,7 @@ using Microsoft.UI.Xaml.Input;
 using Windows.Storage.Pickers;
 using Windows.Storage;
 using PopStudio.PlatformAPI;
+using PopStudio.Pages;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
@@ -28,7 +29,11 @@ namespace PopStudio.Dialogs
 
         public Action OnCloseOver { get; set; }
 
-        public void InitDialog(params object[] args) => Update();
+        public void InitDialog(params object[] args)
+        {
+            OnClose += () => Task.FromResult(CanClose = true);
+            Update();
+        }
 
         public Dialog_ChooseOpenFile()
         {
@@ -208,35 +213,6 @@ namespace PopStudio.Dialogs
         private ObservableCollection<SingleFileItem> _fileList;
 
         public ObservableCollection<SingleFileItem> FileList => _fileList ??= new ObservableCollection<SingleFileItem>();
-
-        public class SingleFileItem
-        {
-            public string Name { get; private init; }
-            public string ShowString { get; private init; }
-            public FileItemKind Kind { get; private init; }
-            public override string ToString() => ShowString;
-
-            public enum FileItemKind
-            {
-                File,
-                Folder,
-                Back
-            }
-
-            public SingleFileItem(string name, bool isFolder)
-            {
-                Name = name;
-                ShowString = (isFolder ? "\uD83D\uDCC1" : "\uD83D\uDCC4") + " " + Name;
-                Kind = isFolder ? FileItemKind.Folder : FileItemKind.File;
-            }
-
-            public SingleFileItem()
-            {
-                Name = String.Empty;
-                ShowString = "　返回上一级";
-                Kind = FileItemKind.Back;
-            }
-        }
 
         private async void CurrentDirectoryTitle_Tapped(object sender, TappedRoutedEventArgs e)
         {

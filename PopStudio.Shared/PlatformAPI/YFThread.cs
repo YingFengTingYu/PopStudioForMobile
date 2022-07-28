@@ -26,5 +26,10 @@ namespace PopStudio.PlatformAPI
                 //Task.Run(action); // Do not use ThreadStatic attribute!
             }
         }
+
+        public static void InvokeNow(Action action)
+        {
+            action?.Invoke();
+        }
     }
 }

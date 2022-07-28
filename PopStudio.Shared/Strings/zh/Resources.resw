@@ -168,8 +168,38 @@
   <data name="FolderSavePickerYes" xml:space="preserve">
     <value>是</value>
   </data>
-  <data name="Rron_Introduction" xml:space="preserve">
-    <value>通过Rton转码功能，将Rton文件解码为Json文件或者将Json文件编码为Rton文件，如果需要解码或编码加密Rton，请自行在设置中输入密钥。</value>
+  <data name="Pam_Choose" xml:space="preserve">
+    <value>选择</value>
+  </data>
+  <data name="Pam_ChooseMode" xml:space="preserve">
+    <value>请选择运行模式</value>
+  </data>
+  <data name="Pam_DecodeChooseInFile" xml:space="preserve">
+    <value>请选择被解码的文件</value>
+  </data>
+  <data name="Pam_DecodeChooseOutFile" xml:space="preserve">
+    <value>请选择解码生成文件</value>
+  </data>
+  <data name="Pam_DecodeMode" xml:space="preserve">
+    <value>解码模式</value>
+  </data>
+  <data name="Pam_EncodeChooseInFile" xml:space="preserve">
+    <value>请选择被编码的文件</value>
+  </data>
+  <data name="Pam_EncodeChooseOutFile" xml:space="preserve">
+    <value>请选择编码生成文件</value>
+  </data>
+  <data name="Pam_EncodeMode" xml:space="preserve">
+    <value>编码模式</value>
+  </data>
+  <data name="Pam_Introduction" xml:space="preserve">
+    <value>通过Pam转码功能，将Pam文件解码为表示动画的Json文件或者将表示动画的Json文件编码为Pam文件，来实现修改动画或获取动画信息！</value>
+  </data>
+  <data name="Pam_Run" xml:space="preserve">
+    <value>运行</value>
+  </data>
+  <data name="Pam_Title" xml:space="preserve">
+    <value>Pam转码</value>
   </data>
   <data name="Rton_Choose" xml:space="preserve">
     <value>选择</value>
@@ -200,6 +230,9 @@
   </data>
   <data name="Rton_EncodeMode" xml:space="preserve">
     <value>编码模式</value>
+  </data>
+  <data name="Rton_Introduction" xml:space="preserve">
+    <value>通过Rton转码功能，将Rton文件解码为Json文件或者将Json文件编码为Rton文件，如果需要解码或编码加密Rton，请自行在设置中输入密钥。</value>
   </data>
   <data name="Rton_ModeEncryptedRton" xml:space="preserve">
     <value>加密Rton</value>

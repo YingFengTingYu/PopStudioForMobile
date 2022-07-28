@@ -45,6 +45,9 @@ namespace PopStudio.Pages
                     listView.Items.Add("复制路径");
                     listView.Items.Add("查看信息");
                     listView.Items.Add("删除文件");
+                    listView.Items.Add("重命名");
+                    listView.Items.Add("剪切");
+                    listView.Items.Add("复制");
                     ContentDialog noWifiDialog = new ContentDialog
                     {
                         Title = "请选择进行的操作",
@@ -193,6 +196,55 @@ namespace PopStudio.Pages
                             // 删除文件
                             CurrentDirectory.DeleteYFFile(info.Name);
                             Update();
+                        }
+                        else if (mode == 6)
+                        {
+                            // 重命名
+                            TextBlock textBlock = new TextBlock
+                            {
+                                Text = "请输入文件名"
+                            };
+                            TextBox textBox = new TextBox
+                            {
+                                Text = info.Name,
+                                Width = 400
+                            };
+                            StackPanel panel = new StackPanel();
+                            panel.Children.Add(textBlock);
+                            panel.Children.Add(textBox);
+                            ContentDialog createFileDialog = new ContentDialog
+                            {
+                                Title = "新建文件",
+                                Content = panel,
+                                CloseButtonText = "取消",
+                                PrimaryButtonText = "确定"
+                            };
+                            ContentDialogResult result2 = await createFileDialog.ShowAsync();
+                            if (result == ContentDialogResult.Primary)
+                            {
+                                CurrentDirectory.RenameYFFile(info.Name, textBox.Text);
+                                Update();
+                            }
+                        }
+                        else if (mode == 7)
+                        {
+                            // 剪贴
+                            string newPath = await YFFileSystem.ChooseSaveFile(info.Name);
+                            if (!string.IsNullOrEmpty(newPath))
+                            {
+                                YFFileSystem.MoveYFFileFromPath(CurrentDirectory.GetPath() + "/" + info.Name, newPath);
+                                Update();
+                            }
+                        }
+                        else if (mode == 8)
+                        {
+                            // 复制
+                            string newPath = await YFFileSystem.ChooseSaveFile(info.Name);
+                            if (!string.IsNullOrEmpty(newPath))
+                            {
+                                YFFileSystem.CopyYFFileFromPath(CurrentDirectory.GetPath() + "/" + info.Name, newPath);
+                                Update();
+                            }
                         }
                     }
                     CanClick = true;
@@ -457,35 +509,6 @@ namespace PopStudio.Pages
 
         public ObservableCollection<SingleFileItem> FileList => _fileList ??= new ObservableCollection<SingleFileItem>();
 
-        public class SingleFileItem
-        {
-            public string Name { get; private init; }
-            public string ShowString { get; private init; }
-            public FileItemKind Kind { get; private init; }
-            public override string ToString() => ShowString;
-
-            public enum FileItemKind
-            {
-                File,
-                Folder,
-                Back
-            }
-
-            public SingleFileItem(string name, bool isFolder)
-            {
-                Name = name;
-                ShowString = (isFolder ? "\uD83D\uDCC1" : "\uD83D\uDCC4") + " " + Name;
-                Kind = isFolder ? FileItemKind.Folder : FileItemKind.File;
-            }
-
-            public SingleFileItem()
-            {
-                Name = string.Empty;
-                ShowString = "　返回上一级";
-                Kind = FileItemKind.Back;
-            }
-        }
-
         private async void CurrentDirectoryTitle_Tapped(object sender, TappedRoutedEventArgs e)
         {
             TextBlock textBlock = new TextBlock
@@ -519,5 +542,32 @@ namespace PopStudio.Pages
         }
     }
 
-    
+    public class SingleFileItem
+    {
+        public string Name { get; private init; }
+        public string ShowString { get; private init; }
+        public FileItemKind Kind { get; private init; }
+        public override string ToString() => ShowString;
+
+        public enum FileItemKind
+        {
+            File,
+            Folder,
+            Back
+        }
+
+        public SingleFileItem(string name, bool isFolder)
+        {
+            Name = name;
+            ShowString = (isFolder ? "\uD83D\uDCC1" : "\uD83D\uDCC4") + " " + Name;
+            Kind = isFolder ? FileItemKind.Folder : FileItemKind.File;
+        }
+
+        public SingleFileItem()
+        {
+            Name = string.Empty;
+            ShowString = "　返回上一级";
+            Kind = FileItemKind.Back;
+        }
+    }
 }

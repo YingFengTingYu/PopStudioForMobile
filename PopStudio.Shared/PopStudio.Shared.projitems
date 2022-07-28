@@ -41,6 +41,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Page_Menu.xaml.cs">
       <DependentUpon>Page_Menu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Page_Pam.xaml.cs">
+      <DependentUpon>Page_Pam.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Page_Rton.xaml.cs">
       <DependentUpon>Page_Rton.xaml</DependentUpon>
     </Compile>
@@ -48,7 +51,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)PlatformAPI\YFFileSystem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PlatformAPI\YFString.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PlatformAPI\YFThread.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)SourceGen\JsonContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PlatformAPI\YFDirectoryJsonContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Plugin\BinaryStream.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Plugin\EncodeHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Plugin\Endian.cs" />
@@ -56,8 +59,26 @@
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Plugin\RijndaelHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Plugin\StringPool.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Plugin\YFException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\PopAnim\FrameFlags.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\PopAnim\FrameInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\PopAnim\ImageInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\PopAnim\Pam.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\PopAnim\PopAnimInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\PopAnim\SpriteInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\PopAnim\PopAnimJsonContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Rton\Rton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Rton\RtonSetting.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Trail\GameConsole.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Trail\PC.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Trail\Phone32.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Trail\Phone64.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Trail\RawXml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Trail\Trail.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Trail\TrailFormat.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Trail\TrailJson.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Trail\TrailTrackNode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Trail\TV.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Trail\WP.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\YFAPI.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -89,6 +110,11 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Pages\Page_Menu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Pages\Page_Pam.xaml">
+      <XamlRuntime>WinUI</XamlRuntime>
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -129,5 +155,8 @@
     <ApplicationDefinition Update="$(MSBuildThisFileDirectory)**/*.xaml" XamlRuntime="WinUI" />
     <!-- Make sure XAML files force reevaluation of up-to-date checks -->
     <UpToDateCheckInput Include="$(MSBuildThisFileDirectory)**/*.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)YFLib\Image\Texture\" />
   </ItemGroup>
 </Project>

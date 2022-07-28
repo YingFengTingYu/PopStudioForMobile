@@ -18,7 +18,26 @@
     <_Globbed_Compile Remove="Dialogs\Dialog_ViewDocument.xaml.cs" />
     <_Globbed_Compile Remove="Dialogs\IDialogClosable.cs" />
     <_Globbed_Compile Remove="Dialogs\Page_FileExplorer.xaml.cs" />
+    <_Globbed_Compile Remove="Pages\Page_Rton - 复制.xaml.cs" />
     <_Globbed_Compile Remove="PlatformAPI\YFDialogHelper.cs" />
+    <_Globbed_Compile Remove="YFLib\PopAnim\FrameFlags.cs" />
+    <_Globbed_Compile Remove="YFLib\PopAnim\FrameInfo.cs" />
+    <_Globbed_Compile Remove="YFLib\PopAnim\ImageInfo.cs" />
+    <_Globbed_Compile Remove="YFLib\PopAnim\JsonTokenConverter.cs" />
+    <_Globbed_Compile Remove="YFLib\PopAnim\Pam.cs" />
+    <_Globbed_Compile Remove="YFLib\PopAnim\PopAnimInfo.cs" />
+    <_Globbed_Compile Remove="YFLib\PopAnim\SpriteInfo.cs" />
+    <_Globbed_Compile Remove="YFLib\Trail\GameConsole.cs" />
+    <_Globbed_Compile Remove="YFLib\Trail\PC.cs" />
+    <_Globbed_Compile Remove="YFLib\Trail\Phone32.cs" />
+    <_Globbed_Compile Remove="YFLib\Trail\Phone64.cs" />
+    <_Globbed_Compile Remove="YFLib\Trail\RawXml.cs" />
+    <_Globbed_Compile Remove="YFLib\Trail\Trail.cs" />
+    <_Globbed_Compile Remove="YFLib\Trail\TrailFormat.cs" />
+    <_Globbed_Compile Remove="YFLib\Trail\TrailJson.cs" />
+    <_Globbed_Compile Remove="YFLib\Trail\TrailTrackNode.cs" />
+    <_Globbed_Compile Remove="YFLib\Trail\TV.cs" />
+    <_Globbed_Compile Remove="YFLib\Trail\WP.cs" />
   </ItemGroup>
   <ItemGroup>
     <_Globbled_Page Remove="Dialogs\Dialog_ViewDocument.xaml" />

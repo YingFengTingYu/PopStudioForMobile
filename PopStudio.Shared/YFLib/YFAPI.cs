@@ -6,6 +6,16 @@ namespace PopStudio
 {
     public static class YFAPI
     {
+        public static void DecodePam(YFFile inFile, YFFile outFile)
+        {
+            PopAnim.Pam.Decode(inFile, outFile);
+        }
+
+        public static void EncodePam(YFFile inFile, YFFile outFile)
+        {
+            PopAnim.Pam.Encode(inFile, outFile);
+        }
+
         public static void DecodeRton(YFFile inFile, YFFile outFile, int format, RtonSetting setting)
         {
             switch (format)

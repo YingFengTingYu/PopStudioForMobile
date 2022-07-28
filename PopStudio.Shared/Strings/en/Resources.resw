@@ -168,8 +168,38 @@
   <data name="FolderSavePickerYes" xml:space="preserve">
     <value>Yes</value>
   </data>
-  <data name="Rron_Introduction" xml:space="preserve">
-    <value>Through Rton Transcoding, decode Rton file to Json file or encode Json file to Rton file. If you want to decode or encode encrypted Rton file, please enter the cipher in the Setting page.</value>
+  <data name="Pam_Choose" xml:space="preserve">
+    <value>Choose</value>
+  </data>
+  <data name="Pam_ChooseMode" xml:space="preserve">
+    <value>Please select the operation mode</value>
+  </data>
+  <data name="Pam_DecodeChooseInFile" xml:space="preserve">
+    <value>Please choose decoded file</value>
+  </data>
+  <data name="Pam_DecodeChooseOutFile" xml:space="preserve">
+    <value>Please choose generated file</value>
+  </data>
+  <data name="Pam_DecodeMode" xml:space="preserve">
+    <value>Decode</value>
+  </data>
+  <data name="Pam_EncodeChooseInFile" xml:space="preserve">
+    <value>Please choose encoded file</value>
+  </data>
+  <data name="Pam_EncodeChooseOutFile" xml:space="preserve">
+    <value>Please choose generated file</value>
+  </data>
+  <data name="Pam_EncodeMode" xml:space="preserve">
+    <value>Encode</value>
+  </data>
+  <data name="Pam_Introduction" xml:space="preserve">
+    <value>Through Pam Transcoding, decode Pam file to Json file or encode Json file to Pam file to modify the animation or obtain animation information!</value>
+  </data>
+  <data name="Pam_Run" xml:space="preserve">
+    <value>Run</value>
+  </data>
+  <data name="Pam_Title" xml:space="preserve">
+    <value>Pam Transcode</value>
   </data>
   <data name="Rton_Choose" xml:space="preserve">
     <value>Choose</value>
@@ -200,6 +230,9 @@
   </data>
   <data name="Rton_EncodeMode" xml:space="preserve">
     <value>Encode</value>
+  </data>
+  <data name="Rton_Introduction" xml:space="preserve">
+    <value>Through Rton Transcoding, decode Rton file to Json file or encode Json file to Rton file. If you want to decode or encode encrypted Rton file, please enter the cipher in the Setting page.</value>
   </data>
   <data name="Rton_ModeEncryptedRton" xml:space="preserve">
     <value>Encrypted Rton</value>

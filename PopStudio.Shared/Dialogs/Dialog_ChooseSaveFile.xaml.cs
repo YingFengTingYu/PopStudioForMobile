@@ -10,6 +10,7 @@ using Windows.Storage;
 using PopStudio.PlatformAPI;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using PopStudio.Pages;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -28,7 +29,15 @@ namespace PopStudio.Dialogs
 
         public Action OnCloseOver { get; set; }
 
-        public void InitDialog(params object[] args) => Update();
+        public void InitDialog(params object[] args)
+        {
+            OnClose += () => Task.FromResult(CanClose = true);
+            if ((args?.Length ?? 0) >= 1)
+            {
+                NewFileName.Text = args[0] as string;
+            }
+            Update();
+        }
 
         public Dialog_ChooseSaveFile()
         {
@@ -208,35 +217,6 @@ namespace PopStudio.Dialogs
 
         public ObservableCollection<SingleFileItem> FileList => _fileList ??= new ObservableCollection<SingleFileItem>();
 
-        public class SingleFileItem
-        {
-            public string Name { get; private init; }
-            public string ShowString { get; private init; }
-            public FileItemKind Kind { get; private init; }
-            public override string ToString() => ShowString;
-
-            public enum FileItemKind
-            {
-                File,
-                Folder,
-                Back
-            }
-
-            public SingleFileItem(string name, bool isFolder)
-            {
-                Name = name;
-                ShowString = (isFolder ? "\uD83D\uDCC1" : "\uD83D\uDCC4") + " " + Name;
-                Kind = isFolder ? FileItemKind.Folder : FileItemKind.File;
-            }
-
-            public SingleFileItem()
-            {
-                Name = String.Empty;
-                ShowString = "　返回上一级";
-                Kind = FileItemKind.Back;
-            }
-        }
-
         private async void CurrentDirectoryTitle_Tapped(object sender, TappedRoutedEventArgs e)
         {
             TextBlock textBlock = new TextBlock
@@ -278,7 +258,7 @@ namespace PopStudio.Dialogs
             }
             else
             {
-                enterredName = enterredName.Replace('\\', '_').Replace('/', '_');
+                enterredName = YFFileSystem.NormalizeName(enterredName);
                 if (CurrentDirectory.DirectoryExist(enterredName))
                 {
                     ContentDialog noWifiDialog = new ContentDialog

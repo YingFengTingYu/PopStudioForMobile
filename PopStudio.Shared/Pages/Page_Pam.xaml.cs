@@ -11,13 +11,13 @@ namespace PopStudio.Pages
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class Page_Rton : Page, IMenuChoosable
+    public sealed partial class Page_Pam : Page, IMenuChoosable
     {
-        public string Title { get; set; } = YFString.GetString("Rton_Title");
+        public string Title { get; set; } = YFString.GetString("Pam_Title");
 
         public Action OnShow { get; set; }
 
-        public Page_Rton()
+        public Page_Pam()
         {
             this.InitializeComponent();
             LoadFont();
@@ -25,18 +25,14 @@ namespace PopStudio.Pages
 
         void LoadFont()
         {
-            label_introduction.Text = YFString.GetString("Rton_Introduction");
-            label_choosemode.Text = YFString.GetString("Rton_ChooseMode");
-            label_mode1.Text = YFString.GetString("Rton_DecodeMode");
-            label_mode2.Text = YFString.GetString("Rton_EncodeMode");
+            label_introduction.Text = YFString.GetString("Pam_Introduction");
+            label_choosemode.Text = YFString.GetString("Pam_ChooseMode");
+            label_mode1.Text = YFString.GetString("Pam_DecodeMode");
+            label_mode2.Text = YFString.GetString("Pam_EncodeMode");
             LoadFont_Checked(TB_Mode.IsOn);
-            button1.Content = YFString.GetString("Rton_Choose");
-            button2.Content = YFString.GetString("Rton_Choose");
-            CB_CMode.Items.Clear();
-            CB_CMode.Items.Add(YFString.GetString("Rton_ModeSimpleRton"));
-            CB_CMode.Items.Add(YFString.GetString("Rton_ModeEncryptedRton"));
-            CB_CMode.SelectedIndex = 0;
-            button_run.Content = YFString.GetString("Rton_Run");
+            button1.Content = YFString.GetString("Pam_Choose");
+            button2.Content = YFString.GetString("Pam_Choose");
+            button_run.Content = YFString.GetString("Pam_Run");
             label_statue.Text = YFString.GetString("RunStatue_Title");
             text4.Text = YFString.GetString("RunStatue_Wait");
         }
@@ -45,15 +41,13 @@ namespace PopStudio.Pages
         {
             if (v)
             {
-                text1.Text = YFString.GetString("Rton_EncodeChooseInFile");
-                text2.Text = YFString.GetString("Rton_EncodeChooseOutFile");
-                text3.Text = YFString.GetString("Rton_EncodeChooseMode");
+                text1.Text = YFString.GetString("Pam_EncodeChooseInFile");
+                text2.Text = YFString.GetString("Pam_EncodeChooseOutFile");
             }
             else
             {
-                text1.Text = YFString.GetString("Rton_DecodeChooseInFile");
-                text2.Text = YFString.GetString("Rton_DecodeChooseOutFile");
-                text3.Text = YFString.GetString("Rton_DecodeChooseMode");
+                text1.Text = YFString.GetString("Pam_DecodeChooseInFile");
+                text2.Text = YFString.GetString("Pam_DecodeChooseOutFile");
             }
         }
 
@@ -82,7 +76,6 @@ namespace PopStudio.Pages
             bool mode = TB_Mode.IsOn == true;
             YFFileSystem.YFFile inFile = YFFileSystem.GetYFFileFromPath(textbox1.Text);
             YFFileSystem.YFFile outFile = YFFileSystem.CreateYFFileFromPath(textbox2.Text);
-            int cmode = CB_CMode.SelectedIndex;
             YFThread.Invoke(() =>
             {
                 string err = null;
@@ -92,11 +85,11 @@ namespace PopStudio.Pages
                 {
                     if (mode)
                     {
-                        YFAPI.EncodeRton(inFile, outFile, cmode, null);
+                        YFAPI.EncodePam(inFile, outFile);
                     }
                     else
                     {
-                        YFAPI.DecodeRton(inFile, outFile, cmode, null);
+                        YFAPI.DecodePam(inFile, outFile);
                     }
                 }
                 catch (Exception ex)

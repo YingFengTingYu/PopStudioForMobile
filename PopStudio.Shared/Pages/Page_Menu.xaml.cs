@@ -13,6 +13,7 @@ namespace PopStudio.Pages
         {
             this.InitializeComponent();
             AddItem(new Page_FileExplorer());
+            AddItem(new Page_Pam());
             AddItem(new Page_Rton());
             FlyoutItemList.SelectedIndex = 0;
             FlyoutItemList.SelectionChanged += Flyout_SelectionChanged;

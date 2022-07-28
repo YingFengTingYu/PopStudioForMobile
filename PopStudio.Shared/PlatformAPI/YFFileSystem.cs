@@ -3,7 +3,6 @@ using System.IO;
 using System.Threading.Tasks;
 using PopStudio.Plugin;
 using System.Text.Json;
-using PopStudio.SourceGen;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
@@ -11,9 +10,15 @@ namespace PopStudio.PlatformAPI
 {
     public static class YFFileSystem
     {
+        public static string NormalizeName(string value)
+        {
+            if (string.IsNullOrEmpty(value)) return "_";
+            return value.Replace("\\", "_").Replace("/", "_");
+        }
+
         public class YFFile
         {
-            public string Name { get => _name ??= "_"; set => _name = value.Replace("\\", "_").Replace("/", "_"); }
+            public string Name { get => _name ??= "_"; set => _name = NormalizeName(value); }
             public string RealFileName { get; set; }
             public DateTime Time { get; set; }
             [JsonIgnore]
@@ -25,6 +30,11 @@ namespace PopStudio.PlatformAPI
             {
                 Parent.DeleteYFFile(this);
                 return Parent;
+            }
+
+            public bool Rename(string name)
+            {
+                return Parent.RenameYFFile(this, NormalizeName(name));
             }
 
             public string GetPath()
@@ -102,7 +112,7 @@ namespace PopStudio.PlatformAPI
 
         public class YFDirectory
         {
-            public string Name { get => _name ??= "_"; set => _name = value.Replace("\\", "_").Replace("/", "_"); }
+            public string Name { get => _name ??= "_"; set => _name = NormalizeName(value); }
             public List<YFDirectory> DirectoryMap { get => _directoryMap ??= new List<YFDirectory>(); set => _directoryMap = value; }
             public List<YFFile> FileMap { get => _fileMap ??= new List<YFFile>(); set => _fileMap = value; }
             public DateTime Time { get; set; }
@@ -114,14 +124,87 @@ namespace PopStudio.PlatformAPI
             private List<YFDirectory> _directoryMap;
             private List<YFFile> _fileMap;
 
-            public bool Exist(string name) => FileExist(name) || DirectoryExist(name);
+            public bool Exist(string name)
+            {
+                name = NormalizeName(name);
+                return FileExist(name) || DirectoryExist(name);
+            }
 
-            public bool FileExist(string name) => GetYFFile(name) is not null;
+            public bool FileExist(string name) => GetYFFile(NormalizeName(name)) is not null;
 
-            public bool DirectoryExist(string name) => GetYFDirectory(name) is not null;
+            public bool DirectoryExist(string name) => GetYFDirectory(NormalizeName(name)) is not null;
+
+            public bool RenameYFFile(string oldName, string newName)
+            {
+                oldName = NormalizeName(oldName);
+                newName = NormalizeName(newName);
+                YFFile yfFile = GetYFFile(oldName);
+                if (yfFile is null)
+                {
+                    return false;
+                }
+                if (!Exist(newName))
+                {
+                    yfFile.Name = newName;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            public bool RenameYFDirectory(string oldName, string newName)
+            {
+                oldName = NormalizeName(oldName);
+                newName = NormalizeName(newName);
+                YFDirectory yfDirectory = GetYFDirectory(oldName);
+                if (yfDirectory is null)
+                {
+                    return false;
+                }
+                if (!Exist(newName))
+                {
+                    yfDirectory.Name = newName;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            public bool RenameYFFile(YFFile yfFile, string newName)
+            {
+                newName = NormalizeName(newName);
+                if (!Exist(newName))
+                {
+                    yfFile.Name = newName;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            public bool RenameYFDirectory(YFDirectory yfDirectory, string newName)
+            {
+                newName = NormalizeName(newName);
+                if (!Exist(newName))
+                {
+                    yfDirectory.Name = newName;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
 
             public YFFile GetYFFile(string name)
             {
+                name = NormalizeName(name);
                 foreach (YFFile yfFile in this.FileMap)
                 {
                     if (yfFile.Name == name)
@@ -134,6 +217,7 @@ namespace PopStudio.PlatformAPI
 
             public YFDirectory GetYFDirectory(string name)
             {
+                name = NormalizeName(name);
                 foreach (YFDirectory yfFile in this.DirectoryMap)
                 {
                     if (yfFile.Name == name)
@@ -159,7 +243,7 @@ namespace PopStudio.PlatformAPI
 
             public void DeleteYFDirectory(string name)
             {
-                DeleteYFDirectory(GetYFDirectory(name));
+                DeleteYFDirectory(GetYFDirectory(NormalizeName(name)));
             }
 
             public void DeleteYFDirectory(YFDirectory yfDirectory)
@@ -190,7 +274,7 @@ namespace PopStudio.PlatformAPI
 
             public void DeleteYFFile(string name)
             {
-                DeleteYFFile(GetYFFile(name));
+                DeleteYFFile(GetYFFile(NormalizeName(name)));
             }
 
             public void DeleteYFFile(YFFile yfFile)
@@ -213,6 +297,7 @@ namespace PopStudio.PlatformAPI
 
             public YFFile CreateYFFile(string name)
             {
+                name = NormalizeName(name);
                 if (this.DirectoryExist(name)) return null;
                 YFFile yfFile = this.GetYFFile(name);
                 if (yfFile is null)
@@ -237,6 +322,7 @@ namespace PopStudio.PlatformAPI
 
             public YFDirectory CreateYFDirectory(string name)
             {
+                name = NormalizeName(name);
                 if (this.FileExist(name)) return null;
                 YFDirectory yfDirectory = this.GetYFDirectory(name);
                 if (yfDirectory is null)
@@ -303,7 +389,7 @@ namespace PopStudio.PlatformAPI
                     "YFFileSystem.json");
             using (FileStream fs = new FileStream(path, FileMode.Create))
             {
-                JsonSerializer.Serialize(fs, Home, YFFileSystemSourceGenerationContext.Default.YFDirectory);
+                JsonSerializer.Serialize(fs, Home, YFDirectoryJsonContext.Default.YFDirectory);
             }
         }
 
@@ -317,7 +403,7 @@ namespace PopStudio.PlatformAPI
             {
                 try
                 {
-                    Home ??= JsonSerializer.Deserialize(File.ReadAllText(path), YFFileSystemSourceGenerationContext.Default.YFDirectory);
+                    Home ??= JsonSerializer.Deserialize(File.ReadAllText(path), YFDirectoryJsonContext.Default.YFDirectory);
                     if (Home is not null)
                     {
                         Home.Name = "home";
@@ -445,6 +531,34 @@ namespace PopStudio.PlatformAPI
             return currentDirectory;
         }
 
+        public static bool CopyYFFileFromPath(string inPath, string outPath)
+        {
+            YFFile inFile = GetYFFileFromPath(inPath);
+            if (inFile is not null)
+            {
+                YFFile outFile = CreateYFFileFromPath(outPath);
+                if (outFile is not null)
+                {
+                    if (inFile.GetPath() != outFile.GetPath())
+                    {
+                        File.Copy(inFile.GetNativePath(), outFile.GetNativePath(), true);
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public static bool MoveYFFileFromPath(string inPath, string outPath)
+        {
+            if (CopyYFFileFromPath(inPath, outPath))
+            {
+                DeleteYFFileFromPath(inPath);
+                return true;
+            }
+            return false;
+        }
+
         public static async Task<YFFile> ImportFileAsync(Windows.Storage.StorageFile m_file, YFDirectory directory, string name = null)
         {
             YFFile yfFile = directory.CreateYFFile(name ?? m_file.Name);
@@ -484,19 +598,19 @@ namespace PopStudio.PlatformAPI
             return name;
         }
 
-        public async static Task<string> ChooseOpenFile()
+        public async static Task<string> ChooseOpenFile(params object[] args)
         {
-            return await YFDialogHelper.OpenDialog<Dialogs.Dialog_ChooseOpenFile>() as string;
+            return await YFDialogHelper.OpenDialog<Dialogs.Dialog_ChooseOpenFile>(args) as string;
         }
 
-        public async static Task<string> ChooseSaveFile()
+        public async static Task<string> ChooseSaveFile(params object[] args)
         {
-            return await YFDialogHelper.OpenDialog<Dialogs.Dialog_ChooseSaveFile>() as string;
+            return await YFDialogHelper.OpenDialog<Dialogs.Dialog_ChooseSaveFile>(args) as string;
         }
 
-        public async static Task<string> ChooseFolder()
+        public async static Task<string> ChooseFolder(params object[] args)
         {
-            return await YFDialogHelper.OpenDialog<Dialogs.Dialog_ChooseFolder>() as string;
+            return await YFDialogHelper.OpenDialog<Dialogs.Dialog_ChooseFolder>(args) as string;
         }
     }
 }

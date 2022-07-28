@@ -15,7 +15,6 @@ namespace PopStudio.Dialogs
 
         public async Task<bool> Close()
         {
-            CanClose = true;
             await OnClose?.Invoke();
             if (CanClose)
             {
