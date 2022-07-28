@@ -261,4 +261,52 @@
   <data name="RunStatue_Wait" xml:space="preserve">
     <value>Wait...</value>
   </data>
+  <data name="Trail_Choose" xml:space="preserve">
+    <value>Choose</value>
+  </data>
+  <data name="Trail_ChooseInFile" xml:space="preserve">
+    <value>Please choose transcoded file</value>
+  </data>
+  <data name="Trail_ChooseInMode" xml:space="preserve">
+    <value>Please choose format of transcoded file</value>
+  </data>
+  <data name="Trail_ChooseOutFile" xml:space="preserve">
+    <value>Please choose generated file</value>
+  </data>
+  <data name="Trail_ChooseOutMode" xml:space="preserve">
+    <value>Please choose format of generated file</value>
+  </data>
+  <data name="Trail_Introduction" xml:space="preserve">
+    <value>Through Trail Transcoding, obtain and modify the tailing effect of the game!</value>
+  </data>
+  <data name="Trail_ModeGameConsoleCompiled" xml:space="preserve">
+    <value>Game Console Compiled(.trail.compiled)</value>
+  </data>
+  <data name="Trail_ModePCCompiled" xml:space="preserve">
+    <value>PC Compiled(.trail.compiled)</value>
+  </data>
+  <data name="Trail_ModePhone32Compiled" xml:space="preserve">
+    <value>Phone 32-bit Compiled(.trail.compiled)</value>
+  </data>
+  <data name="Trail_ModePhone64Compiled" xml:space="preserve">
+    <value>Phone 64-bit Compiled(.trail.compiled)</value>
+  </data>
+  <data name="Trail_ModeRawXml" xml:space="preserve">
+    <value>Raw Xml(.trail)</value>
+  </data>
+  <data name="Trail_ModeStudioJson" xml:space="preserve">
+    <value>Json(.trail.json)</value>
+  </data>
+  <data name="Trail_ModeTVCompiled" xml:space="preserve">
+    <value>Android TV Compiled(.trail.compiled)</value>
+  </data>
+  <data name="Trail_ModeWPXnb" xml:space="preserve">
+    <value>Windows Phone Content(.trail.compiled)</value>
+  </data>
+  <data name="Trail_Run" xml:space="preserve">
+    <value>Run</value>
+  </data>
+  <data name="Trail_Title" xml:space="preserve">
+    <value>Trail Transcode</value>
+  </data>
 </root>

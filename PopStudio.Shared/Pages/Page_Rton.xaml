@@ -21,10 +21,6 @@
             <Setter Property="HorizontalAlignment" Value="Stretch" />
             <Setter Property="VerticalAlignment" Value="Stretch" />
         </Style>
-        <Style TargetType="TextBox">
-            <Setter Property="BorderThickness" Value="1" />
-            <Setter Property="BorderBrush" Value="Black" />
-        </Style>
     </Page.Resources>
 
     <ScrollViewer x:Name="ScrollViewer" VerticalScrollBarVisibility="Auto">

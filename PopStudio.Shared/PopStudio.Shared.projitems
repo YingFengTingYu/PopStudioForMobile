@@ -35,6 +35,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Page_Rton.xaml.cs">
       <DependentUpon>Page_Rton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Page_Trail.xaml.cs">
+      <DependentUpon>Page_Trail.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)PlatformAPI\YFDialogHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PlatformAPI\YFFileSystem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PlatformAPI\YFString.cs" />
@@ -60,7 +63,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Trail\PC.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Trail\Phone32.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Trail\Phone64.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Trail\TrailJsonContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Trail\RawXml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Trail\TrailSetting.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Trail\Trail.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Trail\TrailFormat.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Trail\TrailJson.cs" />
@@ -103,6 +108,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Pages\Page_Rton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Pages\Page_Trail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

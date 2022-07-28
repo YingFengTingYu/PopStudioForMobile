@@ -13,6 +13,7 @@
   <ItemGroup>
     <UpToDateCheckInput Remove="Dialogs\Dialog_ViewDocument.xaml" />
     <UpToDateCheckInput Remove="MainPage.xaml" />
+    <UpToDateCheckInput Remove="Pages\Page_Trail.xaml" />
   </ItemGroup>
   <ItemGroup>
     <_Globbed_Compile Remove="Dialogs\Dialog_ChooseOpenFile - 复制.xaml.cs" />
@@ -21,6 +22,7 @@
     <_Globbed_Compile Remove="Dialogs\Page_FileExplorer.xaml.cs" />
     <_Globbed_Compile Remove="MainPage.xaml.cs" />
     <_Globbed_Compile Remove="Pages\Page_Rton - 复制.xaml.cs" />
+    <_Globbed_Compile Remove="Pages\Page_Trail.xaml.cs" />
     <_Globbed_Compile Remove="PlatformAPI\YFDialogHelper.cs" />
     <_Globbed_Compile Remove="YFLib\PopAnim\FrameFlags.cs" />
     <_Globbed_Compile Remove="YFLib\PopAnim\FrameInfo.cs" />
@@ -44,5 +46,6 @@
   <ItemGroup>
     <_Globbled_Page Remove="Dialogs\Dialog_ViewDocument.xaml" />
     <_Globbled_Page Remove="MainPage.xaml" />
+    <_Globbled_Page Remove="Pages\Page_Trail.xaml" />
   </ItemGroup>
 </Project>

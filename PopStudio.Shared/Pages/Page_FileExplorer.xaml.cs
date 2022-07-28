@@ -77,7 +77,7 @@ namespace PopStudio.Pages
                             else
                             {
                                 name = info.Name;
-                                lst[0] = ".popstudio";
+                                lst[0] = ".";
                             }
                             FileSavePicker fileSavePicker = new FileSavePicker();
 #if WinUI
@@ -86,41 +86,6 @@ namespace PopStudio.Pages
                             fileSavePicker.SuggestedStartLocation = PickerLocationId.ComputerFolder;
                             fileSavePicker.SuggestedFileName = name;
                             fileSavePicker.FileTypeChoices.Add("File", lst);
-                            fileSavePicker.FileTypeChoices.Add("PopCap Image Texture",
-                                new string[]
-                                {
-                                    ".ptx"
-                                });
-                            fileSavePicker.FileTypeChoices.Add("Reflaction Object Notation",
-                                new string[]
-                                {
-                                    ".rton"
-                                });
-                            fileSavePicker.FileTypeChoices.Add("Popcap Animate",
-                                new string[]
-                                {
-                                    ".pam"
-                                });
-                            fileSavePicker.FileTypeChoices.Add("PNG Image",
-                                new string[]
-                                {
-                                    ".png"
-                                });
-                            fileSavePicker.FileTypeChoices.Add("Text",
-                                new string[]
-                                {
-                                    ".txt"
-                                });
-                            fileSavePicker.FileTypeChoices.Add("Javascript Object Notation",
-                                new string[]
-                                {
-                                    ".json"
-                                });
-                            fileSavePicker.FileTypeChoices.Add("Zip File",
-                                new string[]
-                                {
-                                    ".zip"
-                                });
                             StorageFile saveFile = await fileSavePicker.PickSaveFileAsync();
                             if (saveFile != null)
                             {

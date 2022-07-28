@@ -307,8 +307,31 @@ namespace PopStudio.Trail
 
         static string FloatToString(float? f)
         {
-            string ans = f.ToString();
-            return ans.StartsWith("0.") ? ans[1..] : ans;
+            if (f is null)
+            {
+                return "0";
+            }
+            string ans = f.Value.ToString("F3").Replace(',', '.');
+            if (ans.Contains('.'))
+            {
+                if (ans.EndsWith("000"))
+                {
+                    ans = ans[..^4];
+                }
+                else if (ans.EndsWith("00"))
+                {
+                    ans = ans[..^2];
+                }
+                else if (ans.EndsWith("0"))
+                {
+                    ans = ans[..^1];
+                }
+                if (ans.StartsWith("0."))
+                {
+                    ans = ans[1..];
+                }
+            }
+            return ans;
         }
 
         static void WriteTrackNode(TrailTrackNode[] track, StreamWriter sw)
@@ -381,7 +404,7 @@ namespace PopStudio.Trail
                 if (node.Time != 0 && node.Time != 1)
                 {
                     sw.Write(',');
-                    sw.Write(node.Time * 100);
+                    sw.Write(FloatToString(node.Time * 100));
                 }
                 //Curves
                 Distribution = node.CurveType ?? 1;
