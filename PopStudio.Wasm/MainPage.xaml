@@ -1,0 +1,98 @@
+﻿<Page
+    x:Class="PopStudio.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PopStudio"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pages="using:PopStudio.Pages"
+    xmlns:toolkit="using:Uno.UI.Toolkit"
+    mc:Ignorable="d"    
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid toolkit:VisibleBoundsPadding.PaddingMask="Top">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal"
+                        Background="CornflowerBlue" >
+                <Image Source="Assets/Images/shell.png"
+                       Margin="10 0 0 0"
+                       VerticalAlignment="Center"
+                       Width="25"
+                       Height="25"
+                       Tapped="Image_Tapped" />
+
+                <TextBlock x:Name="PageTitle"
+                           Margin="10 0 0 2"
+                           VerticalAlignment="Center"
+                           FontSize="22"
+                           Foreground="White" />
+            </StackPanel>
+            <ContentControl x:Name="PageControl"
+                            Grid.Row="1"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Stretch"
+                            Background="White" />
+        </Grid>
+
+        <Grid x:Name="menu"
+              Visibility="Collapsed">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" MinWidth="250" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+            <pages:Page_Menu Grid.Row="1"
+                             x:Name="page_menu"
+                             Background="CornflowerBlue" />
+            <Grid HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch"
+                  Grid.Column="1"
+                  Background="#55000000"
+                  Tapped="Grid_Tapped" />
+        </Grid>
+
+        <Grid x:Name="YFDialogGrid"
+              Visibility="Collapsed">
+            <Grid Background="#55000000"
+                  Tapped="Grid_Tapped_1" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="8*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="8*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Border CornerRadius="15"
+                    BorderThickness="3"
+                    BorderBrush="Black"
+                    Grid.Row="1"
+                    Grid.Column="1">
+                    <Grid Background="Black">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+                        <ContentControl x:Name="YFDialogControl"
+                                        HorizontalContentAlignment="Stretch"
+                                        VerticalContentAlignment="Stretch" />
+                        <Button x:Name="YFDialongCancel"
+                            Grid.Row="1"
+                            Foreground="White"
+                            Background="Black"
+                            VerticalAlignment="Stretch"
+                            HorizontalAlignment="Stretch"
+                            Content="关闭"
+                            Click="YFDialongCancel_Click" />
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>
