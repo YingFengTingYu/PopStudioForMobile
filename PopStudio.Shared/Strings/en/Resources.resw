@@ -232,7 +232,7 @@
     <value>Encode</value>
   </data>
   <data name="Rton_Introduction" xml:space="preserve">
-    <value>Through Rton Transcoding, decode Rton file to Json file or encode Json file to Rton file. If you want to decode or encode encrypted Rton file, please enter the cipher in the Setting page.</value>
+    <value>Through Rton Transcoding, decode single Rton file to Json file or encode single Json file to Rton file. If you want to decode or encode encrypted Rton file, please enter the cipher in the Setting page.</value>
   </data>
   <data name="Rton_ModeEncryptedRton" xml:space="preserve">
     <value>Encrypted Rton</value>
@@ -404,5 +404,32 @@
   </data>
   <data name="Reanim_Title" xml:space="preserve">
     <value>Reanim Transcode</value>
+  </data>
+  <data name="BatchMode_Batch" xml:space="preserve">
+    <value>Batch Mode</value>
+  </data>
+  <data name="BatchMode_Single" xml:space="preserve">
+    <value>Single File Mode</value>
+  </data>
+  <data name="Rton_DecodeChooseInFile_Batch" xml:space="preserve">
+    <value>Please choose decoded folder</value>
+  </data>
+  <data name="Rton_DecodeChooseOutFile_Batch" xml:space="preserve">
+    <value>Please choose generated folder</value>
+  </data>
+  <data name="Rton_DecodeMode_Batch" xml:space="preserve">
+    <value>Batch Decode</value>
+  </data>
+  <data name="Rton_EncodeChooseInFile_Batch" xml:space="preserve">
+    <value>Please choose encoded folder</value>
+  </data>
+  <data name="Rton_EncodeChooseOutFile_Batch" xml:space="preserve">
+    <value>Please choose generated folder</value>
+  </data>
+  <data name="Rton_EncodeMode_Batch" xml:space="preserve">
+    <value>Batch Encode</value>
+  </data>
+  <data name="Rton_Introduction_Batch" xml:space="preserve">
+    <value>Through Rton Batch Transcoding, decode all Rton files from a folder to Json files or encode all Json files from a folder to Rton files. If you want to decode or encode encrypted Rton file, please enter the cipher in the Setting page.</value>
   </data>
 </root>

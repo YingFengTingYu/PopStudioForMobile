@@ -15,10 +15,6 @@ namespace PopStudio.Rton
         public static readonly int version = 0x1;
         public static readonly string EOF = "DONE";
 
-        static readonly StringPool R0x90 = new StringPool();
-        static readonly StringPool R0x92 = new StringPool();
-        static readonly List<byte[]> R0x90List = new List<byte[]>();
-        static readonly List<byte[]> R0x92List = new List<byte[]>();
         static readonly byte[] NULL = new byte[] { 0x2A };
         static readonly byte[] RTID0 = new byte[] { 0x52, 0x54, 0x49, 0x44, 0x28, 0x30, 0x29 };
         static readonly string Str_Null = "*";
@@ -39,8 +35,8 @@ namespace PopStudio.Rton
         /// <param name="outFile"></param>
         public static void Decode(YFFile inFile, YFFile outFile)
         {
-            R0x90List.Clear();
-            R0x92List.Clear();
+            List<byte[]> R0x90List = new List<byte[]>();
+            List<byte[]> R0x92List = new List<byte[]>();
             using (Stream stream = outFile.CreateAsStream())
             {
                 using (Utf8JsonWriter sw = new Utf8JsonWriter(stream,
@@ -54,19 +50,17 @@ namespace PopStudio.Rton
                     {
                         bs.IdString(magic);
                         bs.IdInt32(version);
-                        ReadJObject(bs, sw);
+                        ReadJObject(bs, sw, R0x90List, R0x92List);
                         bs.IdString(EOF);
                     }
                 }
             }
-            R0x90List.Clear();
-            R0x92List.Clear();
         }
 
         public static void DecodeAndDecrypt(YFFile inFile, YFFile outFile, string key)
         {
-            R0x90List.Clear();
-            R0x92List.Clear();
+            List<byte[]> R0x90List = new List<byte[]>();
+            List<byte[]> R0x92List = new List<byte[]>();
             //The key for Rijndael is the MD5 of the enterred key
             byte[] keybytes = Encoding.UTF8.GetBytes(BitConverter.ToString(System.Security.Cryptography.MD5.Create().ComputeHash(Encoding.UTF8.GetBytes(key))).ToLower().Replace("-", ""));
             byte[] ivbytes = new byte[24];
@@ -92,13 +86,11 @@ namespace PopStudio.Rton
                         bs.Position = 0;
                         bs.IdString(magic);
                         bs.IdInt32(version);
-                        ReadJObject(bs, sw);
+                        ReadJObject(bs, sw, R0x90List, R0x92List);
                         bs.IdString(EOF);
                     }
                 }
             }
-            R0x90List.Clear();
-            R0x92List.Clear();
         }
 
         static string ReadBinary(BinaryStream bs)
@@ -139,7 +131,7 @@ namespace PopStudio.Rton
             }
         }
 
-        static void ReadJArray(BinaryStream bs, Utf8JsonWriter sw)
+        static void ReadJArray(BinaryStream bs, Utf8JsonWriter sw, List<byte[]> R0x90List, List<byte[]> R0x92List)
         {
             sw.WriteStartArray();
             byte[] tempstring;
@@ -251,10 +243,10 @@ namespace PopStudio.Rton
                         sw.WriteStringValue(RTID0);
                         break;
                     case 0x85:
-                        ReadJObject(bs, sw);
+                        ReadJObject(bs, sw, R0x90List, R0x92List);
                         break;
                     case 0x86:
-                        ReadJArray(bs, sw);
+                        ReadJArray(bs, sw, R0x90List, R0x92List);
                         break;
                     case 0x87:
                         sw.WriteStringValue(ReadBinary(bs));
@@ -304,7 +296,7 @@ namespace PopStudio.Rton
             sw.WriteEndArray();
         }
 
-        static void ReadJObject(BinaryStream bs, Utf8JsonWriter sw)
+        static void ReadJObject(BinaryStream bs, Utf8JsonWriter sw, List<byte[]> R0x90List, List<byte[]> R0x92List)
         {
             sw.WriteStartObject();
             byte[] tempstring;
@@ -462,10 +454,10 @@ namespace PopStudio.Rton
                         sw.WriteStringValue(RTID0);
                         break;
                     case 0x85:
-                        ReadJObject(bs, sw);
+                        ReadJObject(bs, sw, R0x90List, R0x92List);
                         break;
                     case 0x86:
-                        ReadJArray(bs, sw);
+                        ReadJArray(bs, sw, R0x90List, R0x92List);
                         break;
                     case 0x87:
                         sw.WriteStringValue(ReadBinary(bs));
@@ -516,8 +508,8 @@ namespace PopStudio.Rton
 
         public static void EncodeAndEncrypt(YFFile inFile, YFFile outFile, string key)
         {
-            R0x90.Clear();
-            R0x92.Clear();
+            StringPool R0x90 = new StringPool();
+            StringPool R0x92 = new StringPool();
             using (Stream stream = inFile.OpenAsStream())
             {
                 using (JsonDocument json = JsonDocument.Parse(stream,
@@ -532,7 +524,7 @@ namespace PopStudio.Rton
                     {
                         bs.WriteString(magic);
                         bs.WriteInt32(version);
-                        WriteJObject(bs, root);
+                        WriteJObject(bs, root, R0x90, R0x92);
                         bs.WriteString(EOF);
                         bs.Position = 0;
                         source = bs.ToArray();
@@ -549,14 +541,12 @@ namespace PopStudio.Rton
                     }
                 }
             }
-            R0x90.Clear();
-            R0x92.Clear();
         }
 
         public static void Encode(YFFile inFile, YFFile outFile)
         {
-            R0x90.Clear();
-            R0x92.Clear();
+            StringPool R0x90 = new StringPool();
+            StringPool R0x92 = new StringPool();
             using (Stream stream = inFile.OpenAsStream())
             {
                 using (JsonDocument json = JsonDocument.Parse(stream,
@@ -570,13 +560,11 @@ namespace PopStudio.Rton
                     {
                         bs.WriteString(magic);
                         bs.WriteInt32(version);
-                        WriteJObject(bs, root);
+                        WriteJObject(bs, root, R0x90, R0x92);
                         bs.WriteString(EOF);
                     }
                 }
             }
-            R0x90.Clear();
-            R0x92.Clear();
         }
 
         static bool IsASCII(string str)
@@ -682,7 +670,7 @@ namespace PopStudio.Rton
             return false;
         }
 
-        static void WriteJArray(BinaryStream bs, JsonElement json)
+        static void WriteJArray(BinaryStream bs, JsonElement json, StringPool R0x90, StringPool R0x92)
         {
             bs.WriteByte(0xFD);
             int n = json.GetArrayLength();
@@ -694,11 +682,11 @@ namespace PopStudio.Rton
                 {
                     case JsonValueKind.Object:
                         bs.WriteByte(0x85);
-                        WriteJObject(bs, value);
+                        WriteJObject(bs, value, R0x90, R0x92);
                         break;
                     case JsonValueKind.Array:
                         bs.WriteByte(0x86);
-                        WriteJArray(bs, value);
+                        WriteJArray(bs, value, R0x90, R0x92);
                         break;
                     case JsonValueKind.Undefined:
                     case JsonValueKind.Null:
@@ -839,7 +827,7 @@ namespace PopStudio.Rton
             bs.WriteByte(0xFE);
         }
 
-        static void WriteJObject(BinaryStream bs, JsonElement json)
+        static void WriteJObject(BinaryStream bs, JsonElement json, StringPool R0x90, StringPool R0x92)
         {
             foreach (JsonProperty property in json.EnumerateObject())
             {
@@ -897,11 +885,11 @@ namespace PopStudio.Rton
                 {
                     case JsonValueKind.Object:
                         bs.WriteByte(0x85);
-                        WriteJObject(bs, value);
+                        WriteJObject(bs, value, R0x90, R0x92);
                         break;
                     case JsonValueKind.Array:
                         bs.WriteByte(0x86);
-                        WriteJArray(bs, value);
+                        WriteJArray(bs, value, R0x90, R0x92);
                         break;
                     case JsonValueKind.Undefined:
                     case JsonValueKind.Null:

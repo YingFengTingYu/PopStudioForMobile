@@ -561,7 +561,9 @@ namespace PopStudio.Pages
                 StorageFolder saveFile = await fileSavePicker.PickSingleFolderAsync();
                 if (saveFile != null)
                 {
-                    await YFFileSystem.ExportDirectoryAsync(CurrentDirectory, saveFile);
+                    Task tsk = YFFileSystem.ExportDirectoryAsync(CurrentDirectory, saveFile);
+                    Task tsk2 = YFDialogHelper.OpenDialogWithoutCancelButton<Dialog_Wait>(tsk);
+                    await Task.WhenAll(tsk, tsk2);
                 }
             }
             catch (Exception)
@@ -591,7 +593,9 @@ namespace PopStudio.Pages
                     CurrentDirectory = CurrentDirectory.Parent;
                     Update();
                 }
-                await back.DeleteSelfAsync();
+                Task tsk = back.DeleteSelfAsync();
+                Task tsk2 = YFDialogHelper.OpenDialogWithoutCancelButton<Dialog_Wait>(tsk);
+                await Task.WhenAll(tsk, tsk2);
                 Update();
             }
         }
@@ -692,12 +696,12 @@ namespace PopStudio.Pages
                         CloseButtonText = "取消",
                         PrimaryButtonText = "重命名"
                     };
-                    if ((mode & 2) == 0)
+                    if ((mode & 1) == 0)
                     {
                         fileExistDialog.SecondaryButtonText = "合并";
                     }
 #if WinUI
-            fileExistDialog.XamlRoot = this.Content.XamlRoot;
+                    fileExistDialog.XamlRoot = this.Content.XamlRoot;
 #endif
                     ContentDialogResult result = await fileExistDialog.ShowAsync();
                     if (result == ContentDialogResult.Primary)
@@ -721,28 +725,10 @@ namespace PopStudio.Pages
                 }
                 if (create)
                 {
-                    long i = 0;
-                    bool flash = false;
-                    Stopwatch sw = new Stopwatch();
-                    await foreach (YFFileSystem.IFileDirectory d in YFFileSystem.ImportDirectoryAsyncEnumerable(pickedFile, CurrentDirectory, name))
-                    {
-                        if (d.Parent == CurrentDirectory)
-                        {
-                            flash = true;
-                        }
-                        // 每1024毫秒可以刷新一次显示，保证不闪烁的同时更新屏幕
-                        if (sw.ElapsedMilliseconds >= (i << 10) && flash)
-                        {
-                            Update();
-                            i = sw.ElapsedMilliseconds >> 10;
-                            flash = false;
-                        }
-                    }
-                    if (flash)
-                    {
-                        Update();
-                    }
-                    sw.Stop();
+                    Task tsk = YFFileSystem.ImportDirectoryAsync(pickedFile, CurrentDirectory, name);
+                    Task tsk2 = YFDialogHelper.OpenDialogWithoutCancelButton<Dialog_Wait>(tsk);
+                    await Task.WhenAll(tsk, tsk2);
+                    Update();
                 }
             }
         }

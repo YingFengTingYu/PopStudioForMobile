@@ -32,9 +32,29 @@ namespace PopStudio.Dialogs
                 CurrentDirectoryTitle.Text = yfFile.Name;
                 using (Stream stream = yfFile.OpenAsStream())
                 {
-                    using (StreamReader sr = new StreamReader(stream))
+                    if (stream.Length < 1048576)
                     {
-                        _lastSavedString = await sr.ReadToEndAsync();
+                        using (StreamReader sr = new StreamReader(stream))
+                        {
+                            _lastSavedString = await sr.ReadToEndAsync();
+                        }
+                    }
+                    else
+                    {
+                        OnClose += () => Task.FromResult(CanClose = true);
+                        await Task.Delay(1000);
+                        ContentDialog fileExistDialog = new ContentDialog
+                        {
+                            Title = "文件过大",
+                            Content = "当前文件过大（超过1MB），无法预览！",
+                            CloseButtonText = "关闭"
+                        };
+#if WinUI
+                        fileExistDialog.XamlRoot = this.Content.XamlRoot;
+#endif
+                        await fileExistDialog.ShowAsync();
+                        (this as IDialogClosable)?.Close();
+                        return;
                     }
                 }
             }

@@ -564,6 +564,7 @@ namespace PopStudio.PlatformAPI
                 path = path[..^1];
             }
             int index = path.LastIndexOf('/');
+            if (index < 0) return null;
             YFDirectory directory = CreateYFDirectoryFromPath(path[..index]);
             return directory?.CreateYFFile(path[(index + 1)..]);
         }
