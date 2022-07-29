@@ -52,9 +52,10 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)PlatformAPI\YFDialogHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PlatformAPI\YFFileSystem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PlatformAPI\YFNativeFilePicker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PlatformAPI\YFString.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)PlatformAPI\YFThread.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PlatformAPI\YFDirectoryJsonContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Image\Texture\ITextureCoder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Particle\GameConsole.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Particle\Particle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Particle\ParticleEmitter.cs" />
@@ -205,7 +206,6 @@
     <UpToDateCheckInput Include="$(MSBuildThisFileDirectory)**/*.xaml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)YFLib\Image\Texture\" />
     <Folder Include="$(MSBuildThisFileDirectory)YFLib\Settings\" />
   </ItemGroup>
 </Project>

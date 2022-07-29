@@ -5,7 +5,8 @@ namespace PopStudio.PlatformAPI
 {
     public static class YFDialogHelper
     {
-        public static Task<object> OpenDialog<T>(params object[] args) where T : IDialogClosable, new()
+        public static Task<object> OpenDialog<T>(params object[] args)
+            where T : IDialogClosable, new()
         {
             T dialog = new T();
             dialog.InitDialog(args);
@@ -27,7 +28,8 @@ namespace PopStudio.PlatformAPI
             return tcs.Task;
         }
 
-        public static Task<object> OpenDialogWithoutCancelButton<T>(params object[] args) where T : IDialogClosable, new()
+        public static Task<object> OpenDialogWithoutCancelButton<T>(params object[] args)
+            where T : IDialogClosable, new()
         {
             T dialog = new T();
             dialog.InitDialog(args);

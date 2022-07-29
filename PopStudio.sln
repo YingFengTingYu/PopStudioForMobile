@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PopStudio.Mobile", "PopStud
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "PopStudio.PlatformIOS", "PopStudio.PlatformIOS\PopStudio.PlatformIOS.shproj", "{B5E60EF0-7093-4CD0-BB63-4F643515F990}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PopStudio.WinUI", "PopStudio.WinUI\PopStudio.WinUI.csproj", "{0B69016D-FCB1-42E6-A3EE-1A546BCC83B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PopStudio.WinUI", "PopStudio.WinUI\PopStudio.WinUI.csproj", "{0B69016D-FCB1-42E6-A3EE-1A546BCC83B1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PopStudio.Wasm", "..\PopStudio\PopStudio.Wasm\PopStudio.Wasm.csproj", "{7AD665A4-38F7-4D8D-84FD-E8F8E5A930CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,6 +75,22 @@ Global
 		{0B69016D-FCB1-42E6-A3EE-1A546BCC83B1}.Release|x86.ActiveCfg = Release|x86
 		{0B69016D-FCB1-42E6-A3EE-1A546BCC83B1}.Release|x86.Build.0 = Release|x86
 		{0B69016D-FCB1-42E6-A3EE-1A546BCC83B1}.Release|x86.Deploy.0 = Release|x86
+		{7AD665A4-38F7-4D8D-84FD-E8F8E5A930CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AD665A4-38F7-4D8D-84FD-E8F8E5A930CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AD665A4-38F7-4D8D-84FD-E8F8E5A930CC}.Debug|arm64.ActiveCfg = Debug|Any CPU
+		{7AD665A4-38F7-4D8D-84FD-E8F8E5A930CC}.Debug|arm64.Build.0 = Debug|Any CPU
+		{7AD665A4-38F7-4D8D-84FD-E8F8E5A930CC}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7AD665A4-38F7-4D8D-84FD-E8F8E5A930CC}.Debug|x64.Build.0 = Debug|Any CPU
+		{7AD665A4-38F7-4D8D-84FD-E8F8E5A930CC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7AD665A4-38F7-4D8D-84FD-E8F8E5A930CC}.Debug|x86.Build.0 = Debug|Any CPU
+		{7AD665A4-38F7-4D8D-84FD-E8F8E5A930CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AD665A4-38F7-4D8D-84FD-E8F8E5A930CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AD665A4-38F7-4D8D-84FD-E8F8E5A930CC}.Release|arm64.ActiveCfg = Release|Any CPU
+		{7AD665A4-38F7-4D8D-84FD-E8F8E5A930CC}.Release|arm64.Build.0 = Release|Any CPU
+		{7AD665A4-38F7-4D8D-84FD-E8F8E5A930CC}.Release|x64.ActiveCfg = Release|Any CPU
+		{7AD665A4-38F7-4D8D-84FD-E8F8E5A930CC}.Release|x64.Build.0 = Release|Any CPU
+		{7AD665A4-38F7-4D8D-84FD-E8F8E5A930CC}.Release|x86.ActiveCfg = Release|Any CPU
+		{7AD665A4-38F7-4D8D-84FD-E8F8E5A930CC}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,6 +98,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{98E97547-00FE-4E6D-8CF3-4441C557728A} = {EF543D0C-0852-4F27-94E0-4196A1998076}
 		{0B69016D-FCB1-42E6-A3EE-1A546BCC83B1} = {EF543D0C-0852-4F27-94E0-4196A1998076}
+		{7AD665A4-38F7-4D8D-84FD-E8F8E5A930CC} = {EF543D0C-0852-4F27-94E0-4196A1998076}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0F618E5B-C636-460A-A4F6-E49BACFA8EFB}
@@ -87,6 +106,7 @@ Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		PopStudio.Shared\PopStudio.Shared.projitems*{0b69016d-fcb1-42e6-a3ee-1a546bcc83b1}*SharedItemsImports = 5
 		PopStudio.Shared\PopStudio.Shared.projitems*{6279c845-92f8-4333-ab99-3d213163593c}*SharedItemsImports = 13
+		PopStudio.Shared\PopStudio.Shared.projitems*{7ad665a4-38f7-4d8d-84fd-e8f8e5a930cc}*SharedItemsImports = 5
 		PopStudio.Shared\PopStudio.Shared.projitems*{98e97547-00fe-4e6d-8cf3-4441c557728a}*SharedItemsImports = 5
 		PopStudio.PlatformIOS\PopStudio.PlatformIOS.projitems*{b5e60ef0-7093-4cd0-bb63-4f643515f990}*SharedItemsImports = 13
 	EndGlobalSection

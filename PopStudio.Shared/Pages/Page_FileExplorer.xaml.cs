@@ -5,22 +5,16 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Input;
-using Windows.Storage.Pickers;
 using Windows.Storage;
 using PopStudio.PlatformAPI;
 using System.Collections.ObjectModel;
 using Windows.ApplicationModel.DataTransfer;
-using System.Diagnostics;
-using SharpCompress.Archives.SevenZip;
 using PopStudio.Dialogs;
-using SharpCompress.Archives.Zip;
 using System.IO;
 using SharpCompress.Common;
 using SharpCompress.Writers;
 using System.Threading.Tasks;
-using SharpCompress.Readers;
 using SharpCompress.Archives;
-using Windows.Devices.Enumeration;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -110,27 +104,7 @@ namespace PopStudio.Pages
                             if (mode == 0)
                             {
                                 // 导出
-                                int index = info.Name.IndexOf('.');
-                                string name;
-                                string[] lst = new string[1];
-                                if (index >= 0)
-                                {
-                                    name = info.Name[..index];
-                                    lst[0] = info.Name[index..];
-                                }
-                                else
-                                {
-                                    name = info.Name;
-                                    lst[0] = ".";
-                                }
-                                FileSavePicker fileSavePicker = new FileSavePicker();
-#if WinUI
-                                WinRT.Interop.InitializeWithWindow.Initialize(fileSavePicker, WinUI.MainWindow.Handle);
-#endif
-                                fileSavePicker.SuggestedStartLocation = PickerLocationId.ComputerFolder;
-                                fileSavePicker.SuggestedFileName = name;
-                                fileSavePicker.FileTypeChoices.Add("File", lst);
-                                StorageFile saveFile = await fileSavePicker.PickSaveFileAsync();
+                                StorageFile saveFile = await YFNativeFilePicker.PickSaveFileAsync(info.Name);
                                 if (saveFile != null)
                                 {
                                     await YFFileSystem.ExportFileAsync(CurrentDirectory.GetYFFile(info.Name), saveFile);
@@ -553,14 +527,8 @@ namespace PopStudio.Pages
             // 导出
             try
             {
-                string name = CurrentDirectory.Name;
-                FolderPicker fileSavePicker = new FolderPicker();
-#if WinUI
-                WinRT.Interop.InitializeWithWindow.Initialize(fileSavePicker, WinUI.MainWindow.Handle);
-#endif
-                fileSavePicker.SuggestedStartLocation = PickerLocationId.ComputerFolder;
-                StorageFolder saveFile = await fileSavePicker.PickSingleFolderAsync();
-                if (saveFile != null)
+                StorageFolder saveFile = await YFNativeFilePicker.PickFolderAsync();
+                if (saveFile is not null)
                 {
                     Task tsk = YFFileSystem.ExportDirectoryAsync(CurrentDirectory, saveFile);
                     Task tsk2 = YFDialogHelper.OpenDialogWithoutCancelButton<Dialog_Wait>(tsk);
@@ -603,13 +571,7 @@ namespace PopStudio.Pages
 
         private async void MenuLoadFile_Click(object sender, RoutedEventArgs e)
         {
-            var fileOpenPicker = new FileOpenPicker();
-#if WinUI
-            WinRT.Interop.InitializeWithWindow.Initialize(fileOpenPicker, WinUI.MainWindow.Handle);
-#endif
-            fileOpenPicker.SuggestedStartLocation = PickerLocationId.ComputerFolder;
-            fileOpenPicker.FileTypeFilter.Add("*");
-            StorageFile pickedFile = await fileOpenPicker.PickSingleFileAsync();
+            StorageFile pickedFile = await YFNativeFilePicker.PickOpenFileAsync();
             if (pickedFile != null)
             {
                 string name = pickedFile.Name;
@@ -674,14 +636,8 @@ namespace PopStudio.Pages
 
         private async void MenuLoadDirectory_Click(object sender, RoutedEventArgs e)
         {
-            var fileOpenPicker = new FolderPicker();
-#if WinUI
-            WinRT.Interop.InitializeWithWindow.Initialize(fileOpenPicker, WinUI.MainWindow.Handle);
-#endif
-            fileOpenPicker.SuggestedStartLocation = PickerLocationId.ComputerFolder;
-            fileOpenPicker.FileTypeFilter.Add("*");
-            StorageFolder pickedFile = await fileOpenPicker.PickSingleFolderAsync();
-            if (pickedFile != null)
+            StorageFolder pickedFile = await YFNativeFilePicker.PickFolderAsync();
+            if (pickedFile is not null)
             {
                 string name = pickedFile.Name;
                 int mode = 0;

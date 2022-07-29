@@ -32,6 +32,7 @@
     <_Globbed_Compile Remove="Pages\Page_Rton - 复制.xaml.cs" />
     <_Globbed_Compile Remove="Pages\Page_Trail.xaml.cs" />
     <_Globbed_Compile Remove="PlatformAPI\YFDialogHelper.cs" />
+    <_Globbed_Compile Remove="YFLib\Image\Texture\ITextureCoder.cs" />
     <_Globbed_Compile Remove="YFLib\Particle\GameConsole.cs" />
     <_Globbed_Compile Remove="YFLib\Particle\PC.cs" />
     <_Globbed_Compile Remove="YFLib\Particle\Phone32.cs" />

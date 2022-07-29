@@ -127,13 +127,7 @@ namespace PopStudio.Dialogs
 
         private async void MenuLoadFile_Click(object sender, RoutedEventArgs e)
         {
-            var fileOpenPicker = new FileOpenPicker();
-#if WinUI
-            WinRT.Interop.InitializeWithWindow.Initialize(fileOpenPicker, WinUI.MainWindow.Handle);
-#endif
-            fileOpenPicker.SuggestedStartLocation = PickerLocationId.ComputerFolder;
-            fileOpenPicker.FileTypeFilter.Add("*");
-            StorageFile pickedFile = await fileOpenPicker.PickSingleFileAsync();
+            StorageFile pickedFile = await YFNativeFilePicker.PickOpenFileAsync();
             if (pickedFile != null)
             {
                 string name = pickedFile.Name;
