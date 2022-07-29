@@ -193,7 +193,7 @@
     <value>编码模式</value>
   </data>
   <data name="Pam_Introduction" xml:space="preserve">
-    <value>通过Pam转码功能，将Pam文件解码为表示动画的Json文件或者将表示动画的Json文件编码为Pam文件，来实现修改动画或获取动画信息！</value>
+    <value>通过Pam转码功能，将单个Pam文件解码为表示动画的Json文件或者将单个表示动画的Json文件编码为Pam文件，来实现修改动画或获取动画信息！</value>
   </data>
   <data name="Pam_Run" xml:space="preserve">
     <value>运行</value>
@@ -431,5 +431,44 @@
   </data>
   <data name="Rton_Introduction_Batch" xml:space="preserve">
     <value>通过Rton批量转码功能，将一个文件夹内的所有Rton文件解码为Json文件或者将一个文件夹内的所有Json文件编码为Rton文件，如果需要解码或编码加密Rton，请自行在设置中输入密钥。</value>
+  </data>
+  <data name="Pam_DecodeChooseInFile_Batch" xml:space="preserve">
+    <value>请选择被批量解码的文件夹</value>
+  </data>
+  <data name="Pam_DecodeChooseOutFile_Batch" xml:space="preserve">
+    <value>请选择批量解码生成文件夹</value>
+  </data>
+  <data name="Pam_DecodeMode_Batch" xml:space="preserve">
+    <value>批量解码模式</value>
+  </data>
+  <data name="Pam_EncodeChooseInFile_Batch" xml:space="preserve">
+    <value>请选择被批量编码的文件夹</value>
+  </data>
+  <data name="Pam_EncodeChooseOutFile_Batch" xml:space="preserve">
+    <value>请选择批量编码生成文件夹</value>
+  </data>
+  <data name="Pam_EncodeMode_Batch" xml:space="preserve">
+    <value>批量编码模式</value>
+  </data>
+  <data name="Pam_Introduction_Batch" xml:space="preserve">
+    <value>通过Pam转码功能，将一个文件夹内的所有Pam文件解码为表示动画的Json文件或者将一个文件夹内的所有表示动画的Json文件编码为Pam文件，来实现修改动画或获取动画信息！</value>
+  </data>
+  <data name="Particle_ChooseInFile_Batch" xml:space="preserve">
+    <value>请选择被批量转码的文件夹</value>
+  </data>
+  <data name="Particle_ChooseOutFile_Batch" xml:space="preserve">
+    <value>请选择批量转码生成文件夹</value>
+  </data>
+  <data name="Reanim_ChooseInFile_Batch" xml:space="preserve">
+    <value>请选择被批量转码的文件夹</value>
+  </data>
+  <data name="Reanim_ChooseOutFile_Batch" xml:space="preserve">
+    <value>请选择批量转码生成文件夹</value>
+  </data>
+  <data name="Trail_ChooseInFile_Batch" xml:space="preserve">
+    <value>请选择被批量转码的文件夹</value>
+  </data>
+  <data name="Trail_ChooseOutFile_Batch" xml:space="preserve">
+    <value>请选择批量转码生成文件夹</value>
   </data>
 </root>

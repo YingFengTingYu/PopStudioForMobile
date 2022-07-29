@@ -13,13 +13,13 @@ namespace PopStudio.Pages
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class Page_Rton : Page, IMenuChoosable
+    public sealed partial class Page_Reanim : Page, IMenuChoosable
     {
-        public string Title { get; set; } = YFString.GetString("Rton_Title");
+        public string Title { get; set; } = YFString.GetString("Reanim_Title");
 
         public Action OnShow { get; set; }
 
-        public Page_Rton()
+        public Page_Reanim()
         {
             this.InitializeComponent();
             LoadFont();
@@ -30,37 +30,36 @@ namespace PopStudio.Pages
             label_mode_batch1.Text = YFString.GetString("BatchMode_Single");
             label_mode_batch2.Text = YFString.GetString("BatchMode_Batch");
             string batch = TB_Mode_batch.IsOn ? "_Batch" : string.Empty;
-            label_introduction.Text = YFString.GetString("Rton_Introduction" + batch);
-            label_choosemode.Text = YFString.GetString("Rton_ChooseMode");
-            label_mode1.Text = YFString.GetString("Rton_DecodeMode" + batch);
-            label_mode2.Text = YFString.GetString("Rton_EncodeMode" + batch);
-            LoadFont_Checked(TB_Mode.IsOn);
-            button1.Content = YFString.GetString("Rton_Choose");
-            button2.Content = YFString.GetString("Rton_Choose");
-            CB_CMode.Items.Clear();
-            CB_CMode.Items.Add(YFString.GetString("Rton_ModeSimpleRton"));
-            CB_CMode.Items.Add(YFString.GetString("Rton_ModeEncryptedRton"));
-            CB_CMode.SelectedIndex = 0;
-            button_run.Content = YFString.GetString("Rton_Run");
+            label_introduction.Text = YFString.GetString("Reanim_Introduction");
+            text1.Text = YFString.GetString("Reanim_ChooseInFile" + batch);
+            text2.Text = YFString.GetString("Reanim_ChooseOutFile" + batch);
+            button1.Content = YFString.GetString("Reanim_Choose");
+            button2.Content = YFString.GetString("Reanim_Choose");
+            text_in.Text = YFString.GetString("Reanim_ChooseInMode");
+            text_out.Text = YFString.GetString("Reanim_ChooseOutMode");
+            CB_InMode.Items.Clear();
+            CB_InMode.Items.Add(YFString.GetString("Reanim_ModePCCompiled"));
+            CB_InMode.Items.Add(YFString.GetString("Reanim_ModeTVCompiled"));
+            CB_InMode.Items.Add(YFString.GetString("Reanim_ModePhone32Compiled"));
+            CB_InMode.Items.Add(YFString.GetString("Reanim_ModePhone64Compiled"));
+            CB_InMode.Items.Add(YFString.GetString("Reanim_ModeGameConsoleCompiled"));
+            CB_InMode.Items.Add(YFString.GetString("Reanim_ModeWPXnb"));
+            CB_InMode.Items.Add(YFString.GetString("Reanim_ModeStudioJson"));
+            CB_InMode.Items.Add(YFString.GetString("Reanim_ModeRawXml"));
+            CB_InMode.SelectedIndex = 0;
+            CB_OutMode.Items.Clear();
+            CB_OutMode.Items.Add(YFString.GetString("Reanim_ModePCCompiled"));
+            CB_OutMode.Items.Add(YFString.GetString("Reanim_ModeTVCompiled"));
+            CB_OutMode.Items.Add(YFString.GetString("Reanim_ModePhone32Compiled"));
+            CB_OutMode.Items.Add(YFString.GetString("Reanim_ModePhone64Compiled"));
+            CB_OutMode.Items.Add(YFString.GetString("Reanim_ModeGameConsoleCompiled"));
+            CB_OutMode.Items.Add(YFString.GetString("Reanim_ModeWPXnb"));
+            CB_OutMode.Items.Add(YFString.GetString("Reanim_ModeStudioJson"));
+            CB_OutMode.Items.Add(YFString.GetString("Reanim_ModeRawXml"));
+            CB_OutMode.SelectedIndex = 7;
+            button_run.Content = YFString.GetString("Reanim_Run");
             label_statue.Text = YFString.GetString("RunStatue_Title");
             text4.Text = YFString.GetString("RunStatue_Wait");
-        }
-
-        void LoadFont_Checked(bool v)
-        {
-            string batch = TB_Mode_batch.IsOn ? "_Batch" : string.Empty;
-            if (v)
-            {
-                text1.Text = YFString.GetString("Rton_EncodeChooseInFile" + batch);
-                text2.Text = YFString.GetString("Rton_EncodeChooseOutFile" + batch);
-                text3.Text = YFString.GetString("Rton_EncodeChooseMode");
-            }
-            else
-            {
-                text1.Text = YFString.GetString("Rton_DecodeChooseInFile" + batch);
-                text2.Text = YFString.GetString("Rton_DecodeChooseOutFile" + batch);
-                text3.Text = YFString.GetString("Rton_DecodeChooseMode");
-            }
         }
 
         private async void Button1_Click(object sender, RoutedEventArgs e)
@@ -81,17 +80,26 @@ namespace PopStudio.Pages
             }
         }
 
+        private string GetExtension(int mode) => mode switch
+        {
+            >= 0 and <= 4 => ".reanim.compiled",
+            5 => ".xnb",
+            6 => ".reanim.json",
+            7 => ".reanim",
+            _ => null
+        };
+
         private async void ButtonRun_Click(object sender, RoutedEventArgs e)
         {
             button_run.IsEnabled = false;
             text4.Text = YFString.GetString("RunStatue_Run");
             bool batch = TB_Mode_batch.IsOn;
-            bool mode = TB_Mode.IsOn;
-            int cmode = CB_CMode.SelectedIndex;
+            int inmode = CB_InMode.SelectedIndex;
+            int outmode = CB_OutMode.SelectedIndex;
             string inData = textbox1.Text;
             string outData = textbox2.Text;
-            string inFormat = mode ? ".json" : ".rton";
-            string outFormat = mode ? ".rton" : ".json";
+            string inFormat = GetExtension(inmode);
+            string outFormat = GetExtension(outmode);
             string err = null;
             Stopwatch sw = new Stopwatch();
             sw.Start();
@@ -102,50 +110,34 @@ namespace PopStudio.Pages
                 {
                     YFFileSystem.YFDirectory inFolder = YFFileSystem.GetYFDirectoryFromPath(inData);
                     YFFileSystem.YFDirectory outFolder = YFFileSystem.CreateYFDirectoryFromPath(outData);
-                    void TranscodeRtonInFolder(YFFileSystem.YFDirectory m_dir_in, YFFileSystem.YFDirectory m_dir_out)
+                    void TranscodeReanimInFolder(YFFileSystem.YFDirectory m_dir_in, YFFileSystem.YFDirectory m_dir_out)
                     {
                         foreach (YFFileSystem.YFFile f in m_dir_in.GetAllFiles())
                         {
                             if (f.Name.ToLower().EndsWith(inFormat) && !m_dir_out.DirectoryExist(f.Name))
                             {
                                 YFFileSystem.YFFile o = m_dir_out.CreateYFFile(f.Name[..^inFormat.Length] + outFormat);
-                                if (mode)
+                                taskList.Add(Task.Run(() =>
                                 {
-                                    taskList.Add(Task.Run(() =>
+                                    try
                                     {
-                                        try
-                                        {
-                                            YFAPI.EncodeRton(f, o, cmode, null);
-                                        }
-                                        catch (Exception)
-                                        {
-                                        }
-                                    }));
-                                }
-                                else
-                                {
-                                    taskList.Add(Task.Run(() =>
+                                        YFAPI.TranscodeReanim(f, o, inmode, outmode, null);
+                                    }
+                                    catch (Exception)
                                     {
-                                        try
-                                        {
-                                            YFAPI.DecodeRton(f, o, cmode, null);
-                                        }
-                                        catch (Exception)
-                                        {
-                                        }
-                                    }));
-                                }
+                                    }
+                                }));
                             }
                         }
                         foreach (YFFileSystem.YFDirectory f in m_dir_in.GetAllDirectories())
                         {
                             if (!m_dir_out.FileExist(f.Name))
                             {
-                                TranscodeRtonInFolder(f, m_dir_out.CreateYFDirectory(f.Name));
+                                TranscodeReanimInFolder(f, m_dir_out.CreateYFDirectory(f.Name));
                             }
                         }
                     }
-                    await Task.Run(() => TranscodeRtonInFolder(inFolder, outFolder));
+                    await Task.Run(() => TranscodeReanimInFolder(inFolder, outFolder));
                 }
                 else
                 {
@@ -154,14 +146,7 @@ namespace PopStudio.Pages
                         YFFileSystem.CreateYFFileFromPath(outData)
                         ?? YFFileSystem.CreateYFDirectoryFromPath(outData)
                         .CreateYFFile(inFile.Name + outFormat);
-                    if (mode)
-                    {
-                        taskList.Add(Task.Run(() => YFAPI.EncodeRton(inFile, outFile, cmode, null)));
-                    }
-                    else
-                    {
-                        taskList.Add(Task.Run(() => YFAPI.DecodeRton(inFile, outFile, cmode, null)));
-                    }
+                    taskList.Add(Task.Run(() => YFAPI.TranscodeReanim(inFile, outFile, inmode, outmode, null)));
                 }
                 await Task.WhenAll(taskList);
             }
@@ -180,12 +165,6 @@ namespace PopStudio.Pages
                 text4.Text = string.Format(YFString.GetString("RunStatue_Fail"), err);
             }
             button_run.IsEnabled = true;
-        }
-
-        private void TB_Mode_Toggled(object sender, RoutedEventArgs e)
-        {
-            LoadFont_Checked(TB_Mode.IsOn);
-            (textbox1.Text, textbox2.Text) = (textbox2.Text, textbox1.Text);
         }
 
         private void TB_Mode_batch_Toggled(object sender, RoutedEventArgs e)

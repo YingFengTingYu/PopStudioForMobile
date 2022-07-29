@@ -3,6 +3,8 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System.Diagnostics;
 using PopStudio.PlatformAPI;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -25,9 +27,12 @@ namespace PopStudio.Pages
 
         void LoadFont()
         {
+            label_mode_batch1.Text = YFString.GetString("BatchMode_Single");
+            label_mode_batch2.Text = YFString.GetString("BatchMode_Batch");
+            string batch = TB_Mode_batch.IsOn ? "_Batch" : string.Empty;
             label_introduction.Text = YFString.GetString("Trail_Introduction");
-            text1.Text = YFString.GetString("Trail_ChooseInFile");
-            text2.Text = YFString.GetString("Trail_ChooseOutFile");
+            text1.Text = YFString.GetString("Trail_ChooseInFile" + batch);
+            text2.Text = YFString.GetString("Trail_ChooseOutFile" + batch);
             button1.Content = YFString.GetString("Trail_Choose");
             button2.Content = YFString.GetString("Trail_Choose");
             text_in.Text = YFString.GetString("Trail_ChooseInMode");
@@ -59,7 +64,7 @@ namespace PopStudio.Pages
 
         private async void Button1_Click(object sender, RoutedEventArgs e)
         {
-            string path = await YFFileSystem.ChooseOpenFile();
+            string path = TB_Mode_batch.IsOn ? await YFFileSystem.ChooseFolder() : await YFFileSystem.ChooseOpenFile();
             if (!string.IsNullOrEmpty(path))
             {
                 textbox1.Text = path;
@@ -68,49 +73,103 @@ namespace PopStudio.Pages
 
         private async void Button2_Click(object sender, RoutedEventArgs e)
         {
-            string path = await YFFileSystem.ChooseSaveFile();
+            string path = TB_Mode_batch.IsOn ? await YFFileSystem.ChooseFolder() : await YFFileSystem.ChooseSaveFile();
             if (!string.IsNullOrEmpty(path))
             {
                 textbox2.Text = path;
             }
         }
 
-        private void ButtonRun_Click(object sender, RoutedEventArgs e)
+        private string GetExtension(int mode) => mode switch
+        {
+            >= 0 and <= 4 => ".trail.compiled",
+            5 => ".xnb",
+            6 => ".trail.json",
+            7 => ".trail",
+            _ => null
+        };
+
+        private async void ButtonRun_Click(object sender, RoutedEventArgs e)
         {
             button_run.IsEnabled = false;
             text4.Text = YFString.GetString("RunStatue_Run");
-            YFFileSystem.YFFile inFile = YFFileSystem.GetYFFileFromPath(textbox1.Text);
-            YFFileSystem.YFFile outFile = YFFileSystem.CreateYFFileFromPath(textbox2.Text);
+            bool batch = TB_Mode_batch.IsOn;
             int inmode = CB_InMode.SelectedIndex;
             int outmode = CB_OutMode.SelectedIndex;
-            YFThread.Invoke(() =>
+            string inData = textbox1.Text;
+            string outData = textbox2.Text;
+            string inFormat = GetExtension(inmode);
+            string outFormat = GetExtension(outmode);
+            string err = null;
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+            try
             {
-                string err = null;
-                Stopwatch sw = new Stopwatch();
-                sw.Start();
-                try
+                List<Task> taskList = new List<Task>();
+                if (batch)
                 {
-                    YFAPI.TranscodeTrail(inFile, outFile, inmode, outmode, null);
-                }
-                catch (Exception ex)
-                {
-                    err = ex.Message;
-                }
-                sw.Stop();
-                decimal time = sw.ElapsedMilliseconds / 1000m;
-                YFThread.InvokeOnMainThread(() =>
-                {
-                    if (err is null)
+                    YFFileSystem.YFDirectory inFolder = YFFileSystem.GetYFDirectoryFromPath(inData);
+                    YFFileSystem.YFDirectory outFolder = YFFileSystem.CreateYFDirectoryFromPath(outData);
+                    void TranscodeTrailInFolder(YFFileSystem.YFDirectory m_dir_in, YFFileSystem.YFDirectory m_dir_out)
                     {
-                        text4.Text = string.Format(YFString.GetString("RunStatue_Succeed"), time);
+                        foreach (YFFileSystem.YFFile f in m_dir_in.GetAllFiles())
+                        {
+                            if (f.Name.ToLower().EndsWith(inFormat) && !m_dir_out.DirectoryExist(f.Name))
+                            {
+                                YFFileSystem.YFFile o = m_dir_out.CreateYFFile(f.Name[..^inFormat.Length] + outFormat);
+                                taskList.Add(Task.Run(() =>
+                                {
+                                    try
+                                    {
+                                        YFAPI.TranscodeTrail(f, o, inmode, outmode, null);
+                                    }
+                                    catch (Exception)
+                                    {
+                                    }
+                                }));
+                            }
+                        }
+                        foreach (YFFileSystem.YFDirectory f in m_dir_in.GetAllDirectories())
+                        {
+                            if (!m_dir_out.FileExist(f.Name))
+                            {
+                                TranscodeTrailInFolder(f, m_dir_out.CreateYFDirectory(f.Name));
+                            }
+                        }
                     }
-                    else
-                    {
-                        text4.Text = string.Format(YFString.GetString("RunStatue_Fail"), err);
-                    }
-                    button_run.IsEnabled = true;
-                });
-            });
+                    await Task.Run(() => TranscodeTrailInFolder(inFolder, outFolder));
+                }
+                else
+                {
+                    YFFileSystem.YFFile inFile = YFFileSystem.GetYFFileFromPath(inData);
+                    YFFileSystem.YFFile outFile =
+                        YFFileSystem.CreateYFFileFromPath(outData)
+                        ?? YFFileSystem.CreateYFDirectoryFromPath(outData)
+                        .CreateYFFile(inFile.Name + outFormat);
+                    taskList.Add(Task.Run(() => YFAPI.TranscodeTrail(inFile, outFile, inmode, outmode, null)));
+                }
+                await Task.WhenAll(taskList);
+            }
+            catch (Exception ex)
+            {
+                err = ex.Message;
+            }
+            sw.Stop();
+            decimal time = sw.ElapsedMilliseconds / 1000m;
+            if (err is null)
+            {
+                text4.Text = string.Format(YFString.GetString("RunStatue_Succeed"), time);
+            }
+            else
+            {
+                text4.Text = string.Format(YFString.GetString("RunStatue_Fail"), err);
+            }
+            button_run.IsEnabled = true;
+        }
+
+        private void TB_Mode_batch_Toggled(object sender, RoutedEventArgs e)
+        {
+            LoadFont();
         }
     }
 }

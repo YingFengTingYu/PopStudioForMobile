@@ -478,6 +478,7 @@ namespace PopStudio.Pages
                 Dialog_CompressSetting.CompressSetting setting = await YFDialogHelper.OpenDialog
                     <Dialog_CompressSetting, Dialog_CompressSetting.CompressSetting>
                     (CurrentDirectory.Name);
+                if (setting is null) return;
                 string name = setting.Path;
                 YFFileSystem.YFDirectory current = CurrentDirectory;
                 YFFileSystem.YFFile m_file = YFFileSystem.CreateYFFileFromPath(name);
@@ -588,9 +589,9 @@ namespace PopStudio.Pages
             if (result == ContentDialogResult.Primary)
             {
                 YFFileSystem.YFDirectory back = CurrentDirectory;
-                if (CurrentDirectory.Parent is not null)
+                if (back.Parent is not null)
                 {
-                    CurrentDirectory = CurrentDirectory.Parent;
+                    CurrentDirectory = back.Parent;
                     Update();
                 }
                 Task tsk = back.DeleteSelfAsync();

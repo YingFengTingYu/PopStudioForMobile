@@ -15,6 +15,7 @@
     <UpToDateCheckInput Remove="Dialogs\Dialog_ViewDocument.xaml" />
     <UpToDateCheckInput Remove="Dialogs\Dialog_Wait.xaml" />
     <UpToDateCheckInput Remove="MainPage.xaml" />
+    <UpToDateCheckInput Remove="Pages\Page_Reanim.xaml" />
     <UpToDateCheckInput Remove="Pages\Page_Trail.xaml" />
   </ItemGroup>
   <ItemGroup>
@@ -27,6 +28,7 @@
     <_Globbed_Compile Remove="Dialogs\Page_FileExplorer.xaml.cs" />
     <_Globbed_Compile Remove="MainPage.xaml.cs" />
     <_Globbed_Compile Remove="Pages\Page_Particles.xaml.cs" />
+    <_Globbed_Compile Remove="Pages\Page_Reanim.xaml.cs" />
     <_Globbed_Compile Remove="Pages\Page_Rton - 复制.xaml.cs" />
     <_Globbed_Compile Remove="Pages\Page_Trail.xaml.cs" />
     <_Globbed_Compile Remove="PlatformAPI\YFDialogHelper.cs" />
@@ -44,6 +46,18 @@
     <_Globbed_Compile Remove="YFLib\PopAnim\Pam.cs" />
     <_Globbed_Compile Remove="YFLib\PopAnim\PopAnimInfo.cs" />
     <_Globbed_Compile Remove="YFLib\PopAnim\SpriteInfo.cs" />
+    <_Globbed_Compile Remove="YFLib\Reanim\GameConsole.cs" />
+    <_Globbed_Compile Remove="YFLib\Reanim\PC.cs" />
+    <_Globbed_Compile Remove="YFLib\Reanim\Phone32.cs" />
+    <_Globbed_Compile Remove="YFLib\Reanim\Phone64.cs" />
+    <_Globbed_Compile Remove="YFLib\Reanim\RawXml.cs" />
+    <_Globbed_Compile Remove="YFLib\Reanim\Reanim.cs" />
+    <_Globbed_Compile Remove="YFLib\Reanim\ReanimFormat.cs" />
+    <_Globbed_Compile Remove="YFLib\Reanim\ReanimJson.cs" />
+    <_Globbed_Compile Remove="YFLib\Reanim\ReanimTrack.cs" />
+    <_Globbed_Compile Remove="YFLib\Reanim\ReanimTransform.cs" />
+    <_Globbed_Compile Remove="YFLib\Reanim\TV.cs" />
+    <_Globbed_Compile Remove="YFLib\Reanim\WP.cs" />
     <_Globbed_Compile Remove="YFLib\Trail\GameConsole.cs" />
     <_Globbed_Compile Remove="YFLib\Trail\PC.cs" />
     <_Globbed_Compile Remove="YFLib\Trail\Phone32.cs" />
@@ -61,6 +75,7 @@
     <_Globbled_Page Remove="Dialogs\Dialog_ViewDocument.xaml" />
     <_Globbled_Page Remove="Dialogs\Dialog_Wait.xaml" />
     <_Globbled_Page Remove="MainPage.xaml" />
+    <_Globbled_Page Remove="Pages\Page_Reanim.xaml" />
     <_Globbled_Page Remove="Pages\Page_Trail.xaml" />
   </ItemGroup>
 </Project>

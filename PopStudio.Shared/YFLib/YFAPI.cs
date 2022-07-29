@@ -6,9 +6,37 @@ namespace PopStudio
 {
     public static class YFAPI
     {
+        public static void TranscodeReanim(YFFile inFile, YFFile outFile, int inFormat, int outFormat, ImageLabelSetting setting)
+        {
+            Reanim.Reanim trail = inFormat switch
+            {
+                0 => Reanim.PC.Decode(inFile),
+                1 => Reanim.TV.Decode(inFile),
+                2 => Reanim.Phone32.Decode(inFile, setting.GetStringFromIndex),
+                3 => Reanim.Phone64.Decode(inFile, setting.GetStringFromIndex),
+                4 => Reanim.GameConsole.Decode(inFile),
+                5 => Reanim.WP.Decode(inFile),
+                6 => Reanim.ReanimJson.Decode(inFile),
+                7 => Reanim.RawXml.Decode(inFile),
+                _ => throw new NotImplementedException()
+            };
+            switch (outFormat)
+            {
+                case 0: Reanim.PC.Encode(trail, outFile); break;
+                case 1: Reanim.TV.Encode(trail, outFile); break;
+                case 2: Reanim.Phone32.Encode(trail, outFile, setting.GetIndexFromString); break;
+                case 3: Reanim.Phone64.Encode(trail, outFile, setting.GetIndexFromString); break;
+                case 4: Reanim.GameConsole.Encode(trail, outFile); break;
+                case 5: Reanim.WP.Encode(trail, outFile); break;
+                case 6: Reanim.ReanimJson.Encode(trail, outFile); break;
+                case 7: Reanim.RawXml.Encode(trail, outFile); break;
+                default: throw new NotImplementedException();
+            }
+        }
+
         public static void TranscodeParticle(YFFile inFile, YFFile outFile, int inFormat, int outFormat, ImageLabelSetting setting)
         {
-            Particle.Particle trail = inFormat switch
+            Particle.Particle particle = inFormat switch
             {
                 0 => Particle.PC.Decode(inFile),
                 1 => Particle.TV.Decode(inFile),
@@ -22,14 +50,14 @@ namespace PopStudio
             };
             switch (outFormat)
             {
-                case 0: Particle.PC.Encode(trail, outFile); break;
-                case 1: Particle.TV.Encode(trail, outFile); break;
-                case 2: Particle.Phone32.Encode(trail, outFile, setting.GetIndexFromString); break;
-                case 3: Particle.Phone64.Encode(trail, outFile, setting.GetIndexFromString); break;
-                case 4: Particle.GameConsole.Encode(trail, outFile); break;
-                case 5: Particle.WP.Encode(trail, outFile); break;
-                case 6: Particle.ParticleJson.Encode(trail, outFile); break;
-                case 7: Particle.RawXml.Encode(trail, outFile); break;
+                case 0: Particle.PC.Encode(particle, outFile); break;
+                case 1: Particle.TV.Encode(particle, outFile); break;
+                case 2: Particle.Phone32.Encode(particle, outFile, setting.GetIndexFromString); break;
+                case 3: Particle.Phone64.Encode(particle, outFile, setting.GetIndexFromString); break;
+                case 4: Particle.GameConsole.Encode(particle, outFile); break;
+                case 5: Particle.WP.Encode(particle, outFile); break;
+                case 6: Particle.ParticleJson.Encode(particle, outFile); break;
+                case 7: Particle.RawXml.Encode(particle, outFile); break;
                 default: throw new NotImplementedException();
             }
         }

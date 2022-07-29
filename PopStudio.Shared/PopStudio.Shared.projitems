@@ -41,6 +41,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Page_Particle.xaml.cs">
       <DependentUpon>Page_Particle.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Page_Reanim.xaml.cs">
+      <DependentUpon>Page_Reanim.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Page_Rton.xaml.cs">
       <DependentUpon>Page_Rton.xaml</DependentUpon>
     </Compile>
@@ -80,6 +83,19 @@
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\PopAnim\PopAnimInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\PopAnim\SpriteInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\PopAnim\PopAnimJsonContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Reanim\GameConsole.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Reanim\ReanimJsonContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Reanim\PC.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Reanim\Phone32.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Reanim\Phone64.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Reanim\RawXml.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Reanim\Reanim.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Reanim\ReanimFormat.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Reanim\ReanimJson.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Reanim\ReanimTrack.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Reanim\ReanimTransform.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Reanim\TV.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Reanim\WP.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Rton\Rton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Settings\RtonSetting.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Trail\GameConsole.cs" />
@@ -139,6 +155,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Pages\Page_Particle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Pages\Page_Reanim.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

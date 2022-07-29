@@ -193,7 +193,7 @@
     <value>Encode</value>
   </data>
   <data name="Pam_Introduction" xml:space="preserve">
-    <value>Through Pam Transcoding, decode Pam file to Json file or encode Json file to Pam file to modify the animation or obtain animation information!</value>
+    <value>Through Pam Transcoding, decode single Pam file to Json file or encode single Json file to Pam file to modify the animation or obtain animation information!</value>
   </data>
   <data name="Pam_Run" xml:space="preserve">
     <value>Run</value>
@@ -431,5 +431,44 @@
   </data>
   <data name="Rton_Introduction_Batch" xml:space="preserve">
     <value>Through Rton Batch Transcoding, decode all Rton files from a folder to Json files or encode all Json files from a folder to Rton files. If you want to decode or encode encrypted Rton file, please enter the cipher in the Setting page.</value>
+  </data>
+  <data name="Pam_DecodeChooseInFile_Batch" xml:space="preserve">
+    <value>Please choose decoded folder</value>
+  </data>
+  <data name="Pam_DecodeChooseOutFile_Batch" xml:space="preserve">
+    <value>Please choose generated folder</value>
+  </data>
+  <data name="Pam_DecodeMode_Batch" xml:space="preserve">
+    <value>Batch Decode</value>
+  </data>
+  <data name="Pam_EncodeChooseInFile_Batch" xml:space="preserve">
+    <value>Please choose encoded folder</value>
+  </data>
+  <data name="Pam_EncodeChooseOutFile_Batch" xml:space="preserve">
+    <value>Please choose generated folder</value>
+  </data>
+  <data name="Pam_EncodeMode_Batch" xml:space="preserve">
+    <value>Batch Encode</value>
+  </data>
+  <data name="Pam_Introduction_Batch" xml:space="preserve">
+    <value>Through Pam Transcoding, decode all Pam files from a folder to Json files or encode all Json files from a folder to Pam files to modify the animation or obtain animation information!</value>
+  </data>
+  <data name="Particle_ChooseInFile_Batch" xml:space="preserve">
+    <value>Please choose transcoded folder</value>
+  </data>
+  <data name="Particle_ChooseOutFile_Batch" xml:space="preserve">
+    <value>Please choose generated folder</value>
+  </data>
+  <data name="Reanim_ChooseInFile_Batch" xml:space="preserve">
+    <value>Please choose transcoded folder</value>
+  </data>
+  <data name="Reanim_ChooseOutFile_Batch" xml:space="preserve">
+    <value>Please choose generated folder</value>
+  </data>
+  <data name="Trail_ChooseInFile_Batch" xml:space="preserve">
+    <value>Please choose transcoded folder</value>
+  </data>
+  <data name="Trail_ChooseOutFile_Batch" xml:space="preserve">
+    <value>Please choose generated folder</value>
   </data>
 </root>

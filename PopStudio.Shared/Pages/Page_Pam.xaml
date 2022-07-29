@@ -25,6 +25,16 @@
 
     <ScrollViewer x:Name="ScrollViewer" VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="30 24 30 24">
+            <Grid Margin="0 5 0 5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock FontSize="20" x:Name="label_mode_batch1" VerticalAlignment="Center" />
+                <ToggleSwitch Margin="5 0 0 0" x:Name="TB_Mode_batch" Grid.Column="1" Toggled="TB_Mode_batch_Toggled" />
+                <TextBlock FontSize="20" x:Name="label_mode_batch2" Grid.Column="2" VerticalAlignment="Center" />
+            </Grid>
             <TextBlock TextWrapping="Wrap" Margin="0 5 0 5" x:Name="label_introduction" FontSize="16"/>
             <TextBlock TextWrapping="Wrap" FontSize="20" Margin="0 5 0 5" x:Name="label_choosemode" />
             <Grid Margin="0 5 0 5">

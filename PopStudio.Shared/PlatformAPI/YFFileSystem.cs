@@ -164,6 +164,34 @@ namespace PopStudio.PlatformAPI
             private List<YFDirectory> _directoryMap;
             private List<YFFile> _fileMap;
 
+            public YFFile[] GetAllFiles()
+            {
+                lock (FileMap)
+                {
+                    int n = FileMap.Count;
+                    YFFile[] ans = new YFFile[n];
+                    for (int i = 0; i < n; i++)
+                    {
+                        ans[i] = FileMap[i];
+                    }
+                    return ans;
+                }
+            }
+
+            public YFDirectory[] GetAllDirectories()
+            {
+                lock (DirectoryMap)
+                {
+                    int n = DirectoryMap.Count;
+                    YFDirectory[] ans = new YFDirectory[n];
+                    for (int i = 0; i < n; i++)
+                    {
+                        ans[i] = DirectoryMap[i];
+                    }
+                    return ans;
+                }
+            }
+
             public bool Exist(string name)
             {
                 name = NormalizeName(name);
@@ -272,6 +300,7 @@ namespace PopStudio.PlatformAPI
             {
                 if (Parent is null)
                 {
+                    DeleteYFDirectory(this);
                     return this;
                 }
                 else
@@ -285,6 +314,7 @@ namespace PopStudio.PlatformAPI
             {
                 if (Parent is null)
                 {
+                    await DeleteYFDirectoryAsync(this);
                     return this;
                 }
                 else
@@ -324,6 +354,20 @@ namespace PopStudio.PlatformAPI
                         yfDirectory.Parent.DeleteYFDirectory(yfDirectory);
                     }
                 }
+                else
+                {
+                    // 删除文件
+                    while (yfDirectory.FileMap.Count > 0)
+                    {
+                        yfDirectory.DeleteYFFile(yfDirectory.FileMap[0]);
+                    }
+                    // 删除文件夹
+                    while (yfDirectory.DirectoryMap.Count > 0)
+                    {
+                        yfDirectory.DeleteYFDirectory(yfDirectory.DirectoryMap[0]);
+                    }
+                    Save();
+                }
             }
 
             public async Task DeleteYFDirectoryAsync(string name)
@@ -355,6 +399,20 @@ namespace PopStudio.PlatformAPI
                     {
                         await yfDirectory.Parent.DeleteYFDirectoryAsync(yfDirectory);
                     }
+                }
+                else
+                {
+                    // 删除文件
+                    while (yfDirectory.FileMap.Count > 0)
+                    {
+                        await yfDirectory.DeleteYFFileAsync(yfDirectory.FileMap[0]);
+                    }
+                    // 删除文件夹
+                    while (yfDirectory.DirectoryMap.Count > 0)
+                    {
+                        await yfDirectory.DeleteYFDirectoryAsync(yfDirectory.DirectoryMap[0]);
+                    }
+                    Save();
                 }
             }
 
