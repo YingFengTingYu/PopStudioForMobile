@@ -115,7 +115,7 @@ namespace PopStudio.Pages
                                     {
                                         try
                                         {
-                                            YFAPI.EncodeRton(f, o, cmode, null);
+                                            YFAPI.EncodeRton(f, o, cmode);
                                         }
                                         catch (Exception)
                                         {
@@ -128,7 +128,7 @@ namespace PopStudio.Pages
                                     {
                                         try
                                         {
-                                            YFAPI.DecodeRton(f, o, cmode, null);
+                                            YFAPI.DecodeRton(f, o, cmode);
                                         }
                                         catch (Exception)
                                         {
@@ -156,11 +156,11 @@ namespace PopStudio.Pages
                         .CreateYFFile(inFile.Name + outFormat);
                     if (mode)
                     {
-                        taskList.Add(Task.Run(() => YFAPI.EncodeRton(inFile, outFile, cmode, null)));
+                        taskList.Add(Task.Run(() => YFAPI.EncodeRton(inFile, outFile, cmode)));
                     }
                     else
                     {
-                        taskList.Add(Task.Run(() => YFAPI.DecodeRton(inFile, outFile, cmode, null)));
+                        taskList.Add(Task.Run(() => YFAPI.DecodeRton(inFile, outFile, cmode)));
                     }
                 }
                 await Task.WhenAll(taskList);

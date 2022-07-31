@@ -471,4 +471,106 @@
   <data name="Trail_ChooseOutFile_Batch" xml:space="preserve">
     <value>请选择批量转码生成文件夹</value>
   </data>
+  <data name="Image_Choose" xml:space="preserve">
+    <value>选择</value>
+  </data>
+  <data name="Image_ChooseMode" xml:space="preserve">
+    <value>请选择运行模式</value>
+  </data>
+  <data name="Image_DecodeChooseInFile" xml:space="preserve">
+    <value>请选择被解码的文件</value>
+  </data>
+  <data name="Image_DecodeChooseInFile_Batch" xml:space="preserve">
+    <value>请选择被批量解码的文件夹</value>
+  </data>
+  <data name="Image_DecodeChooseMode" xml:space="preserve">
+    <value>请选择解码模式</value>
+  </data>
+  <data name="Image_DecodeChooseOutFile" xml:space="preserve">
+    <value>请选择解码生成文件</value>
+  </data>
+  <data name="Image_DecodeChooseOutFile_Batch" xml:space="preserve">
+    <value>请选择批量解码生成文件夹</value>
+  </data>
+  <data name="Image_DecodeMode" xml:space="preserve">
+    <value>解码模式</value>
+  </data>
+  <data name="Image_DecodeMode_Batch" xml:space="preserve">
+    <value>批量解码模式</value>
+  </data>
+  <data name="Image_EncodeChooseInFile" xml:space="preserve">
+    <value>请选择被编码的文件</value>
+  </data>
+  <data name="Image_EncodeChooseInFile_Batch" xml:space="preserve">
+    <value>请选择被批量编码的文件夹</value>
+  </data>
+  <data name="Image_EncodeChooseMode" xml:space="preserve">
+    <value>请选择编码模式</value>
+  </data>
+  <data name="Image_EncodeChooseOutFile" xml:space="preserve">
+    <value>请选择编码生成文件</value>
+  </data>
+  <data name="Image_EncodeChooseOutFile_Batch" xml:space="preserve">
+    <value>请选择批量编码生成文件夹</value>
+  </data>
+  <data name="Image_EncodeMode" xml:space="preserve">
+    <value>编码模式</value>
+  </data>
+  <data name="Image_EncodeMode_Batch" xml:space="preserve">
+    <value>批量编码模式</value>
+  </data>
+  <data name="Image_Introduction" xml:space="preserve">
+    <value>通过图像转码功能，将单个游戏内特殊图像和PNG格式图像互相转换，来获取游戏素材或修改游戏图像！</value>
+  </data>
+  <data name="Image_Introduction_Batch" xml:space="preserve">
+    <value>通过图像批量转码功能，将一个文件夹内的所有游戏内特殊图像和PNG格式图像互相转换，来获取游戏素材或修改游戏图像！</value>
+  </data>
+  <data name="Image_ModePtxRsb" xml:space="preserve">
+    <value>来源于Rsb解包的Ptx格式(.ptx)</value>
+  </data>
+  <data name="Image_Run" xml:space="preserve">
+    <value>运行</value>
+  </data>
+  <data name="Image_Title" xml:space="preserve">
+    <value>图像转码</value>
+  </data>
+  <data name="Image_PtxBigEndian" xml:space="preserve">
+    <value>大端</value>
+  </data>
+  <data name="Image_CommonComboBoxItem" xml:space="preserve">
+    <value>序号:{0} 格式:{1}</value>
+  </data>
+  <data name="Image_PtxLittleEndian" xml:space="preserve">
+    <value>小端</value>
+  </data>
+  <data name="Image_BigEndianComboBoxItem" xml:space="preserve">
+    <value>序号:{0} 格式:{1}(大端序)</value>
+  </data>
+  <data name="Image_InternalFormat" xml:space="preserve">
+    <value>请选择内部格式</value>
+  </data>
+  <data name="Image_ModeTexTV" xml:space="preserve">
+    <value>来源于TV平台的Tex格式(.tex)</value>
+  </data>
+  <data name="Image_ModeCdat" xml:space="preserve">
+    <value>来源于PVZ Free的Cdat格式(.cdat)</value>
+  </data>
+  <data name="Image_ModeTexIOS" xml:space="preserve">
+    <value>来源于iOS平台的Tex格式(.tex)</value>
+  </data>
+  <data name="Image_ModeTxz" xml:space="preserve">
+    <value>来源于手机平台的Txz格式(.txz)</value>
+  </data>
+  <data name="Image_FormatOnlyComboBoxItem" xml:space="preserve">
+    <value>格式:{0}</value>
+  </data>
+  <data name="Image_ModePtxPS3" xml:space="preserve">
+    <value>来源于PS3平台的Ptx格式(.ptx)</value>
+  </data>
+  <data name="Image_ModePtxPSV" xml:space="preserve">
+    <value>来源于PSV平台的Ptx格式(.ptx)</value>
+  </data>
+  <data name="Image_ModePtxXBox360" xml:space="preserve">
+    <value>来源于XBox360平台的Ptx格式(.ptx)</value>
+  </data>
 </root>

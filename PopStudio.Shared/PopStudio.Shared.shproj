@@ -15,6 +15,7 @@
     <UpToDateCheckInput Remove="Dialogs\Dialog_ViewDocument.xaml" />
     <UpToDateCheckInput Remove="Dialogs\Dialog_Wait.xaml" />
     <UpToDateCheckInput Remove="MainPage.xaml" />
+    <UpToDateCheckInput Remove="Pages\Page_Image.xaml" />
     <UpToDateCheckInput Remove="Pages\Page_Reanim.xaml" />
     <UpToDateCheckInput Remove="Pages\Page_Trail.xaml" />
   </ItemGroup>
@@ -27,12 +28,29 @@
     <_Globbed_Compile Remove="Dialogs\IDialogClosable.cs" />
     <_Globbed_Compile Remove="Dialogs\Page_FileExplorer.xaml.cs" />
     <_Globbed_Compile Remove="MainPage.xaml.cs" />
+    <_Globbed_Compile Remove="Pages\Page_Image.xaml.cs" />
     <_Globbed_Compile Remove="Pages\Page_Particles.xaml.cs" />
     <_Globbed_Compile Remove="Pages\Page_Reanim.xaml.cs" />
     <_Globbed_Compile Remove="Pages\Page_Rton - 复制.xaml.cs" />
     <_Globbed_Compile Remove="Pages\Page_Trail.xaml.cs" />
     <_Globbed_Compile Remove="PlatformAPI\YFDialogHelper.cs" />
-    <_Globbed_Compile Remove="YFLib\Image\Texture\ITextureCoder.cs" />
+    <_Globbed_Compile Remove="YFLib\Image\FileFormat\Cdat.cs" />
+    <_Globbed_Compile Remove="YFLib\Image\FileFormat\PtxRsb - 复制.cs" />
+    <_Globbed_Compile Remove="YFLib\Image\FileFormat\TexTV.cs" />
+    <_Globbed_Compile Remove="YFLib\Image\ImageBitmap.cs" />
+    <_Globbed_Compile Remove="YFLib\Image\ImageFormat\PtxRsb.cs" />
+    <_Globbed_Compile Remove="YFLib\Image\Texture\Coder.cs" />
+    <_Globbed_Compile Remove="YFLib\Image\Texture\CompressedCoder\ATC.cs" />
+    <_Globbed_Compile Remove="YFLib\Image\Texture\CompressedCoder\ETC.cs" />
+    <_Globbed_Compile Remove="YFLib\Image\Texture\CompressedCoder\PVRTC.cs" />
+    <_Globbed_Compile Remove="YFLib\Image\Texture\CompressedCoder\S3TC.cs" />
+    <_Globbed_Compile Remove="YFLib\Image\Texture\TexCoder\Compressed_RGBA_DXT1_UShort.cs" />
+    <_Globbed_Compile Remove="YFLib\Image\Texture\TexCoder\NONE.cs" />
+    <_Globbed_Compile Remove="YFLib\Image\Texture\TexCoder\R4_G4_B4_A4 - 复制.cs" />
+    <_Globbed_Compile Remove="YFLib\Image\Texture\TextureFormat.cs" />
+    <_Globbed_Compile Remove="YFLib\Image\Texture\YFTexture2D.cs" />
+    <_Globbed_Compile Remove="YFLib\Image\YFBitmap.cs" />
+    <_Globbed_Compile Remove="YFLib\Image\YFColor.cs" />
     <_Globbed_Compile Remove="YFLib\Particle\GameConsole.cs" />
     <_Globbed_Compile Remove="YFLib\Particle\PC.cs" />
     <_Globbed_Compile Remove="YFLib\Particle\Phone32.cs" />
@@ -59,6 +77,8 @@
     <_Globbed_Compile Remove="YFLib\Reanim\ReanimTransform.cs" />
     <_Globbed_Compile Remove="YFLib\Reanim\TV.cs" />
     <_Globbed_Compile Remove="YFLib\Reanim\WP.cs" />
+    <_Globbed_Compile Remove="YFLib\Settings\FormatPair.cs" />
+    <_Globbed_Compile Remove="YFLib\Settings\GlobalSetting.cs" />
     <_Globbed_Compile Remove="YFLib\Trail\GameConsole.cs" />
     <_Globbed_Compile Remove="YFLib\Trail\PC.cs" />
     <_Globbed_Compile Remove="YFLib\Trail\Phone32.cs" />
@@ -76,6 +96,7 @@
     <_Globbled_Page Remove="Dialogs\Dialog_ViewDocument.xaml" />
     <_Globbled_Page Remove="Dialogs\Dialog_Wait.xaml" />
     <_Globbled_Page Remove="MainPage.xaml" />
+    <_Globbled_Page Remove="Pages\Page_Image.xaml" />
     <_Globbled_Page Remove="Pages\Page_Reanim.xaml" />
     <_Globbled_Page Remove="Pages\Page_Trail.xaml" />
   </ItemGroup>

@@ -21,6 +21,12 @@ namespace PopStudio
         /// </summary>
         public App()
         {
+            // Load YFBitmap
+            Image.YFBitmap.RegistPlatform<Image.ImageBitmap>();
+            // Load YFFileSystem
+            PlatformAPI.YFFileSystem.Init();
+            // Load Settings
+            Settings.GlobalSetting.Init();
 #if IOS
             Uno.Foundation.Extensibility.ApiExtensibility.Register(typeof(Uno.Extensions.Storage.Pickers.IFileSavePickerExtension), (picker) => new Custom.Pickers.FolderSavePickerExtension(picker));
 #endif
@@ -31,7 +37,6 @@ namespace PopStudio
 #if HAS_UNO || NETFX_CORE
             this.Suspending += OnSuspending;
 #endif
-            PlatformAPI.YFFileSystem.Init();
         }
 
         /// <summary>

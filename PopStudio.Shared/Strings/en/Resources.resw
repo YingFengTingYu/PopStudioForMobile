@@ -471,4 +471,106 @@
   <data name="Trail_ChooseOutFile_Batch" xml:space="preserve">
     <value>Please choose generated folder</value>
   </data>
+  <data name="Image_Choose" xml:space="preserve">
+    <value>Choose</value>
+  </data>
+  <data name="Image_ChooseMode" xml:space="preserve">
+    <value>Please select the operation mode</value>
+  </data>
+  <data name="Image_DecodeChooseInFile" xml:space="preserve">
+    <value>Please choose decoded file</value>
+  </data>
+  <data name="Image_DecodeChooseInFile_Batch" xml:space="preserve">
+    <value>Please choose decoded folder</value>
+  </data>
+  <data name="Image_DecodeChooseMode" xml:space="preserve">
+    <value>Please choose decoding mode</value>
+  </data>
+  <data name="Image_DecodeChooseOutFile" xml:space="preserve">
+    <value>Please choose generated file</value>
+  </data>
+  <data name="Image_DecodeChooseOutFile_Batch" xml:space="preserve">
+    <value>Please choose generated folder</value>
+  </data>
+  <data name="Image_DecodeMode" xml:space="preserve">
+    <value>Decode</value>
+  </data>
+  <data name="Image_DecodeMode_Batch" xml:space="preserve">
+    <value>Batch Decode</value>
+  </data>
+  <data name="Image_EncodeChooseInFile" xml:space="preserve">
+    <value>Please choose encoded file</value>
+  </data>
+  <data name="Image_EncodeChooseInFile_Batch" xml:space="preserve">
+    <value>Please choose encoded folder</value>
+  </data>
+  <data name="Image_EncodeChooseMode" xml:space="preserve">
+    <value>Please choose encoding mode</value>
+  </data>
+  <data name="Image_EncodeChooseOutFile" xml:space="preserve">
+    <value>Please choose generated file</value>
+  </data>
+  <data name="Image_EncodeChooseOutFile_Batch" xml:space="preserve">
+    <value>Please choose generated folder</value>
+  </data>
+  <data name="Image_EncodeMode" xml:space="preserve">
+    <value>Encode</value>
+  </data>
+  <data name="Image_EncodeMode_Batch" xml:space="preserve">
+    <value>Batch Encode</value>
+  </data>
+  <data name="Image_Introduction" xml:space="preserve">
+    <value>Through Image Transcoding, convert single special image file and PNG format image file each other to obtain game materials or modify game images!</value>
+  </data>
+  <data name="Image_Introduction_Batch" xml:space="preserve">
+    <value>Through Image Batch Transcoding, convert special image files from a folder and PNG format image files each other to obtain game materials or modify game images!</value>
+  </data>
+  <data name="Image_ModePtxRsb" xml:space="preserve">
+    <value>Ptx from Rsb(.ptx)</value>
+  </data>
+  <data name="Image_Run" xml:space="preserve">
+    <value>Run</value>
+  </data>
+  <data name="Image_Title" xml:space="preserve">
+    <value>Image Transcode</value>
+  </data>
+  <data name="Image_PtxBigEndian" xml:space="preserve">
+    <value>Big</value>
+  </data>
+  <data name="Image_CommonComboBoxItem" xml:space="preserve">
+    <value>Index:{0} Format:{1}</value>
+  </data>
+  <data name="Image_PtxLittleEndian" xml:space="preserve">
+    <value>Little</value>
+  </data>
+  <data name="Image_BigEndianComboBoxItem" xml:space="preserve">
+    <value>Index:{0} Format:{1}(Big_Endian)</value>
+  </data>
+  <data name="Image_InternalFormat" xml:space="preserve">
+    <value>Please choose internal format</value>
+  </data>
+  <data name="Image_ModeTexTV" xml:space="preserve">
+    <value>Tex from TV(.tex)</value>
+  </data>
+  <data name="Image_ModeCdat" xml:space="preserve">
+    <value>Cdat from PVZ_Free(.cdat)</value>
+  </data>
+  <data name="Image_ModeTexIOS" xml:space="preserve">
+    <value>Tex from iOS(.tex)</value>
+  </data>
+  <data name="Image_ModeTxz" xml:space="preserve">
+    <value>Txz from Phone(.txz)</value>
+  </data>
+  <data name="Image_FormatOnlyComboBoxItem" xml:space="preserve">
+    <value>Format:{0}</value>
+  </data>
+  <data name="Image_ModePtxPS3" xml:space="preserve">
+    <value>Ptx from PS3(.ptx)</value>
+  </data>
+  <data name="Image_ModePtxPSV" xml:space="preserve">
+    <value>Ptx from PSV(.ptx)</value>
+  </data>
+  <data name="Image_ModePtxXBox360" xml:space="preserve">
+    <value>Ptx from XBox360(.ptx)</value>
+  </data>
 </root>

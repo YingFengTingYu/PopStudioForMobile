@@ -7,24 +7,22 @@ namespace PopStudio.Settings
         public Dictionary<int, string> ImageIndexToNameMap { get; set; }
         public Dictionary<string, int> ImageNameToIndexMap { get; set; }
 
-        public ImageLabelSetting()
+        public void Init()
         {
-
-        }
-
-        public ImageLabelSetting(Dictionary<int, string> s1, Dictionary<string, int> s2)
-        {
-            ImageIndexToNameMap = s1;
-            ImageNameToIndexMap = s2;
+            ImageIndexToNameMap ??= new Dictionary<int, string>();
+            ImageNameToIndexMap ??= new Dictionary<string, int>();
         }
 
         public object GetStringFromIndex(int i)
         {
-            if (ImageIndexToNameMap?.TryGetValue(i, out string s) is true)
+            lock (ImageIndexToNameMap)
             {
-                return s;
+                if (ImageIndexToNameMap?.TryGetValue(i, out string s) is true)
+                {
+                    return s;
+                }
+                return i;
             }
-            return i;
         }
 
         public int GetIndexFromString(object o)
@@ -35,13 +33,16 @@ namespace PopStudio.Settings
             }
             if (o is string str)
             {
-                if (ImageNameToIndexMap?.TryGetValue(str, out int v) is true)
+                lock (ImageNameToIndexMap)
                 {
-                    return v;
-                }
-                if (int.TryParse(str, out int r))
-                {
-                    return r;
+                    if (ImageNameToIndexMap?.TryGetValue(str, out int v) is true)
+                    {
+                        return v;
+                    }
+                    if (int.TryParse(str, out int r))
+                    {
+                        return r;
+                    }
                 }
             }
             return -1;

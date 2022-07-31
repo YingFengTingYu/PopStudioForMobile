@@ -32,9 +32,13 @@ namespace PopStudio.WinUI
         /// </summary>
         public App()
         {
-            this.InitializeComponent();
+            // Load YFBitmap
+            Image.YFBitmap.RegistPlatform<Image.ImageBitmap>();
             // Load YFFileSystem
             PlatformAPI.YFFileSystem.Init();
+            // Load Settings
+            Settings.GlobalSetting.Init();
+            this.InitializeComponent();
         }
 
         /// <summary>

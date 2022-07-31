@@ -1,0 +1,41 @@
+﻿namespace PopStudio.Image.Texture.TexCoder
+{
+    public unsafe class RGB_PVRTCI_2BPP : ICoder
+    {
+        public bool CheckWidth(int width) => width >= 16 && (width & (width - 1)) == 0;
+
+        public bool CheckHeight(int height) => height >= 8 && (height & (height - 1)) == 0;
+
+        public bool CheckWidthHeight(int width, int height) => true;
+
+        public int GetSize(int width, int height) => width * height / 4;
+
+        public int GetCheck(int width) => width >> 2;
+
+        public void Decode(YFTexture2D tex, YFColor* dataPtr)
+        {
+            fixed (byte* tempPtr = tex.TexData)
+            {
+                CompressedCoder.PVRTC.DecodeTexture_RGB_PVRTCI_2BPP(
+                    tempPtr,
+                    dataPtr,
+                    (uint)tex.Width,
+                    (uint)tex.Height
+                    );
+            }
+        }
+
+        public void Encode(YFTexture2D tex, YFColor* dataPtr)
+        {
+            fixed (byte* tempPtr = tex.TexData)
+            {
+                CompressedCoder.PVRTC.EncodeTexture_RGB_PVRTCI_2BPP(
+                    tempPtr,
+                    dataPtr,
+                    (uint)tex.Width,
+                    (uint)tex.Height
+                    );
+            }
+        }
+    }
+}

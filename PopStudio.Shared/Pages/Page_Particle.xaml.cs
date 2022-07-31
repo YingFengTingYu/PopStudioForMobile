@@ -121,7 +121,7 @@ namespace PopStudio.Pages
                                 {
                                     try
                                     {
-                                        YFAPI.TranscodeParticle(f, o, inmode, outmode, null);
+                                        YFAPI.TranscodeParticle(f, o, inmode, outmode);
                                     }
                                     catch (Exception)
                                     {
@@ -146,7 +146,7 @@ namespace PopStudio.Pages
                         YFFileSystem.CreateYFFileFromPath(outData)
                         ?? YFFileSystem.CreateYFDirectoryFromPath(outData)
                         .CreateYFFile(inFile.Name + outFormat);
-                    taskList.Add(Task.Run(() => YFAPI.TranscodeParticle(inFile, outFile, inmode, outmode, null)));
+                    taskList.Add(Task.Run(() => YFAPI.TranscodeParticle(inFile, outFile, inmode, outmode)));
                 }
                 await Task.WhenAll(taskList);
             }

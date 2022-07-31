@@ -326,121 +326,135 @@ namespace PopStudio.Pages
 
         private async void MenuCreateFile_Click(object sender, RoutedEventArgs e)
         {
-            string defaultName = "新文件";
-            if (CurrentDirectory.Exist(defaultName))
+            try
             {
-                string n;
-                int i = 2;
-                do
+                string defaultName = "新文件";
+                if (CurrentDirectory.Exist(defaultName))
                 {
-                    n = defaultName + " (" + (i++) + ")";
-                }
-                while (CurrentDirectory.Exist(n));
-                defaultName = n;
-            }
-            TextBlock textBlock = new TextBlock
-            {
-                Text = "请输入文件名"
-            };
-            TextBox textBox = new TextBox
-            {
-                Text = defaultName
-            };
-            StackPanel panel = new StackPanel();
-            panel.Children.Add(textBlock);
-            panel.Children.Add(textBox);
-            ContentDialog createFileDialog = new ContentDialog
-            {
-                Title = "新建文件",
-                Content = panel,
-                CloseButtonText = "取消",
-                PrimaryButtonText = "确定"
-            };
-#if WinUI
-            createFileDialog.XamlRoot = this.Content.XamlRoot;
-#endif
-            ContentDialogResult result = await createFileDialog.ShowAsync();
-            if (result == ContentDialogResult.Primary)
-            {
-                string name = textBox.Text;
-                if (CurrentDirectory.Exist(name))
-                {
-                    ContentDialog fileExistDialog = new ContentDialog
+                    string n;
+                    int i = 2;
+                    do
                     {
-                        Title = "文件已存在",
-                        Content = "创建文件失败，文件已存在",
-                        CloseButtonText = "取消"
-                    };
-#if WinUI
-                    fileExistDialog.XamlRoot = this.Content.XamlRoot;
-#endif
-                    await fileExistDialog.ShowAsync();
+                        n = defaultName + " (" + (i++) + ")";
+                    }
+                    while (CurrentDirectory.Exist(n));
+                    defaultName = n;
                 }
-                else
+                TextBlock textBlock = new TextBlock
                 {
-                    CurrentDirectory.CreateYFFile(name);
-                    Update();
+                    Text = "请输入文件名"
+                };
+                TextBox textBox = new TextBox
+                {
+                    Text = defaultName
+                };
+                StackPanel panel = new StackPanel();
+                panel.Children.Add(textBlock);
+                panel.Children.Add(textBox);
+                ContentDialog createFileDialog = new ContentDialog
+                {
+                    Title = "新建文件",
+                    Content = panel,
+                    CloseButtonText = "取消",
+                    PrimaryButtonText = "确定"
+                };
+#if WinUI
+                createFileDialog.XamlRoot = this.Content.XamlRoot;
+#endif
+                ContentDialogResult result = await createFileDialog.ShowAsync();
+                if (result == ContentDialogResult.Primary)
+                {
+                    string name = textBox.Text;
+                    if (CurrentDirectory.Exist(name))
+                    {
+                        ContentDialog fileExistDialog = new ContentDialog
+                        {
+                            Title = "文件已存在",
+                            Content = "创建文件失败，文件已存在",
+                            CloseButtonText = "取消"
+                        };
+#if WinUI
+                        fileExistDialog.XamlRoot = this.Content.XamlRoot;
+#endif
+                        await fileExistDialog.ShowAsync();
+                    }
+                    else
+                    {
+                        CurrentDirectory.CreateYFFile(name);
+                        Update();
+                    }
                 }
+            }
+            catch (Exception)
+            {
+
             }
         }
 
         private async void MenuCreateDirectory_Click(object sender, RoutedEventArgs e)
         {
-            string defaultName = "新建文件夹";
-            if (CurrentDirectory.Exist(defaultName))
+            try
             {
-                string n;
-                int i = 2;
-                do
+                string defaultName = "新建文件夹";
+                if (CurrentDirectory.Exist(defaultName))
                 {
-                    n = defaultName + " (" + (i++) + ")";
-                }
-                while (CurrentDirectory.Exist(n));
-                defaultName = n;
-            }
-            TextBlock textBlock = new TextBlock
-            {
-                Text = "请输入文件夹名"
-            };
-            TextBox textBox = new TextBox
-            {
-                Text = defaultName
-            };
-            StackPanel panel = new StackPanel();
-            panel.Children.Add(textBlock);
-            panel.Children.Add(textBox);
-            ContentDialog createFileDialog = new ContentDialog
-            {
-                Title = "新建文件夹",
-                Content = panel,
-                CloseButtonText = "取消",
-                PrimaryButtonText = "确定"
-            };
-#if WinUI
-            createFileDialog.XamlRoot = this.Content.XamlRoot;
-#endif
-            ContentDialogResult result = await createFileDialog.ShowAsync();
-            if (result == ContentDialogResult.Primary)
-            {
-                string name = textBox.Text;
-                if (CurrentDirectory.Exist(name))
-                {
-                    ContentDialog fileExistDialog = new ContentDialog
+                    string n;
+                    int i = 2;
+                    do
                     {
-                        Title = "文件夹已存在",
-                        Content = "创建文件夹失败，文件夹已存在",
-                        CloseButtonText = "取消"
-                    };
-#if WinUI
-            fileExistDialog.XamlRoot = this.Content.XamlRoot;
-#endif
-                    await fileExistDialog.ShowAsync();
+                        n = defaultName + " (" + (i++) + ")";
+                    }
+                    while (CurrentDirectory.Exist(n));
+                    defaultName = n;
                 }
-                else
+                TextBlock textBlock = new TextBlock
                 {
-                    CurrentDirectory.CreateYFDirectory(name);
-                    Update();
+                    Text = "请输入文件夹名"
+                };
+                TextBox textBox = new TextBox
+                {
+                    Text = defaultName
+                };
+                StackPanel panel = new StackPanel();
+                panel.Children.Add(textBlock);
+                panel.Children.Add(textBox);
+                ContentDialog createFileDialog = new ContentDialog
+                {
+                    Title = "新建文件夹",
+                    Content = panel,
+                    CloseButtonText = "取消",
+                    PrimaryButtonText = "确定"
+                };
+#if WinUI
+                createFileDialog.XamlRoot = this.Content.XamlRoot;
+#endif
+                ContentDialogResult result = await createFileDialog.ShowAsync();
+                if (result == ContentDialogResult.Primary)
+                {
+                    string name = textBox.Text;
+                    if (CurrentDirectory.Exist(name))
+                    {
+                        ContentDialog fileExistDialog = new ContentDialog
+                        {
+                            Title = "文件夹已存在",
+                            Content = "创建文件夹失败，文件夹已存在",
+                            CloseButtonText = "取消"
+                        };
+#if WinUI
+                        fileExistDialog.XamlRoot = this.Content.XamlRoot;
+#endif
+                        await fileExistDialog.ShowAsync();
+                    }
+                    else
+                    {
+                        CurrentDirectory.CreateYFDirectory(name);
+                        Update();
+                    }
                 }
+            }
+            catch (Exception)
+            {
+
             }
         }
 
@@ -543,29 +557,36 @@ namespace PopStudio.Pages
 
         private async void MenuDelete_Click(object sender, RoutedEventArgs e)
         {
-            ContentDialog fileExistDialog = new ContentDialog
+            try
             {
-                Title = "删除文件夹",
-                Content = "被删除的文件夹和其中的内容无法恢复，确定要继续吗？",
-                CloseButtonText = "取消",
-                PrimaryButtonText = "确定"
-            };
-#if WinUI
-            fileExistDialog.XamlRoot = this.Content.XamlRoot;
-#endif
-            ContentDialogResult result = await fileExistDialog.ShowAsync();
-            if (result == ContentDialogResult.Primary)
-            {
-                YFFileSystem.YFDirectory back = CurrentDirectory;
-                if (back.Parent is not null)
+                ContentDialog fileExistDialog = new ContentDialog
                 {
-                    CurrentDirectory = back.Parent;
+                    Title = "删除文件夹",
+                    Content = "被删除的文件夹和其中的内容无法恢复，确定要继续吗？",
+                    CloseButtonText = "取消",
+                    PrimaryButtonText = "确定"
+                };
+#if WinUI
+                fileExistDialog.XamlRoot = this.Content.XamlRoot;
+#endif
+                ContentDialogResult result = await fileExistDialog.ShowAsync();
+                if (result == ContentDialogResult.Primary)
+                {
+                    YFFileSystem.YFDirectory back = CurrentDirectory;
+                    if (back.Parent is not null)
+                    {
+                        CurrentDirectory = back.Parent;
+                        Update();
+                    }
+                    Task tsk = back.DeleteSelfAsync();
+                    Task tsk2 = YFDialogHelper.OpenDialogWithoutCancelButton<Dialog_Wait>(tsk);
+                    await Task.WhenAll(tsk, tsk2);
                     Update();
                 }
-                Task tsk = back.DeleteSelfAsync();
-                Task tsk2 = YFDialogHelper.OpenDialogWithoutCancelButton<Dialog_Wait>(tsk);
-                await Task.WhenAll(tsk, tsk2);
-                Update();
+            }
+            catch (Exception)
+            {
+
             }
         }
 

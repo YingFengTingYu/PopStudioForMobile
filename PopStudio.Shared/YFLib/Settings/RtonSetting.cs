@@ -4,14 +4,9 @@
     {
         public string Cipher { get; set; }
 
-        public RtonSetting()
+        public void Init()
         {
-
-        }
-
-        public RtonSetting(string s)
-        {
-            Cipher = s;
+            Cipher ??= string.Empty;
         }
     }
 }
