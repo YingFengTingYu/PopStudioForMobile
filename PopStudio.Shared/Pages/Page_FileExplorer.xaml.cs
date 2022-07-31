@@ -29,6 +29,19 @@ namespace PopStudio.Pages
         {
             this.InitializeComponent();
             OnShow += Update;
+            LoadFont();
+        }
+
+        public void LoadFont()
+        {
+            flyout_refresh.Text = YFString.GetString("FileExplorer_Refresh");
+            flyout_createfile.Text = YFString.GetString("FileExplorer_CreateFile");
+            flyout_createfolder.Text = YFString.GetString("FileExplorer_CreateFolder");
+            flyout_importfile.Text = YFString.GetString("FileExplorer_ImportFile");
+            flyout_importfolder.Text = YFString.GetString("FileExplorer_ImportFolder");
+            flyout_exportcurrentfolder.Text = YFString.GetString("FileExplorer_ExportCurrentFolder");
+            flyout_compresscurrentfolder.Text = YFString.GetString("FileExplorer_CompressCurrentFolder");
+            flyout_deletecurrentfolder.Text = YFString.GetString("FileExplorer_DeleteCurrentFolder");
         }
 
         bool CanClick = true;
@@ -45,12 +58,12 @@ namespace PopStudio.Pages
                         CanClick = false;
                         ListView listView = new ListView();
                         listView.SelectionMode = ListViewSelectionMode.Single;
-                        listView.Items.Add("导出");
-                        listView.Items.Add("剪切");
-                        listView.Items.Add("复制");
-                        listView.Items.Add("重命名");
-                        listView.Items.Add("删除");
-                        listView.Items.Add("查看信息");
+                        listView.Items.Add(YFString.GetString("FileExplorer_Export"));
+                        listView.Items.Add(YFString.GetString("FileExplorer_Cut"));
+                        listView.Items.Add(YFString.GetString("FileExplorer_Copy"));
+                        listView.Items.Add(YFString.GetString("FileExplorer_Rename"));
+                        listView.Items.Add(YFString.GetString("FileExplorer_Delete"));
+                        listView.Items.Add(YFString.GetString("FileExplorer_Attribute"));
                         Dictionary<int, int> _dic = new Dictionary<int, int>(); // 映射显示索引和功能索引的表
                         string nnnnn = info.Name.ToLower();
                         if (nnnnn.EndsWith(".json")
@@ -62,7 +75,7 @@ namespace PopStudio.Pages
                             || nnnnn.EndsWith(".csv"))
                         {
                             _dic.Add(6, 6);
-                            listView.Items.Add("编辑");
+                            listView.Items.Add(YFString.GetString("FileExplorer_Edit"));
                         }
                         else if (nnnnn.EndsWith(".zip")
                             || nnnnn.EndsWith(".rar")
@@ -79,14 +92,14 @@ namespace PopStudio.Pages
                             || nnnnn.EndsWith(".7z"))
                         {
                             _dic.Add(6, 7);
-                            listView.Items.Add("解压");
+                            listView.Items.Add(YFString.GetString("FileExplorer_Decompress"));
                         }
                         else if (nnnnn.EndsWith(".txz"))
                         {
                             _dic.Add(6, 7);
-                            listView.Items.Add("解压");
+                            listView.Items.Add(YFString.GetString("FileExplorer_Decompress"));
                             //_dic.Add(7, 8);
-                            //listView.Items.Add("预览图像");
+                            //listView.Items.Add(YFString.GetString("FileExplorer_ViewImage"));
                         }
                         else if (nnnnn.EndsWith(".png")
                             || nnnnn.EndsWith(".jpg")
@@ -101,14 +114,14 @@ namespace PopStudio.Pages
                             //|| nnnnn.EndsWith(".cdat")
                         {
                             _dic.Add(6, 8);
-                            listView.Items.Add("预览图像");
+                            listView.Items.Add(YFString.GetString("FileExplorer_ViewImage"));
                         }
                         ContentDialog noWifiDialog = new ContentDialog
                         {
-                            Title = "请选择进行的操作",
+                            Title = YFString.GetString("FileExplorer_ChooseOperation"),
                             Content = listView,
-                            PrimaryButtonText = "确定",
-                            CloseButtonText = "取消"
+                            PrimaryButtonText = YFString.GetString("FileExplorer_OK"),
+                            CloseButtonText = YFString.GetString("FileExplorer_Cancel")
                         };
 #if WinUI
                         noWifiDialog.XamlRoot = this.Content.XamlRoot;
@@ -151,7 +164,7 @@ namespace PopStudio.Pages
                                 // 重命名
                                 TextBlock textBlock = new TextBlock
                                 {
-                                    Text = "请输入文件名"
+                                    Text = YFString.GetString("FileExplorer_EnterFileName")
                                 };
                                 TextBox textBox = new TextBox
                                 {
@@ -163,10 +176,10 @@ namespace PopStudio.Pages
                                 panel.Children.Add(textBox);
                                 ContentDialog createFileDialog = new ContentDialog
                                 {
-                                    Title = "新建文件",
+                                    Title = YFString.GetString("FileExplorer_NewFile"),
                                     Content = panel,
-                                    CloseButtonText = "取消",
-                                    PrimaryButtonText = "确定"
+                                    CloseButtonText = YFString.GetString("FileExplorer_Cancel"),
+                                    PrimaryButtonText = YFString.GetString("FileExplorer_OK")
                                 };
 #if WinUI
                                 createFileDialog.XamlRoot = this.Content.XamlRoot;
@@ -217,18 +230,18 @@ namespace PopStudio.Pages
                                 string m4NativePath = m_file.GetNativePath();
                                 string m4CreateTime = m_file.Time.ToString();
                                 StackPanel panel = new StackPanel();
-                                panel.Children.Add(CreateCopyTextBlock("文件名：{0}", m4FileName));
-                                panel.Children.Add(CreateCopyTextBlock("扩展名：{0}", m4FileExtension));
-                                panel.Children.Add(CreateCopyTextBlock("文件大小：{0}", m4FileSize));
-                                panel.Children.Add(CreateCopyTextBlock("文件路径：{0}", m4FilePath));
-                                panel.Children.Add(CreateCopyTextBlock("本机路径：{0}", m4NativePath));
-                                panel.Children.Add(CreateCopyTextBlock("创建时间：{0}", m4CreateTime));
+                                panel.Children.Add(CreateCopyTextBlock(YFString.GetString("FileExplorer_AttributeFileName"), m4FileName));
+                                panel.Children.Add(CreateCopyTextBlock(YFString.GetString("FileExplorer_AttributeFileExtension"), m4FileExtension));
+                                panel.Children.Add(CreateCopyTextBlock(YFString.GetString("FileExplorer_AttributeFileSize"), m4FileSize));
+                                panel.Children.Add(CreateCopyTextBlock(YFString.GetString("FileExplorer_AttributeFilePath"), m4FilePath));
+                                panel.Children.Add(CreateCopyTextBlock(YFString.GetString("FileExplorer_AttributeNativePath"), m4NativePath));
+                                panel.Children.Add(CreateCopyTextBlock(YFString.GetString("FileExplorer_AttributeCreateTime"), m4CreateTime));
                                 ContentDialog createFileDialog = new ContentDialog
                                 {
-                                    Title = "文件信息",
+                                    Title = YFString.GetString("FileExplorer_Attribute"),
                                     Content = panel,
-                                    CloseButtonText = "取消",
-                                    PrimaryButtonText = "确定"
+                                    CloseButtonText = YFString.GetString("FileExplorer_Cancel"),
+                                    PrimaryButtonText = YFString.GetString("FileExplorer_OK")
                                 };
 #if WinUI
                                 createFileDialog.XamlRoot = this.Content.XamlRoot;
@@ -325,10 +338,10 @@ namespace PopStudio.Pages
                 CanClick = true;
                 ContentDialog createFileDialog = new ContentDialog
                 {
-                    Title = "错误！",
+                    Title = YFString.GetString("FileExplorer_Error"),
                     Content = ex.Message,
-                    CloseButtonText = "取消",
-                    PrimaryButtonText = "确定"
+                    CloseButtonText = YFString.GetString("FileExplorer_Cancel"),
+                    PrimaryButtonText = YFString.GetString("FileExplorer_OK")
                 };
 #if WinUI
                 createFileDialog.XamlRoot = this.Content.XamlRoot;
@@ -353,7 +366,7 @@ namespace PopStudio.Pages
         {
             try
             {
-                string defaultName = "新文件";
+                string defaultName = YFString.GetString("FileExplorer_NewFile");
                 if (CurrentDirectory.Exist(defaultName))
                 {
                     string n;
@@ -367,7 +380,7 @@ namespace PopStudio.Pages
                 }
                 TextBlock textBlock = new TextBlock
                 {
-                    Text = "请输入文件名"
+                    Text = YFString.GetString("FileExplorer_EnterFileName")
                 };
                 TextBox textBox = new TextBox
                 {
@@ -378,10 +391,10 @@ namespace PopStudio.Pages
                 panel.Children.Add(textBox);
                 ContentDialog createFileDialog = new ContentDialog
                 {
-                    Title = "新建文件",
+                    Title = YFString.GetString("FileExplorer_NewFile"),
                     Content = panel,
-                    CloseButtonText = "取消",
-                    PrimaryButtonText = "确定"
+                    CloseButtonText = YFString.GetString("FileExplorer_Cancel"),
+                    PrimaryButtonText = YFString.GetString("FileExplorer_OK")
                 };
 #if WinUI
                 createFileDialog.XamlRoot = this.Content.XamlRoot;
@@ -394,9 +407,9 @@ namespace PopStudio.Pages
                     {
                         ContentDialog fileExistDialog = new ContentDialog
                         {
-                            Title = "文件已存在",
-                            Content = "创建文件失败，文件已存在",
-                            CloseButtonText = "取消"
+                            Title = YFString.GetString("FileExplorer_FileExist"),
+                            Content = YFString.GetString("FileExplorer_FileExistInfo"),
+                            CloseButtonText = YFString.GetString("FileExplorer_Cancel")
                         };
 #if WinUI
                         fileExistDialog.XamlRoot = this.Content.XamlRoot;
@@ -420,7 +433,7 @@ namespace PopStudio.Pages
         {
             try
             {
-                string defaultName = "新建文件夹";
+                string defaultName = YFString.GetString("FileExplorer_NewFolder");
                 if (CurrentDirectory.Exist(defaultName))
                 {
                     string n;
@@ -434,7 +447,7 @@ namespace PopStudio.Pages
                 }
                 TextBlock textBlock = new TextBlock
                 {
-                    Text = "请输入文件夹名"
+                    Text = YFString.GetString("FileExplorer_EnterFolderName")
                 };
                 TextBox textBox = new TextBox
                 {
@@ -445,10 +458,10 @@ namespace PopStudio.Pages
                 panel.Children.Add(textBox);
                 ContentDialog createFileDialog = new ContentDialog
                 {
-                    Title = "新建文件夹",
+                    Title = YFString.GetString("FileExplorer_NewFolder"),
                     Content = panel,
-                    CloseButtonText = "取消",
-                    PrimaryButtonText = "确定"
+                    CloseButtonText = YFString.GetString("FileExplorer_Cancel"),
+                    PrimaryButtonText = YFString.GetString("FileExplorer_OK")
                 };
 #if WinUI
                 createFileDialog.XamlRoot = this.Content.XamlRoot;
@@ -461,9 +474,9 @@ namespace PopStudio.Pages
                     {
                         ContentDialog fileExistDialog = new ContentDialog
                         {
-                            Title = "文件夹已存在",
-                            Content = "创建文件夹失败，文件夹已存在",
-                            CloseButtonText = "取消"
+                            Title = YFString.GetString("FileExplorer_FolderExist"),
+                            Content = YFString.GetString("FileExplorer_FolderExistInfo"),
+                            CloseButtonText = YFString.GetString("FileExplorer_Cancel")
                         };
 #if WinUI
                         fileExistDialog.XamlRoot = this.Content.XamlRoot;
@@ -586,10 +599,10 @@ namespace PopStudio.Pages
             {
                 ContentDialog fileExistDialog = new ContentDialog
                 {
-                    Title = "删除文件夹",
-                    Content = "被删除的文件夹和其中的内容无法恢复，确定要继续吗？",
-                    CloseButtonText = "取消",
-                    PrimaryButtonText = "确定"
+                    Title = YFString.GetString("FileExplorer_DeleteFolder"),
+                    Content = YFString.GetString("FileExplorer_DeleteFolderAsk"),
+                    CloseButtonText = YFString.GetString("FileExplorer_Cancel"),
+                    PrimaryButtonText = YFString.GetString("FileExplorer_OK")
                 };
 #if WinUI
                 fileExistDialog.XamlRoot = this.Content.XamlRoot;
@@ -629,17 +642,17 @@ namespace PopStudio.Pages
                 {
                     ContentDialog fileExistDialog = new ContentDialog
                     {
-                        Title = "无法创建",
-                        Content = "文件/文件夹" + name + "已存在，请选择进行的操作",
-                        CloseButtonText = "取消",
-                        PrimaryButtonText = "重命名"
+                        Title = YFString.GetString("FileExplorer_CannotCreate"),
+                        Content = string.Format(YFString.GetString("FileExplorer_CannotCreateInfo"), name),
+                        CloseButtonText = YFString.GetString("FileExplorer_Cancel"),
+                        PrimaryButtonText = YFString.GetString("FileExplorer_Rename")
                     };
                     if ((mode & 2) == 0)
                     {
-                        fileExistDialog.SecondaryButtonText = "覆盖";
+                        fileExistDialog.SecondaryButtonText = YFString.GetString("FileExplorer_Overwrite");
                     }
 #if WinUI
-            fileExistDialog.XamlRoot = this.Content.XamlRoot;
+                    fileExistDialog.XamlRoot = this.Content.XamlRoot;
 #endif
                     ContentDialogResult result = await fileExistDialog.ShowAsync();
                     if (result == ContentDialogResult.Primary)
@@ -694,14 +707,14 @@ namespace PopStudio.Pages
                 {
                     ContentDialog fileExistDialog = new ContentDialog
                     {
-                        Title = "无法创建",
-                        Content = "文件/文件夹" + name + "已存在，请选择进行的操作",
-                        CloseButtonText = "取消",
-                        PrimaryButtonText = "重命名"
+                        Title = YFString.GetString("FileExplorer_CannotCreate"),
+                        Content = string.Format(YFString.GetString("FileExplorer_CannotCreateInfo"), name),
+                        CloseButtonText = YFString.GetString("FileExplorer_Cancel"),
+                        PrimaryButtonText = YFString.GetString("FileExplorer_Rename")
                     };
                     if ((mode & 1) == 0)
                     {
-                        fileExistDialog.SecondaryButtonText = "合并";
+                        fileExistDialog.SecondaryButtonText = YFString.GetString("FileExplorer_Merge");
                     }
 #if WinUI
                     fileExistDialog.XamlRoot = this.Content.XamlRoot;
@@ -741,7 +754,7 @@ namespace PopStudio.Pages
             Update();
         }
 
-        public string Title { get; set; } = "文件浏览器";
+        public string Title { get; set; } = YFString.GetString("FileExplorer_Title");
 
         public Action OnShow { get; set; }
 
@@ -780,7 +793,7 @@ namespace PopStudio.Pages
         {
             TextBlock textBlock = new TextBlock
             {
-                Text = "请输入路径"
+                Text = YFString.GetString("FileExplorer_EnterPath")
             };
             TextBox textBox = new TextBox
             {
@@ -791,10 +804,10 @@ namespace PopStudio.Pages
             panel.Children.Add(textBox);
             ContentDialog createFileDialog = new ContentDialog
             {
-                Title = "更改路径",
+                Title = YFString.GetString("FileExplorer_ChangePath"),
                 Content = panel,
-                CloseButtonText = "取消",
-                PrimaryButtonText = "确定"
+                CloseButtonText = YFString.GetString("FileExplorer_Cancel"),
+                PrimaryButtonText = YFString.GetString("FileExplorer_OK")
             };
 #if WinUI
             createFileDialog.XamlRoot = this.Content.XamlRoot;
@@ -836,7 +849,7 @@ namespace PopStudio.Pages
         public SingleFileItem()
         {
             Name = string.Empty;
-            ShowString = "　返回上一级";
+            ShowString = "　  " + YFString.GetString("FileExplorer_BackToParent");
             Kind = FileItemKind.Back;
         }
     }

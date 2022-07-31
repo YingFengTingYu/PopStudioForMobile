@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.UI.Xaml.Controls;
 using System.Threading.Tasks;
-using System.Threading;
+using PopStudio.PlatformAPI;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -29,9 +29,15 @@ namespace PopStudio.Dialogs
             }
         }
 
+        void LoadFont()
+        {
+            running.Text = YFString.GetString("Dialog_Running");
+        }
+
         public Dialog_Wait()
         {
             this.InitializeComponent();
+            LoadFont();
         }
     }
 }

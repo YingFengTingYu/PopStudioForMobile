@@ -78,7 +78,7 @@ namespace PopStudio.Package.Pak
             if (TVPak)
             {
                 throw new NotImplementedException();
-                return;
+                //return;
             }
             YFFile[] a = inFolder.GetAllFilesWithSubDirectoryFiles();
             int temp = inFolder.Name.Length + 2;

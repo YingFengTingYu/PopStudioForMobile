@@ -41,14 +41,14 @@
                    Tapped="Menu_Tapped">
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
-                        <MenuFlyoutItem Text="刷新" Click="MenuRefresh_Click" />
-                        <MenuFlyoutItem Text="新建文件" Click="MenuCreateFile_Click" />
-                        <MenuFlyoutItem Text="新建文件夹" Click="MenuCreateDirectory_Click" />
-                        <MenuFlyoutItem Text="导入文件" Click="MenuLoadFile_Click" />
-                        <MenuFlyoutItem Text="导入文件夹" Click="MenuLoadDirectory_Click" />
-                        <MenuFlyoutItem Text="导出当前文件夹" Click="MenuExport_Click" />
-                        <MenuFlyoutItem Text="压缩当前文件夹" Click="MenuCompress_Click" />
-                        <MenuFlyoutItem Text="删除当前文件夹" Click="MenuDelete_Click" />
+                        <MenuFlyoutItem x:Name="flyout_refresh" Click="MenuRefresh_Click" />
+                        <MenuFlyoutItem x:Name="flyout_createfile" Click="MenuCreateFile_Click" />
+                        <MenuFlyoutItem x:Name="flyout_createfolder" Click="MenuCreateDirectory_Click" />
+                        <MenuFlyoutItem x:Name="flyout_importfile" Click="MenuLoadFile_Click" />
+                        <MenuFlyoutItem x:Name="flyout_importfolder" Click="MenuLoadDirectory_Click" />
+                        <MenuFlyoutItem x:Name="flyout_exportcurrentfolder" Click="MenuExport_Click" />
+                        <MenuFlyoutItem x:Name="flyout_compresscurrentfolder" Click="MenuCompress_Click" />
+                        <MenuFlyoutItem x:Name="flyout_deletecurrentfolder" Click="MenuDelete_Click" />
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
             </Image>

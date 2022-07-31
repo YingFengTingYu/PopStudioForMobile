@@ -627,4 +627,151 @@
   <data name="Package_EncodeChooseOutFile" xml:space="preserve">
     <value>请选择打包生成文件</value>
   </data>
+  <data name="Dialog_Running" xml:space="preserve">
+    <value>执行中...</value>
+  </data>
+  <data name="FileExplorer_Attribute" xml:space="preserve">
+    <value>属性</value>
+  </data>
+  <data name="FileExplorer_AttributeCreateTime" xml:space="preserve">
+    <value>创建时间：{0}</value>
+  </data>
+  <data name="FileExplorer_AttributeFileExtension" xml:space="preserve">
+    <value>扩展名：{0}</value>
+  </data>
+  <data name="FileExplorer_AttributeFileName" xml:space="preserve">
+    <value>文件名：{0}</value>
+  </data>
+  <data name="FileExplorer_AttributeFilePath" xml:space="preserve">
+    <value>文件路径：{0}</value>
+  </data>
+  <data name="FileExplorer_AttributeFileSize" xml:space="preserve">
+    <value>文件大小：{0}</value>
+  </data>
+  <data name="FileExplorer_AttributeNativePath" xml:space="preserve">
+    <value>本机路径：{0}</value>
+  </data>
+  <data name="FileExplorer_BackToParent" xml:space="preserve">
+    <value>返回上一级</value>
+  </data>
+  <data name="FileExplorer_Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="FileExplorer_CannotCreate" xml:space="preserve">
+    <value>无法创建</value>
+  </data>
+  <data name="FileExplorer_CannotCreateInfo" xml:space="preserve">
+    <value>文件/文件夹'{0}'已存在，请选择进行的操作</value>
+  </data>
+  <data name="FileExplorer_ChangePath" xml:space="preserve">
+    <value>更改路径</value>
+  </data>
+  <data name="FileExplorer_ChooseOperation" xml:space="preserve">
+    <value>请选择进行的操作</value>
+  </data>
+  <data name="FileExplorer_CompressCurrentFolder" xml:space="preserve">
+    <value>压缩当前文件夹</value>
+  </data>
+  <data name="FileExplorer_Copy" xml:space="preserve">
+    <value>复制</value>
+  </data>
+  <data name="FileExplorer_CreateFile" xml:space="preserve">
+    <value>新建文件</value>
+  </data>
+  <data name="FileExplorer_CreateFolder" xml:space="preserve">
+    <value>新建文件夹</value>
+  </data>
+  <data name="FileExplorer_Cut" xml:space="preserve">
+    <value>剪切</value>
+  </data>
+  <data name="FileExplorer_Decompress" xml:space="preserve">
+    <value>解压</value>
+  </data>
+  <data name="FileExplorer_Delete" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="FileExplorer_DeleteCurrentFolder" xml:space="preserve">
+    <value>删除当前文件夹</value>
+  </data>
+  <data name="FileExplorer_DeleteFolder" xml:space="preserve">
+    <value>删除文件夹</value>
+  </data>
+  <data name="FileExplorer_DeleteFolderAsk" xml:space="preserve">
+    <value>被删除的文件夹和其中的内容无法恢复，确定要继续吗？</value>
+  </data>
+  <data name="FileExplorer_Edit" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="FileExplorer_EnterFileName" xml:space="preserve">
+    <value>请输入文件名</value>
+  </data>
+  <data name="FileExplorer_EnterFolderName" xml:space="preserve">
+    <value>请输入文件夹名</value>
+  </data>
+  <data name="FileExplorer_EnterPath" xml:space="preserve">
+    <value>请输入路径</value>
+  </data>
+  <data name="FileExplorer_Error" xml:space="preserve">
+    <value>错误</value>
+  </data>
+  <data name="FileExplorer_Export" xml:space="preserve">
+    <value>导出</value>
+  </data>
+  <data name="FileExplorer_ExportCurrentFolder" xml:space="preserve">
+    <value>导出当前文件夹</value>
+  </data>
+  <data name="FileExplorer_FileExist" xml:space="preserve">
+    <value>文件已存在</value>
+  </data>
+  <data name="FileExplorer_FileExistInfo" xml:space="preserve">
+    <value>创建文件失败，文件已存在</value>
+  </data>
+  <data name="FileExplorer_FileExistOverwrite" xml:space="preserve">
+    <value>文件已存在，是否覆盖？</value>
+  </data>
+  <data name="FileExplorer_FolderExist" xml:space="preserve">
+    <value>文件夹已存在</value>
+  </data>
+  <data name="FileExplorer_FolderExistInfo" xml:space="preserve">
+    <value>创建文件夹失败，文件夹已存在</value>
+  </data>
+  <data name="FileExplorer_FolderExistSameFile" xml:space="preserve">
+    <value>有同名文件夹存在，无法创建文件！</value>
+  </data>
+  <data name="FileExplorer_ImportFile" xml:space="preserve">
+    <value>导入文件</value>
+  </data>
+  <data name="FileExplorer_ImportFolder" xml:space="preserve">
+    <value>导入文件夹</value>
+  </data>
+  <data name="FileExplorer_Merge" xml:space="preserve">
+    <value>合并</value>
+  </data>
+  <data name="FileExplorer_NewFile" xml:space="preserve">
+    <value>新文件</value>
+  </data>
+  <data name="FileExplorer_NewFolder" xml:space="preserve">
+    <value>新建文件夹</value>
+  </data>
+  <data name="FileExplorer_OK" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="FileExplorer_Overwrite" xml:space="preserve">
+    <value>覆盖</value>
+  </data>
+  <data name="FileExplorer_Refresh" xml:space="preserve">
+    <value>刷新</value>
+  </data>
+  <data name="FileExplorer_Rename" xml:space="preserve">
+    <value>重命名</value>
+  </data>
+  <data name="FileExplorer_Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="FileExplorer_Title" xml:space="preserve">
+    <value>文件浏览器</value>
+  </data>
+  <data name="FileExplorer_ViewImage" xml:space="preserve">
+    <value>预览图像</value>
+  </data>
 </root>
