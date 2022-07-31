@@ -5,8 +5,6 @@ using System.Collections.Generic;
 using static PopStudio.PlatformAPI.YFFileSystem;
 using System.IO;
 using System.IO.Compression;
-using PopStudio.Package.Dz;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 namespace PopStudio.Package.Pak

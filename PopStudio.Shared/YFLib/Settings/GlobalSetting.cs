@@ -66,6 +66,8 @@ namespace PopStudio.Settings
                 }
             }
             Singleton ??= new GlobalSetting();
+            Singleton.Rsb ??= new RsbSetting();
+            Singleton.Rsb.Init();
             Singleton.Dz ??= new DzSetting();
             Singleton.Dz.Init();
             Singleton.Pak ??= new PakSetting();
@@ -86,6 +88,9 @@ namespace PopStudio.Settings
             Singleton.Rton.Init();
             Save();
         }
+
+        [JsonPropertyName("rsb")]
+        public RsbSetting Rsb { get; set; }
 
         [JsonPropertyName("dz")]
         public DzSetting Dz { get; set; }

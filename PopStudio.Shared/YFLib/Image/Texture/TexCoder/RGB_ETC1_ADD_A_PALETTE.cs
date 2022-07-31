@@ -61,7 +61,7 @@
                         tableSize_POT *= 2;
                     }
                 }
-                int S = width * height / 2;
+                int S = width * height;
                 int BitPosition = 0;
                 byte buffer = 0;
                 int ReadOneBit()
@@ -84,7 +84,7 @@
                 }
                 for (int i = 0; i < S; i++)
                 {
-                    dataPtr++->Alpha = (byte)ReadBits(bitDepth);
+                    dataPtr++->Alpha = palette[ReadBits(bitDepth)];
                 }
             }
         }

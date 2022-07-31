@@ -10,6 +10,7 @@ namespace PopStudio
         {
             switch (format)
             {
+                case 0: Package.Rsb.Rsb.Unpack(inFile, outFolder, GlobalSetting.Singleton.Rsb.DecodeImage, GlobalSetting.Singleton.Rsb.DeleteDecodedImage); break;
                 case 1: Package.Dz.Dz.Unpack(inFile, outFolder, GlobalSetting.Singleton.Dz.DecodeImage, GlobalSetting.Singleton.Dz.DeleteDecodedImage); break;
                 case 2: Package.Pak.Pak.Unpack(inFile, outFolder, GlobalSetting.Singleton.Pak.DecodeImage, GlobalSetting.Singleton.Pak.DeleteDecodedImage); break;
                 case 3: Package.Arcv.Arcv.Unpack(inFile, outFolder); break;
@@ -21,6 +22,7 @@ namespace PopStudio
         {
             switch (format)
             {
+                case 0: Package.Rsb.Rsb.Pack(inFolder, outFile); break;
                 case 1: Package.Dz.Dz.Pack(inFolder, outFile, GlobalSetting.Singleton.Dz.GetFlags); break;
                 case 2: Package.Pak.Pak.Pack(inFolder, outFile, GlobalSetting.Singleton.Pak.GetFlags); break;
                 case 3: Package.Arcv.Arcv.Pack(inFolder, outFile); break;

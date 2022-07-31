@@ -24,6 +24,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Dialogs\Dialog_ViewDocument.xaml.cs">
       <DependentUpon>Dialog_ViewDocument.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Dialogs\Dialog_ViewImage.xaml.cs">
+      <DependentUpon>Dialog_ViewImage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Dialogs\Dialog_Wait.xaml.cs">
       <DependentUpon>Dialog_Wait.xaml</DependentUpon>
     </Compile>
@@ -124,6 +127,17 @@
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Package\Pak\FileInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Package\Pak\Pak.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Package\Pak\PakInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Package\Rsb\CompressStringControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Package\Rsb\Rsb.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Package\Rsb\RsbAutoPoolInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Package\Rsb\RsbCompositeInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Package\Rsb\RsbHeadInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Package\Rsb\RsbInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Package\Rsb\RsbPtxInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Package\Rsb\RsbRsgpInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Package\Rsb\RsgpHeadInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Package\Rsb\RsgpInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Package\Rsb\XmlConvert.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Particle\GameConsole.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Particle\Particle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Particle\ParticleEmitter.cs" />
@@ -168,6 +182,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Reanim\TV.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Reanim\WP.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Rton\Rton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Settings\RsbSetting.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Settings\PakSetting.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Settings\FormatPair.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Settings\GlobalSetting.cs" />
@@ -215,6 +230,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Dialogs\Dialog_ViewDocument.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Dialogs\Dialog_ViewImage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

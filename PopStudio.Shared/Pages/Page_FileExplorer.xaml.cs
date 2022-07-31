@@ -58,6 +58,7 @@ namespace PopStudio.Pages
                             || nnnnn.EndsWith(".xml")
                             || nnnnn.EndsWith(".trail")
                             || nnnnn.EndsWith(".reanim")
+                            || nnnnn.EndsWith(".ini")
                             || nnnnn.EndsWith(".csv"))
                         {
                             _dic.Add(6, 6);
@@ -84,7 +85,22 @@ namespace PopStudio.Pages
                         {
                             _dic.Add(6, 7);
                             listView.Items.Add("解压");
-                            _dic.Add(7, 8);
+                            //_dic.Add(7, 8);
+                            //listView.Items.Add("预览图像");
+                        }
+                        else if (nnnnn.EndsWith(".png")
+                            || nnnnn.EndsWith(".jpg")
+                            || nnnnn.EndsWith(".bmp")
+                            || nnnnn.EndsWith(".pbm")
+                            || nnnnn.EndsWith(".tga")
+                            || nnnnn.EndsWith(".tiff")
+                            || nnnnn.EndsWith(".webp")
+                            || nnnnn.EndsWith(".gif"))
+                            //|| nnnnn.EndsWith(".tex")
+                            //|| nnnnn.EndsWith(".ptx")
+                            //|| nnnnn.EndsWith(".cdat")
+                        {
+                            _dic.Add(6, 8);
                             listView.Items.Add("预览图像");
                         }
                         ContentDialog noWifiDialog = new ContentDialog
@@ -275,6 +291,15 @@ namespace PopStudio.Pages
                                 Task tsk2 = YFDialogHelper.OpenDialogWithoutCancelButton<Dialog_Wait>(tsk);
                                 await Task.WhenAll(tsk, tsk2);
                                 Update();
+                            }
+                            else if (_dic[mode] == 8)
+                            {
+                                // 预览图像
+                                YFFileSystem.YFFile m_file = CurrentDirectory.GetYFFile(info.Name);
+                                if (m_file is not null)
+                                {
+                                    await YFDialogHelper.OpenDialog<Dialog_ViewImage>(m_file);
+                                }
                             }
                         }
                         CanClick = true;

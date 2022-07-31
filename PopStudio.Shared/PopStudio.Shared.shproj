@@ -13,6 +13,7 @@
   <ItemGroup>
     <UpToDateCheckInput Remove="Dialogs\Dialog_CompressSetting.xaml" />
     <UpToDateCheckInput Remove="Dialogs\Dialog_ViewDocument.xaml" />
+    <UpToDateCheckInput Remove="Dialogs\Dialog_ViewImage.xaml" />
     <UpToDateCheckInput Remove="Dialogs\Dialog_Wait.xaml" />
     <UpToDateCheckInput Remove="MainPage.xaml" />
     <UpToDateCheckInput Remove="Pages\Page_Image.xaml" />
@@ -25,6 +26,7 @@
     <_Globbed_Compile Remove="Dialogs\Dialog_ChooseSaveFile - 复制.xaml.cs" />
     <_Globbed_Compile Remove="Dialogs\Dialog_CompressSetting.xaml.cs" />
     <_Globbed_Compile Remove="Dialogs\Dialog_ViewDocument.xaml.cs" />
+    <_Globbed_Compile Remove="Dialogs\Dialog_ViewImage.xaml.cs" />
     <_Globbed_Compile Remove="Dialogs\Dialog_Wait.xaml.cs" />
     <_Globbed_Compile Remove="Dialogs\IDialogClosable.cs" />
     <_Globbed_Compile Remove="Dialogs\Page_FileExplorer.xaml.cs" />
@@ -53,6 +55,17 @@
     <_Globbed_Compile Remove="YFLib\Image\Texture\YFTexture2D.cs" />
     <_Globbed_Compile Remove="YFLib\Image\YFBitmap.cs" />
     <_Globbed_Compile Remove="YFLib\Image\YFColor.cs" />
+    <_Globbed_Compile Remove="YFLib\Package\Rsb\CompressStringControl.cs" />
+    <_Globbed_Compile Remove="YFLib\Package\Rsb\Rsb.cs" />
+    <_Globbed_Compile Remove="YFLib\Package\Rsb\RsbAutoPoolInfo.cs" />
+    <_Globbed_Compile Remove="YFLib\Package\Rsb\RsbCompositeInfo.cs" />
+    <_Globbed_Compile Remove="YFLib\Package\Rsb\RsbHeadInfo.cs" />
+    <_Globbed_Compile Remove="YFLib\Package\Rsb\RsbInfo.cs" />
+    <_Globbed_Compile Remove="YFLib\Package\Rsb\RsbPtxInfo.cs" />
+    <_Globbed_Compile Remove="YFLib\Package\Rsb\RsbRsgpInfo.cs" />
+    <_Globbed_Compile Remove="YFLib\Package\Rsb\RsgpHeadInfo.cs" />
+    <_Globbed_Compile Remove="YFLib\Package\Rsb\RsgpInfo.cs" />
+    <_Globbed_Compile Remove="YFLib\Package\Rsb\XmlConvert.cs" />
     <_Globbed_Compile Remove="YFLib\Particle\GameConsole.cs" />
     <_Globbed_Compile Remove="YFLib\Particle\PC.cs" />
     <_Globbed_Compile Remove="YFLib\Particle\Phone32.cs" />
@@ -98,6 +111,7 @@
   <ItemGroup>
     <_Globbled_Page Remove="Dialogs\Dialog_CompressSetting.xaml" />
     <_Globbled_Page Remove="Dialogs\Dialog_ViewDocument.xaml" />
+    <_Globbled_Page Remove="Dialogs\Dialog_ViewImage.xaml" />
     <_Globbled_Page Remove="Dialogs\Dialog_Wait.xaml" />
     <_Globbled_Page Remove="MainPage.xaml" />
     <_Globbled_Page Remove="Pages\Page_Image.xaml" />

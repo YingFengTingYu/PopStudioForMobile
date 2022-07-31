@@ -32,6 +32,7 @@ namespace PopStudio.Image.Texture
             { TextureFormat.RGBA_DXT5, new TexCoder.RGBA_DXT5() },
             { TextureFormat.RGB_ETC1, new TexCoder.RGB_ETC1() },
             { TextureFormat.RGB_ETC1_ADD_A8, new TexCoder.RGB_ETC1_ADD_A8() },
+            { TextureFormat.RGB_ETC1_ADD_A_PALETTE, new TexCoder.RGB_ETC1_ADD_A_PALETTE() },
             { TextureFormat.RGBA_PVRTCI_4BPP_ADD_A8, new TexCoder.RGBA_PVRTCI_4BPP_ADD_A8() },
             { TextureFormat.B8_G8_R8_A8_ADD_A8, new TexCoder.B8_G8_R8_A8_ADD_A8() },
             { TextureFormat.R8_G8_B8_A8_ADD_A8, new TexCoder.R8_G8_B8_A8_ADD_A8() },
