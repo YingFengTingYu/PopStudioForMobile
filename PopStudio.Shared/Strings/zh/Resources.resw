@@ -573,4 +573,58 @@
   <data name="Image_ModePtxXBox360" xml:space="preserve">
     <value>来源于XBox360平台的Ptx格式(.ptx)</value>
   </data>
+  <data name="Package_Choose" xml:space="preserve">
+    <value>选择</value>
+  </data>
+  <data name="Package_ChooseMode" xml:space="preserve">
+    <value>请选择运行模式</value>
+  </data>
+  <data name="Package_DecodeMode" xml:space="preserve">
+    <value>解包模式</value>
+  </data>
+  <data name="Package_EncodeMode" xml:space="preserve">
+    <value>打包模式</value>
+  </data>
+  <data name="Package_Introduction" xml:space="preserve">
+    <value>通过解包打包功能，获取和修改游戏内素材！</value>
+  </data>
+  <data name="Package_ModeArcv" xml:space="preserve">
+    <value>来源于Nds平台的Arcv(.bin)</value>
+  </data>
+  <data name="Package_ModeDz" xml:space="preserve">
+    <value>来源于安卓平台的Dz(.dz)</value>
+  </data>
+  <data name="Package_ModePak" xml:space="preserve">
+    <value>来源于电脑主机TV平台的Pak(.pak)</value>
+  </data>
+  <data name="Package_ModeRsb" xml:space="preserve">
+    <value>来源于手机主机平台的Rsb(.rsb)</value>
+  </data>
+  <data name="Package_Run" xml:space="preserve">
+    <value>运行</value>
+  </data>
+  <data name="Package_Title" xml:space="preserve">
+    <value>解包打包</value>
+  </data>
+  <data name="Language_Type" xml:space="preserve">
+    <value>简体中文</value>
+  </data>
+  <data name="Package_DecodeChooseInFile" xml:space="preserve">
+    <value>请选择被解包的文件</value>
+  </data>
+  <data name="Package_DecodeChooseMode" xml:space="preserve">
+    <value>请选择解包模式</value>
+  </data>
+  <data name="Package_DecodeChooseOutFile" xml:space="preserve">
+    <value>请选择解包生成文件夹</value>
+  </data>
+  <data name="Package_EncodeChooseInFile" xml:space="preserve">
+    <value>请选择被打包的文件夹</value>
+  </data>
+  <data name="Package_EncodeChooseMode" xml:space="preserve">
+    <value>请选择打包模式</value>
+  </data>
+  <data name="Package_EncodeChooseOutFile" xml:space="preserve">
+    <value>请选择打包生成文件</value>
+  </data>
 </root>

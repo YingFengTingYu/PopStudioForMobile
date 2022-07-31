@@ -1,6 +1,7 @@
 ﻿using PopStudio.Image.Texture;
 using PopStudio.Plugin;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace PopStudio.Settings
 {
@@ -33,6 +34,7 @@ namespace PopStudio.Settings
             };
         }
 
+        [JsonPropertyName("format")]
         public List<FormatPair> FormatMap { get; set; }
 
         public List<(string, int, Endian)> GetStringList()

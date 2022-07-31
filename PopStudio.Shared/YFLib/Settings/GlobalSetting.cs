@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
+using System.Text.Encodings.Web;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace PopStudio.Settings
 {
@@ -17,9 +19,20 @@ namespace PopStudio.Settings
                 string path = Path.Combine(
                     Windows.Storage.ApplicationData.Current.LocalFolder.Path,
                     "PopStudioSetting(Type(GlobalSetting)_Name(Singleton))");
-                using (FileStream fs = new FileStream(path, FileMode.Create))
+                using (Stream stream = new FileStream(path, FileMode.Create))
                 {
-                    JsonSerializer.Serialize(fs, Singleton, SettingContext.Default.GlobalSetting);
+                    JsonSerializer.Serialize(
+                        stream,
+                        Singleton,
+                        typeof(GlobalSetting),
+                        new SettingContext(new JsonSerializerOptions
+                        {
+                            Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+                            WriteIndented = true,
+                            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+                            Converters = { new JsonStringEnumConverter() }
+                        })
+                        );
                 }
             }
         }
@@ -34,43 +47,71 @@ namespace PopStudio.Settings
             {
                 try
                 {
-                    Singleton ??= JsonSerializer.Deserialize(File.ReadAllText(path), SettingContext.Default.GlobalSetting);
+                    using (Stream stream = new FileStream(path, FileMode.Open))
+                    {
+                        Singleton ??= JsonSerializer.Deserialize(
+                            stream,
+                            typeof(GlobalSetting),
+                            new SettingContext(new JsonSerializerOptions
+                            {
+                                AllowTrailingCommas = true,
+                                Converters = { new JsonStringEnumConverter() }
+                            })
+                            ) as GlobalSetting;
+                    }
+                    
                 }
                 catch (Exception)
                 {
-
                 }
             }
             Singleton ??= new GlobalSetting();
-            Singleton.PtxRsbFormat ??= new PtxRsbSetting();
-            Singleton.PtxRsbFormat.Init();
-            Singleton.TexTVFormat ??= new TexTVSetting();
-            Singleton.TexTVFormat.Init();
-            Singleton.CdatFormat ??= new CdatSetting();
-            Singleton.CdatFormat.Init();
-            Singleton.TexIOSFormat ??= new TexIOSSetting();
-            Singleton.TexIOSFormat.Init();
-            Singleton.TxzFormat ??= new TxzSetting();
-            Singleton.TxzFormat.Init();
-            Singleton.ImageLabelConvertor ??= new ImageLabelSetting();
-            Singleton.ImageLabelConvertor.Init();
-            Singleton.RtonCipher ??= new RtonSetting();
-            Singleton.RtonCipher.Init();
+            Singleton.Dz ??= new DzSetting();
+            Singleton.Dz.Init();
+            Singleton.Pak ??= new PakSetting();
+            Singleton.Pak.Init();
+            Singleton.PtxRsb ??= new PtxRsbSetting();
+            Singleton.PtxRsb.Init();
+            Singleton.TexTV ??= new TexTVSetting();
+            Singleton.TexTV.Init();
+            Singleton.Cdat ??= new CdatSetting();
+            Singleton.Cdat.Init();
+            Singleton.TexIOS ??= new TexIOSSetting();
+            Singleton.TexIOS.Init();
+            Singleton.Txz ??= new TxzSetting();
+            Singleton.Txz.Init();
+            Singleton.ImageLabel ??= new ImageLabelSetting();
+            Singleton.ImageLabel.Init();
+            Singleton.Rton ??= new RtonSetting();
+            Singleton.Rton.Init();
             Save();
         }
 
-        public PtxRsbSetting PtxRsbFormat { get; set; }
+        [JsonPropertyName("dz")]
+        public DzSetting Dz { get; set; }
 
-        public TexTVSetting TexTVFormat { get; set; }
+        [JsonPropertyName("pak")]
+        public PakSetting Pak { get; set; }
 
-        public CdatSetting CdatFormat { get; set; }
+        [JsonPropertyName("ptx_rsb")]
+        public PtxRsbSetting PtxRsb { get; set; }
 
-        public TexIOSSetting TexIOSFormat { get; set; }
+        [JsonPropertyName("tex_tv")]
+        public TexTVSetting TexTV { get; set; }
 
-        public TxzSetting TxzFormat { get; set; }
+        [JsonPropertyName("cdat")]
+        public CdatSetting Cdat { get; set; }
 
-        public ImageLabelSetting ImageLabelConvertor { get; set; }
+        [JsonPropertyName("tex_ios")]
+        public TexIOSSetting TexIOS { get; set; }
 
-        public RtonSetting RtonCipher { get; set; }
+        [JsonPropertyName("txz")]
+        public TxzSetting Txz { get; set; }
+
+        [JsonPropertyName("image_label")]
+        public ImageLabelSetting ImageLabel { get; set; }
+
+        [JsonPropertyName("rton")]
+        public RtonSetting Rton { get; set; }
     }
 }

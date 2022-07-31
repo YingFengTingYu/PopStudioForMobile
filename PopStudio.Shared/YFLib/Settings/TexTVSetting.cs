@@ -1,6 +1,7 @@
 ﻿using PopStudio.Image.Texture;
 using PopStudio.Plugin;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace PopStudio.Settings
 {
@@ -48,8 +49,10 @@ namespace PopStudio.Settings
             };
         }
 
+        [JsonPropertyName("format")]
         public List<FormatPair> FormatMap { get; set; }
 
+        [JsonPropertyName("use_zlib_compression")]
         public bool UseZlib { get; set; } = true;
 
         public List<(string, int, Endian)> GetStringList()

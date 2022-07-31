@@ -1,6 +1,7 @@
 ﻿using PopStudio.Image.Texture;
 using PopStudio.Plugin;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace PopStudio.Settings
 {
@@ -123,12 +124,16 @@ namespace PopStudio.Settings
             DefaultFormatBigEndian ??= TextureFormat.NONE;
         }
 
+        [JsonPropertyName("format_little_endian")]
         public List<FormatPair> FormatMapSmallEndian { get; set; }
 
+        [JsonPropertyName("format_big_endian")]
         public List<FormatPair> FormatMapBigEndian { get; set; }
 
+        [JsonPropertyName("format_little_endian_default")]
         public TextureFormat? DefaultFormatSmallEndian { get; set; }
 
+        [JsonPropertyName("format_big_endian_default")]
         public TextureFormat? DefaultFormatBigEndian { get; set; }
 
         public List<(string, int, Endian)> GetStringList()

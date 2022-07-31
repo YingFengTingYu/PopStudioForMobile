@@ -13,6 +13,7 @@ namespace PopStudio.Pages
         {
             this.InitializeComponent();
             AddItem(new Page_FileExplorer());
+            AddItem(new Page_Package());
             AddItem(new Page_Image());
             AddItem(new Page_Reanim());
             AddItem(new Page_Particle());

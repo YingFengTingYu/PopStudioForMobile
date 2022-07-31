@@ -66,7 +66,7 @@ namespace PopStudio.Pages
             switch (CB_CMode.SelectedIndex)
             {
                 case 0:
-                    _internalFormatInfo = Settings.GlobalSetting.Singleton.PtxRsbFormat.GetStringList();
+                    _internalFormatInfo = Settings.GlobalSetting.Singleton.PtxRsb.GetStringList();
                     foreach ((string, int, Plugin.Endian) item in _internalFormatInfo)
                     {
                         if (item.Item3 == Plugin.Endian.Big)
@@ -88,7 +88,7 @@ namespace PopStudio.Pages
                     }
                     break;
                 case 1:
-                    _internalFormatInfo = Settings.GlobalSetting.Singleton.TexTVFormat.GetStringList();
+                    _internalFormatInfo = Settings.GlobalSetting.Singleton.TexTV.GetStringList();
                     foreach ((string, int, Plugin.Endian) item in _internalFormatInfo)
                     {
                         CB_InternalFormat.Items.Add(
@@ -105,7 +105,7 @@ namespace PopStudio.Pages
                         ));
                     break;
                 case 3:
-                    _internalFormatInfo = Settings.GlobalSetting.Singleton.TexIOSFormat.GetStringList();
+                    _internalFormatInfo = Settings.GlobalSetting.Singleton.TexIOS.GetStringList();
                     foreach ((string, int, Plugin.Endian) item in _internalFormatInfo)
                     {
                         CB_InternalFormat.Items.Add(
@@ -116,7 +116,7 @@ namespace PopStudio.Pages
                     }
                     break;
                 case 4:
-                    _internalFormatInfo = Settings.GlobalSetting.Singleton.TxzFormat.GetStringList();
+                    _internalFormatInfo = Settings.GlobalSetting.Singleton.Txz.GetStringList();
                     foreach ((string, int, Plugin.Endian) item in _internalFormatInfo)
                     {
                         CB_InternalFormat.Items.Add(
@@ -183,6 +183,15 @@ namespace PopStudio.Pages
             }
         }
 
+        private string GetExtension(int mode) => mode switch
+        {
+            0 or (>= 5 and <= 7) => ".ptx",
+            1 or 3 => ".tex",
+            2 => ".cdat",
+            4 => ".txz",
+            _ => null
+        };
+
         private async void ButtonRun_Click(object sender, RoutedEventArgs e)
         {
             button_run.IsEnabled = false;
@@ -193,8 +202,8 @@ namespace PopStudio.Pages
             (string _, int internalFormat, Plugin.Endian endian) = _internalFormatInfo[CB_InternalFormat.SelectedIndex];
             string inData = textbox1.Text;
             string outData = textbox2.Text;
-            string inFormat = mode ? ".png" : ".ptx";
-            string outFormat = mode ? ".ptx" : ".png";
+            string inFormat = mode ? ".png" : GetExtension(cmode);
+            string outFormat = mode ? GetExtension(cmode) : ".png";
             string err = null;
             Stopwatch sw = new Stopwatch();
             sw.Start();

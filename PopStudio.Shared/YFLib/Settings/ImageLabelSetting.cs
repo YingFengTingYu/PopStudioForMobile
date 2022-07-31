@@ -1,10 +1,14 @@
 ﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace PopStudio.Settings
 {
     public class ImageLabelSetting
     {
+        [JsonPropertyName("image_index_to_name")]
         public Dictionary<int, string> ImageIndexToNameMap { get; set; }
+
+        [JsonPropertyName("image_name_to_index")]
         public Dictionary<string, int> ImageNameToIndexMap { get; set; }
 
         public void Init()

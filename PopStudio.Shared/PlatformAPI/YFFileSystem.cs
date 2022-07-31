@@ -39,6 +39,20 @@ namespace PopStudio.PlatformAPI
 
             private string _name;
 
+            public string GetNameWithoutExtension()
+            {
+                string n = Name;
+                int index = n.IndexOf('.');
+                return index >= 0 ? n[..index] : n;
+            }
+
+            public string GetExtension()
+            {
+                string n = Name;
+                int index = n.IndexOf('.');
+                return index >= 0 ? n[index..] : string.Empty;
+            }
+
             public YFDirectory DeleteSelf()
             {
                 Parent.DeleteYFFile(this);
@@ -163,6 +177,33 @@ namespace PopStudio.PlatformAPI
             private string _name;
             private List<YFDirectory> _directoryMap;
             private List<YFFile> _fileMap;
+
+            public YFFile[] GetAllFilesWithSubDirectoryFiles()
+            {
+                List<YFFile> ans = new List<YFFile>();
+                InternalGetAllFilesWithSubDirectoryFiles(ans);
+                return ans.ToArray();
+            }
+
+            private void InternalGetAllFilesWithSubDirectoryFiles(List<YFFile> ans)
+            {
+                lock (FileMap)
+                {
+                    lock (DirectoryMap)
+                    {
+                        int n = FileMap.Count;
+                        for (int i = 0; i < n; i++)
+                        {
+                            ans.Add(FileMap[i]);
+                        }
+                        n = DirectoryMap.Count;
+                        for (int i = 0; i < n; i++)
+                        {
+                            DirectoryMap[i].InternalGetAllFilesWithSubDirectoryFiles(ans);
+                        }
+                    }
+                }
+            }
 
             public YFFile[] GetAllFiles()
             {
@@ -567,9 +608,9 @@ namespace PopStudio.PlatformAPI
                 string path = Path.Combine(
                     Windows.Storage.ApplicationData.Current.LocalFolder.Path,
                     "PopStudioSetting(Type(YFDirectory)_Name(Home))");
-                using (FileStream fs = new FileStream(path, FileMode.Create))
+                using (Stream stream = new FileStream(path, FileMode.Create))
                 {
-                    JsonSerializer.Serialize(fs, Home, YFDirectoryJsonContext.Default.YFDirectory);
+                    JsonSerializer.Serialize(stream, Home, YFDirectoryJsonContext.Default.YFDirectory);
                 }
             }
         }
@@ -584,7 +625,10 @@ namespace PopStudio.PlatformAPI
             {
                 try
                 {
-                    Home ??= JsonSerializer.Deserialize(File.ReadAllText(path), YFDirectoryJsonContext.Default.YFDirectory);
+                    using (Stream stream = new FileStream(path, FileMode.Open))
+                    {
+                        Home ??= JsonSerializer.Deserialize(stream, YFDirectoryJsonContext.Default.YFDirectory);
+                    }
                     if (Home is not null)
                     {
                         Home.Name = "home";
@@ -609,7 +653,7 @@ namespace PopStudio.PlatformAPI
             Home.AddAllName(RealNameList);
         }
 
-        public static YFFile CreateYFFileFromPath(string path)
+        public static YFFile CreateYFFileFromPath(string path, YFDirectory currentDirectory = null)
         {
             if (path.Length < 4) return null;
             path = path.Replace('\\', '/');
@@ -623,11 +667,11 @@ namespace PopStudio.PlatformAPI
             }
             int index = path.LastIndexOf('/');
             if (index < 0) return null;
-            YFDirectory directory = CreateYFDirectoryFromPath(path[..index]);
+            YFDirectory directory = CreateYFDirectoryFromPath(path[..index], currentDirectory);
             return directory?.CreateYFFile(path[(index + 1)..]);
         }
 
-        public static YFFile GetOrCreateYFFileFromPath(string path)
+        public static YFFile GetOrCreateYFFileFromPath(string path, YFDirectory currentDirectory = null)
         {
             if (path.Length < 4) return null;
             path = path.Replace('\\', '/');
@@ -640,11 +684,11 @@ namespace PopStudio.PlatformAPI
                 path = path[..^1];
             }
             int index = path.LastIndexOf('/');
-            YFDirectory directory = CreateYFDirectoryFromPath(path[..index]);
+            YFDirectory directory = CreateYFDirectoryFromPath(path[..index], currentDirectory);
             return directory?.GetOrCreateYFFile(path[(index + 1)..]);
         }
 
-        public static YFDirectory CreateYFDirectoryFromPath(string path)
+        public static YFDirectory CreateYFDirectoryFromPath(string path, YFDirectory currentDirectory = null)
         {
             if (path.Length < 4) return null;
             if (path[0] == '/' || path[0] == '\\')
@@ -657,8 +701,8 @@ namespace PopStudio.PlatformAPI
             }
             string[] filenamelist = path.Split('/', '\\');
             int l = filenamelist.Length;
-            if (filenamelist[0] != "home") return null;
-            YFDirectory currentDirectory = Home;
+            currentDirectory ??= Home;
+            if (filenamelist[0] != currentDirectory.Name) return null;
             for (int i = 1; i < l; i++)
             {
                 string nowName = filenamelist[i];
@@ -668,17 +712,17 @@ namespace PopStudio.PlatformAPI
             return currentDirectory;
         }
 
-        public static void DeleteYFFileFromPath(string path)
+        public static void DeleteYFFileFromPath(string path, YFDirectory currentDirectory = null)
         {
-            GetYFFileFromPath(path)?.DeleteSelf();
+            GetYFFileFromPath(path, currentDirectory)?.DeleteSelf();
         }
 
-        public static void DeleteYFDirectoryFromPath(string path)
+        public static void DeleteYFDirectoryFromPath(string path, YFDirectory currentDirectory = null)
         {
-            GetYFDirectoryFromPath(path)?.DeleteSelf();
+            GetYFDirectoryFromPath(path, currentDirectory)?.DeleteSelf();
         }
 
-        public static YFFile GetYFFileFromPath(string path)
+        public static YFFile GetYFFileFromPath(string path, YFDirectory currentDirectory = null)
         {
             if (path.Length < 4) return null;
             if (path[0] == '/' || path[0] == '\\')
@@ -691,8 +735,8 @@ namespace PopStudio.PlatformAPI
             }
             string[] filenamelist = path.Split('/', '\\');
             int l = filenamelist.Length - 1;
-            if (filenamelist[0] != "home") return null;
-            YFDirectory currentDirectory = Home;
+            currentDirectory ??= Home;
+            if (filenamelist[0] != currentDirectory.Name) return null;
             for (int i = 1; i < l; i++)
             {
                 string nowName = filenamelist[i];
@@ -706,7 +750,7 @@ namespace PopStudio.PlatformAPI
             return currentDirectory.GetYFFile(filenamelist[l]);
         }
 
-        public static YFDirectory GetYFDirectoryFromPath(string path)
+        public static YFDirectory GetYFDirectoryFromPath(string path, YFDirectory currentDirectory = null)
         {
             if (path.Length < 4) return null;
             if (path[0] == '/' || path[0] == '\\')
@@ -719,8 +763,8 @@ namespace PopStudio.PlatformAPI
             }
             string[] filenamelist = path.Split('/', '\\');
             int l = filenamelist.Length;
-            if (filenamelist[0] != "home") return null;
-            YFDirectory currentDirectory = Home;
+            currentDirectory ??= Home;
+            if (filenamelist[0] != currentDirectory.Name) return null;
             for (int i = 1; i < l; i++)
             {
                 string nowName = filenamelist[i];

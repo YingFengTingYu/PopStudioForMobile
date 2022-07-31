@@ -38,6 +38,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Page_Menu.xaml.cs">
       <DependentUpon>Page_Menu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Page_Package.xaml.cs">
+      <DependentUpon>Page_Package.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Page_Pam.xaml.cs">
       <DependentUpon>Page_Pam.xaml</DependentUpon>
     </Compile>
@@ -112,6 +115,15 @@
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Image\Texture\YFTexture2D.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Image\YFBitmap.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Image\YFColor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Package\Arcv\Arcv.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Package\Dz\ChunkInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Package\Dz\DzCompressionFlags.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Package\Dz\DtrzInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Package\Dz\Dz.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Package\Pak\CompressFlags.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Package\Pak\FileInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Package\Pak\Pak.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Package\Pak\PakInfo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Particle\GameConsole.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Particle\Particle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Particle\ParticleEmitter.cs" />
@@ -131,7 +143,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Plugin\Endian.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Plugin\IDisposablePool.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Plugin\RijndaelHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Plugin\StreamHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Plugin\StringPool.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Plugin\TempFilePool.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Plugin\YFException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\PopAnim\FrameFlags.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\PopAnim\FrameInfo.cs" />
@@ -154,9 +168,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Reanim\TV.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Reanim\WP.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Rton\Rton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Settings\PakSetting.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Settings\FormatPair.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Settings\GlobalSetting.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Settings\CdatSetting.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFLib\Settings\DzSetting.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Settings\TxzSetting.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Settings\TexIOSSetting.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFLib\Settings\TexTVSetting.cs" />
@@ -215,6 +231,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Pages\Page_Menu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Pages\Page_Package.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,10 +1,10 @@
-﻿using PopStudio.Plugin;
-using System.Collections.Generic;
+﻿using System.Text.Json.Serialization;
 
 namespace PopStudio.Settings
 {
     public class CdatSetting
     {
+        [JsonPropertyName("cipher")]
         public string Cipher { get; set; }
 
         public void Init()

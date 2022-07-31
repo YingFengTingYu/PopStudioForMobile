@@ -573,4 +573,58 @@
   <data name="Image_ModePtxXBox360" xml:space="preserve">
     <value>Ptx from XBox360(.ptx)</value>
   </data>
+  <data name="Package_Choose" xml:space="preserve">
+    <value>Choose</value>
+  </data>
+  <data name="Package_ChooseMode" xml:space="preserve">
+    <value>Please select the operation mode</value>
+  </data>
+  <data name="Package_DecodeMode" xml:space="preserve">
+    <value>Unpack</value>
+  </data>
+  <data name="Package_EncodeMode" xml:space="preserve">
+    <value>Pack</value>
+  </data>
+  <data name="Package_Introduction" xml:space="preserve">
+    <value>Through Package, get and modify in-game materials!</value>
+  </data>
+  <data name="Package_ModeArcv" xml:space="preserve">
+    <value>Arcv from NDS(.bin)</value>
+  </data>
+  <data name="Package_ModeDz" xml:space="preserve">
+    <value>Dz from Android(.dz)</value>
+  </data>
+  <data name="Package_ModePak" xml:space="preserve">
+    <value>Pak from PC/Console(.pak)</value>
+  </data>
+  <data name="Package_ModeRsb" xml:space="preserve">
+    <value>Rsb from Phone/Console(.rsb)</value>
+  </data>
+  <data name="Package_Run" xml:space="preserve">
+    <value>Run</value>
+  </data>
+  <data name="Package_Title" xml:space="preserve">
+    <value>Package</value>
+  </data>
+  <data name="Package_DecodeChooseInFile" xml:space="preserve">
+    <value>Please choose unpackaged file</value>
+  </data>
+  <data name="Package_DecodeChooseMode" xml:space="preserve">
+    <value>Please choose unpackaging mode</value>
+  </data>
+  <data name="Package_DecodeChooseOutFile" xml:space="preserve">
+    <value>Please choose generated folder</value>
+  </data>
+  <data name="Package_EncodeChooseInFile" xml:space="preserve">
+    <value>Please choose packaged folder</value>
+  </data>
+  <data name="Package_EncodeChooseMode" xml:space="preserve">
+    <value>Please choose packaging mode</value>
+  </data>
+  <data name="Package_EncodeChooseOutFile" xml:space="preserve">
+    <value>Please choose generated file</value>
+  </data>
+  <data name="Language_Type" xml:space="preserve">
+    <value>English</value>
+  </data>
 </root>

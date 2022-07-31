@@ -16,6 +16,7 @@
     <UpToDateCheckInput Remove="Dialogs\Dialog_Wait.xaml" />
     <UpToDateCheckInput Remove="MainPage.xaml" />
     <UpToDateCheckInput Remove="Pages\Page_Image.xaml" />
+    <UpToDateCheckInput Remove="Pages\Page_Package.xaml" />
     <UpToDateCheckInput Remove="Pages\Page_Reanim.xaml" />
     <UpToDateCheckInput Remove="Pages\Page_Trail.xaml" />
   </ItemGroup>
@@ -29,6 +30,7 @@
     <_Globbed_Compile Remove="Dialogs\Page_FileExplorer.xaml.cs" />
     <_Globbed_Compile Remove="MainPage.xaml.cs" />
     <_Globbed_Compile Remove="Pages\Page_Image.xaml.cs" />
+    <_Globbed_Compile Remove="Pages\Page_Package.xaml.cs" />
     <_Globbed_Compile Remove="Pages\Page_Particles.xaml.cs" />
     <_Globbed_Compile Remove="Pages\Page_Reanim.xaml.cs" />
     <_Globbed_Compile Remove="Pages\Page_Rton - 复制.xaml.cs" />
@@ -58,6 +60,8 @@
     <_Globbed_Compile Remove="YFLib\Particle\RawXml.cs" />
     <_Globbed_Compile Remove="YFLib\Particle\TV.cs" />
     <_Globbed_Compile Remove="YFLib\Particle\WP.cs" />
+    <_Globbed_Compile Remove="YFLib\Plugin\StreamHelper.cs" />
+    <_Globbed_Compile Remove="YFLib\Plugin\TempFilePool.cs" />
     <_Globbed_Compile Remove="YFLib\PopAnim\FrameFlags.cs" />
     <_Globbed_Compile Remove="YFLib\PopAnim\FrameInfo.cs" />
     <_Globbed_Compile Remove="YFLib\PopAnim\ImageInfo.cs" />
@@ -97,6 +101,7 @@
     <_Globbled_Page Remove="Dialogs\Dialog_Wait.xaml" />
     <_Globbled_Page Remove="MainPage.xaml" />
     <_Globbled_Page Remove="Pages\Page_Image.xaml" />
+    <_Globbled_Page Remove="Pages\Page_Package.xaml" />
     <_Globbled_Page Remove="Pages\Page_Reanim.xaml" />
     <_Globbled_Page Remove="Pages\Page_Trail.xaml" />
   </ItemGroup>
