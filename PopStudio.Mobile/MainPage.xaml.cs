@@ -62,6 +62,7 @@ namespace PopStudio
                 YFDialogControl.Content = page;
             }
             YFDialogGrid.Visibility = Visibility.Visible;
+            YFDialongCancel.Content = YFString.GetString("MainPage_Close");
             YFDialongCancel.Visibility = Visibility.Visible;
         }
 
@@ -72,6 +73,7 @@ namespace PopStudio
                 YFDialogControl.Content = page;
             }
             YFDialogGrid.Visibility = Visibility.Visible;
+            YFDialongCancel.Content = YFString.GetString("MainPage_Close");
             YFDialongCancel.Visibility = v ? Visibility.Visible : Visibility.Collapsed;
         }
 

@@ -774,4 +774,79 @@
   <data name="FileExplorer_ViewImage" xml:space="preserve">
     <value>预览图像</value>
   </data>
+  <data name="Dialog_AskSaveInfo" xml:space="preserve">
+    <value>当前文件未保存，若直接关闭则将丢失更改，是否需要保存？</value>
+  </data>
+  <data name="Dialog_AskSaveTitle" xml:space="preserve">
+    <value>是否保存</value>
+  </data>
+  <data name="Dialog_Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="Dialog_Close" xml:space="preserve">
+    <value>关闭</value>
+  </data>
+  <data name="Dialog_FileTooLarge" xml:space="preserve">
+    <value>文件过大</value>
+  </data>
+  <data name="Dialog_FileTooLargeInfo" xml:space="preserve">
+    <value>当前文件过大（超过{0}MB），无法预览！</value>
+  </data>
+  <data name="Dialog_Lose" xml:space="preserve">
+    <value>丢弃</value>
+  </data>
+  <data name="Dialog_Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="FileExplorer_ChooseCurrentFolder" xml:space="preserve">
+    <value>选择当前文件夹</value>
+  </data>
+  <data name="MainPage_Close" xml:space="preserve">
+    <value>关闭</value>
+  </data>
+  <data name="HomePage_Agreement" xml:space="preserve">
+    <value>若您使用本工具制作作品，请务必在醒目位置注明使用本工具！</value>
+  </data>
+  <data name="HomePage_AppNewNotice_String" xml:space="preserve">
+    <value>更新公告：</value>
+  </data>
+  <data name="HomePage_Author" xml:space="preserve">
+    <value>萌新迎风听雨</value>
+  </data>
+  <data name="HomePage_Author_String" xml:space="preserve">
+    <value>作者：</value>
+  </data>
+  <data name="HomePage_Begin" xml:space="preserve">
+    <value>开始你的创造之旅吧！</value>
+  </data>
+  <data name="HomePage_Course" xml:space="preserve">
+    <value>https://space.bilibili.com/411256864</value>
+  </data>
+  <data name="HomePage_Course_String" xml:space="preserve">
+    <value>教学视频：</value>
+  </data>
+  <data name="HomePage_Function" xml:space="preserve">
+    <value>通过PopStudio修改宝开游戏的数据包、图像、动画、粒子特效等各种内容！</value>
+  </data>
+  <data name="HomePage_Permission" xml:space="preserve">
+    <value>此版本的PopStudio不会直接读取和写入本机文件，只会读取和写入程序内部文件，需要您在文件浏览器页面内导入或导出文件，部分浏览器可能不支持导入或导出文件夹，可以将文件夹压缩为.zip/.rar/.tar/.7z等格式然后导入文件并在文件浏览器页面内解压，或将文件夹在文件浏览器页面内压缩成.zip/.tar/.7z等格式然后导出</value>
+  </data>
+  <data name="HomePage_QQGroup" xml:space="preserve">
+    <value>1017246977</value>
+  </data>
+  <data name="HomePage_QQGroup_String" xml:space="preserve">
+    <value>交流QQ群：</value>
+  </data>
+  <data name="HomePage_Thanks" xml:space="preserve">
+    <value>补补23456 Bomb 2508 和风唐舞 孤独泪痕 63enjoy AS魇梦蚀 伊特 某个萌新 天天 Indestructible_Ch 僵学者 An-Haze</value>
+  </data>
+  <data name="HomePage_Thanks_String" xml:space="preserve">
+    <value>特别感谢：</value>
+  </data>
+  <data name="HomePage_Title" xml:space="preserve">
+    <value>主页</value>
+  </data>
+  <data name="HomePage_Version" xml:space="preserve">
+    <value>PopStudio 版本号{0}</value>
+  </data>
 </root>

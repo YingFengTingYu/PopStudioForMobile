@@ -59,7 +59,7 @@ namespace PopStudio.PlatformAPI
             string[] lst = new string[1];
             if (name_in is not null)
             {
-                int index = name_in.IndexOf('.');
+                int index = name_in.LastIndexOf('.');
                 string name;
                 if (index >= 0)
                 {

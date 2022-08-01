@@ -12,6 +12,7 @@ namespace PopStudio.Pages
         public Page_Menu()
         {
             this.InitializeComponent();
+            AddItem(new Page_HomePage());
             AddItem(new Page_FileExplorer());
             AddItem(new Page_Package());
             AddItem(new Page_Image());

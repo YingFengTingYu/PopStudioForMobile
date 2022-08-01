@@ -39,8 +39,8 @@
                    Tapped="Menu_Tapped">
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
-                        <MenuFlyoutItem Text="保存" Click="MenuSave_Click" />
-                        <MenuFlyoutItem Text="关闭" Click="MenuClose_Click" />
+                        <MenuFlyoutItem x:Name="flyout_save" Click="MenuSave_Click" />
+                        <MenuFlyoutItem x:Name="flyout_close" Click="MenuClose_Click" />
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
             </Image>

@@ -655,7 +655,6 @@ namespace PopStudio.PlatformAPI
 
         public static YFFile CreateYFFileFromPath(string path, YFDirectory currentDirectory = null)
         {
-            if (path.Length < 4) return null;
             path = path.Replace('\\', '/');
             if (path[0] == '/')
             {
@@ -673,7 +672,6 @@ namespace PopStudio.PlatformAPI
 
         public static YFFile GetOrCreateYFFileFromPath(string path, YFDirectory currentDirectory = null)
         {
-            if (path.Length < 4) return null;
             path = path.Replace('\\', '/');
             if (path[0] == '/')
             {
@@ -690,7 +688,6 @@ namespace PopStudio.PlatformAPI
 
         public static YFDirectory CreateYFDirectoryFromPath(string path, YFDirectory currentDirectory = null)
         {
-            if (path.Length < 4) return null;
             if (path[0] == '/' || path[0] == '\\')
             {
                 path = path[1..];
@@ -724,7 +721,6 @@ namespace PopStudio.PlatformAPI
 
         public static YFFile GetYFFileFromPath(string path, YFDirectory currentDirectory = null)
         {
-            if (path.Length < 4) return null;
             if (path[0] == '/' || path[0] == '\\')
             {
                 path = path[1..];
@@ -752,7 +748,6 @@ namespace PopStudio.PlatformAPI
 
         public static YFDirectory GetYFDirectoryFromPath(string path, YFDirectory currentDirectory = null)
         {
-            if (path.Length < 4) return null;
             if (path[0] == '/' || path[0] == '\\')
             {
                 path = path[1..];

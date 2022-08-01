@@ -774,4 +774,79 @@
   <data name="FileExplorer_ViewImage" xml:space="preserve">
     <value>View Image</value>
   </data>
+  <data name="Dialog_AskSaveInfo" xml:space="preserve">
+    <value>The current file has not been saved. If you close it directly, you will lose your changes. Do you want to save it?</value>
+  </data>
+  <data name="Dialog_AskSaveTitle" xml:space="preserve">
+    <value>Save it?</value>
+  </data>
+  <data name="Dialog_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Dialog_Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Dialog_FileTooLarge" xml:space="preserve">
+    <value>File too large</value>
+  </data>
+  <data name="Dialog_FileTooLargeInfo" xml:space="preserve">
+    <value>The current file is too large (more than {0}MB), unable to preview!</value>
+  </data>
+  <data name="Dialog_Lose" xml:space="preserve">
+    <value>Lose</value>
+  </data>
+  <data name="Dialog_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="FileExplorer_ChooseCurrentFolder" xml:space="preserve">
+    <value>Choose current folder</value>
+  </data>
+  <data name="MainPage_Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="HomePage_Agreement" xml:space="preserve">
+    <value>If you use this tool to make works, please be sure to indicate the use of this tool in an eye-catching position! </value>
+  </data>
+  <data name="HomePage_AppNewNotice_String" xml:space="preserve">
+    <value>Update announcement:</value>
+  </data>
+  <data name="HomePage_Author" xml:space="preserve">
+    <value>YingFengTingYu</value>
+  </data>
+  <data name="HomePage_Author_String" xml:space="preserve">
+    <value>Author:</value>
+  </data>
+  <data name="HomePage_Begin" xml:space="preserve">
+    <value>Start your creative journey!</value>
+  </data>
+  <data name="HomePage_Course" xml:space="preserve">
+    <value>https://space.bilibili.com/411256864</value>
+  </data>
+  <data name="HomePage_Course_String" xml:space="preserve">
+    <value>Course Video:</value>
+  </data>
+  <data name="HomePage_Function" xml:space="preserve">
+    <value>Modify the data package, images, actions, particle effects and other contents of PopCap Games by using PopStudio! </value>
+  </data>
+  <data name="HomePage_Permission" xml:space="preserve">
+    <value>This version of PopStudio will not directly read or write native files, but only internal files of the program. You need to import or export files in "File Explorer" page. Some web browsers may not support importing or exporting folders, and you can compress the folders into .zip/.rar/.tar/.7z or other formats, and then import the file and extract it in "File Explorer" page, or compress the folder into .zip/.tar/.7z or other formats in "File Explorer" page and then export it</value>
+  </data>
+  <data name="HomePage_QQGroup" xml:space="preserve">
+    <value>1017246977</value>
+  </data>
+  <data name="HomePage_QQGroup_String" xml:space="preserve">
+    <value>QQ group:</value>
+  </data>
+  <data name="HomePage_Thanks" xml:space="preserve">
+    <value>补补23456, Bomb, 2508, Japonisme Toumai, 孤独泪痕, 63enjoy, AS魇梦蚀, 伊特, 某个萌新, 天天, Indestructible_Ch, 僵学者, An-Haze</value>
+  </data>
+  <data name="HomePage_Thanks_String" xml:space="preserve">
+    <value>Thanks:</value>
+  </data>
+  <data name="HomePage_Title" xml:space="preserve">
+    <value>Home Page</value>
+  </data>
+  <data name="HomePage_Version" xml:space="preserve">
+    <value>PopStudio Version {0}</value>
+  </data>
 </root>

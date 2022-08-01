@@ -45,9 +45,9 @@ namespace PopStudio.Dialogs
                         await Task.Delay(1000);
                         ContentDialog fileExistDialog = new ContentDialog
                         {
-                            Title = "文件过大",
-                            Content = "当前文件过大（超过1MB），无法预览！",
-                            CloseButtonText = "关闭"
+                            Title = YFString.GetString("Dialog_FileTooLarge"),
+                            Content = string.Format(YFString.GetString("Dialog_FileTooLargeInfo"), 1),
+                            CloseButtonText = YFString.GetString("Dialog_Close")
                         };
 #if WinUI
                         fileExistDialog.XamlRoot = this.Content.XamlRoot;
@@ -72,11 +72,11 @@ namespace PopStudio.Dialogs
                 {
                     ContentDialog fileExistDialog = new ContentDialog
                     {
-                        Title = "是否保存",
-                        Content = "当前文件未保存，若直接关闭则将丢失更改，是否需要保存？",
-                        PrimaryButtonText = "保存",
-                        SecondaryButtonText = "丢弃",
-                        CloseButtonText = "取消"
+                        Title = YFString.GetString("Dialog_AskSaveTitle"),
+                        Content = YFString.GetString("Dialog_AskSaveInfo"),
+                        PrimaryButtonText = YFString.GetString("Dialog_Save"),
+                        SecondaryButtonText = YFString.GetString("Dialog_Lose"),
+                        CloseButtonText = YFString.GetString("Dialog_Cancel")
                     };
 #if WinUI
                     fileExistDialog.XamlRoot = this.Content.XamlRoot;
@@ -117,6 +117,13 @@ namespace PopStudio.Dialogs
         public Dialog_ViewDocument()
         {
             this.InitializeComponent();
+            LoadFont();
+        }
+
+        void LoadFont()
+        {
+            flyout_save.Text = YFString.GetString("Dialog_Save");
+            flyout_close.Text = YFString.GetString("Dialog_Close");
         }
 
         private void Menu_Tapped(object sender, TappedRoutedEventArgs e)

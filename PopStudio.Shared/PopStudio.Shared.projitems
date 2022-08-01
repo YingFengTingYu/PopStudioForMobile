@@ -31,9 +31,13 @@
       <DependentUpon>Dialog_Wait.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Dialogs\IDialogClosable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GlobalConst.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\IMenuChoosable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Page_FileExplorer.xaml.cs">
       <DependentUpon>Page_FileExplorer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Pages\Page_HomePage.xaml.cs">
+      <DependentUpon>Page_HomePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Pages\Page_Image.xaml.cs">
       <DependentUpon>Page_Image.xaml</DependentUpon>
@@ -242,6 +246,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Pages\Page_FileExplorer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Pages\Page_HomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

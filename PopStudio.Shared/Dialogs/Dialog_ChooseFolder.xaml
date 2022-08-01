@@ -71,11 +71,11 @@
             </ListView.ItemTemplate>
         </ListView>
         <Button Grid.Row="2"
+                x:Name="button_choosecurrentfolder"
                 VerticalAlignment="Stretch"
                 HorizontalAlignment="Stretch"
                 Background="Black"
                 Foreground="White"
-                Content="选择当前文件夹"
                 Click="Button_Click" />
     </Grid>
 

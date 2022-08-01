@@ -56,33 +56,12 @@ namespace PopStudio.Plugin
         }
 
         /// <summary>
-        /// 通过文件位置和载入模式来创建FileStream，然后创建基于这个FileStream的BinaryHelper
-        ///  | 
-        /// Create a FileStream by file path, and then create a BinaryHelper based on it.
-        /// </summary>
-        /// <param name="filePath">文件位置 | The path of the file</param>
-        /// <param name="mode">访问方式 | The method of FileStream</param>
-        public BinaryStream(string filePath, FileMode mode) : this(new FileStream(filePath, mode))
-        {
-        }
-
-        /// <summary>
         /// 创建一个MemoryStream，然后创建基于这个MemoryStream的BinaryHelper
         ///  | 
         /// Create a MemoryStream and then create a BinaryHelper based on it.
         /// </summary>
         public BinaryStream() : this(new MemoryStream())
         {
-        }
-
-        public static BinaryStream Create(string filePath)
-        {
-            return new BinaryStream(filePath, FileMode.Create);
-        }
-
-        public static BinaryStream Open(string filePath)
-        {
-            return new BinaryStream(filePath, FileMode.Open);
         }
 
         public void Write(byte[] buffer, int offset, int count)
@@ -1602,12 +1581,8 @@ namespace PopStudio.Plugin
             }
         }
 
-        public static byte[] _byteBuffer;
-
         public void StaticCopyTo(Stream s, byte[] array)
         {
-            _byteBuffer ??= new byte[81920];
-            array ??= _byteBuffer;
             int count;
             while ((count = Read(array, 0, array.Length)) != 0)
             {
@@ -1617,8 +1592,6 @@ namespace PopStudio.Plugin
 
         public void StaticCopyTo(Stream s, long Length, byte[] array)
         {
-            _byteBuffer ??= new byte[81920];
-            array ??= _byteBuffer;
             int count;
             int length2 = array.Length;
             long times = Length / length2;

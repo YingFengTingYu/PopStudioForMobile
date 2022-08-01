@@ -28,14 +28,12 @@ namespace PopStudio.Dialogs
         {
             if (args.Length >= 1 && args[0] is YFFileSystem.YFFile yfFile)
             {
-                _currentFile = yfFile;
                 CurrentDirectoryTitle.Text = yfFile.Name;
                 using (Stream stream = yfFile.OpenAsStream())
                 {
                     if (stream.Length < 67108864)
                     {
-                        Microsoft.UI.Xaml.Media.Imaging.BitmapImage bitmapImage =
-                   new Microsoft.UI.Xaml.Media.Imaging.BitmapImage();
+                        Microsoft.UI.Xaml.Media.Imaging.BitmapImage bitmapImage = new Microsoft.UI.Xaml.Media.Imaging.BitmapImage();
                         bitmapImage.SetSource(stream.AsRandomAccessStream());
                         viewimage.Source = bitmapImage;
                     }
@@ -45,9 +43,9 @@ namespace PopStudio.Dialogs
                         await Task.Delay(1000);
                         ContentDialog fileExistDialog = new ContentDialog
                         {
-                            Title = "文件过大",
-                            Content = "当前文件过大（超过64MB），无法预览！",
-                            CloseButtonText = "关闭"
+                            Title = YFString.GetString("Dialog_FileTooLarge"),
+                            Content = string.Format(YFString.GetString("Dialog_FileTooLargeInfo"), 64),
+                            CloseButtonText = YFString.GetString("Dialog_Close")
                         };
 #if WinUI
                         fileExistDialog.XamlRoot = this.Content.XamlRoot;
@@ -58,18 +56,18 @@ namespace PopStudio.Dialogs
                     }
                 }
             }
-            else
-            {
-                _currentFile = null;
-            }
             OnClose += () => Task.FromResult(CanClose = true);
         }
-
-        private YFFileSystem.YFFile _currentFile;
 
         public Dialog_ViewImage()
         {
             this.InitializeComponent();
+            LoadFont();
+        }
+
+        void LoadFont()
+        {
+            flyout_close.Text = YFString.GetString("Dialog_Close");
         }
 
         private void Menu_Tapped(object sender, TappedRoutedEventArgs e)

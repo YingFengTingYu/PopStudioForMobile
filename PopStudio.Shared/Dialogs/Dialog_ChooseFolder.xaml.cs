@@ -37,6 +37,7 @@ namespace PopStudio.Dialogs
         void LoadFont()
         {
             flyout_createfolder.Text = YFString.GetString("FileExplorer_CreateFolder");
+            button_choosecurrentfolder.Content = YFString.GetString("FileExplorer_ChooseCurrentFolder");
         }
 
         public Dialog_ChooseFolder()

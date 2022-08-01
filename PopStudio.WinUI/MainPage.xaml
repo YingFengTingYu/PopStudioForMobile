@@ -87,7 +87,6 @@
                                 Background="Black"
                                 VerticalAlignment="Stretch"
                                 HorizontalAlignment="Stretch"
-                                Content="关闭"
                                 Click="YFDialongCancel_Click" />
                     </Grid>
                 </Border>
