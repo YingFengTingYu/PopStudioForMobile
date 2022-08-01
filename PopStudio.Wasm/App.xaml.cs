@@ -30,7 +30,7 @@ namespace PopStudio
             InitializeLogging();
 
             this.InitializeComponent();
-00
+
 #if HAS_UNO || NETFX_CORE
             this.Suspending += OnSuspending;
 #endif
