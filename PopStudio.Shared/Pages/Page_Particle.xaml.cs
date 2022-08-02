@@ -17,6 +17,8 @@ namespace PopStudio.Pages
     {
         public string Title { get; set; } = YFString.GetString("Particle_Title");
 
+        public static string StaticTitle { get; set; } = YFString.GetString("Particle_Title");
+
         public Action OnShow { get; set; }
 
         public Page_Particle()

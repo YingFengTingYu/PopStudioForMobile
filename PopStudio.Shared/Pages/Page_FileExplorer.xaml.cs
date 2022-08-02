@@ -756,6 +756,8 @@ namespace PopStudio.Pages
 
         public string Title { get; set; } = YFString.GetString("FileExplorer_Title");
 
+        public static string StaticTitle { get; set; } = YFString.GetString("FileExplorer_Title");
+
         public Action OnShow { get; set; }
 
         private void Menu_Tapped(object sender, TappedRoutedEventArgs e)

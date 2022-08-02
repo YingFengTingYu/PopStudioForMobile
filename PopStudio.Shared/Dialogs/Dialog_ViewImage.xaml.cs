@@ -5,6 +5,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Media.Imaging;
 using PopStudio.PlatformAPI;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -33,8 +34,9 @@ namespace PopStudio.Dialogs
                 {
                     if (stream.Length < 67108864)
                     {
-                        Microsoft.UI.Xaml.Media.Imaging.BitmapImage bitmapImage = new Microsoft.UI.Xaml.Media.Imaging.BitmapImage();
-                        bitmapImage.SetSource(stream.AsRandomAccessStream());
+                        BitmapImage bitmapImage = new BitmapImage();
+                        bitmapImage.DecodePixelWidth = 200;
+                        await bitmapImage.SetSourceAsync(stream.AsRandomAccessStream());
                         viewimage.Source = bitmapImage;
                     }
                     else
@@ -48,7 +50,7 @@ namespace PopStudio.Dialogs
                             CloseButtonText = YFString.GetString("Dialog_Close")
                         };
 #if WinUI
-                        fileExistDialog.XamlRoot = this.Content.XamlRoot;
+                                        fileExistDialog.XamlRoot = this.Content.XamlRoot;
 #endif
                         await fileExistDialog.ShowAsync();
                         (this as IDialogClosable)?.Close();

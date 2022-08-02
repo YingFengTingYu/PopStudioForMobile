@@ -17,7 +17,7 @@ namespace PopStudio.Settings
             lock (thisLock)
             {
                 string path = Path.Combine(
-                    Windows.Storage.ApplicationData.Current.LocalFolder.Path,
+                    PlatformAPI.YFFileSystem.GetNativeDirectory(),
                     "PopStudioSetting(Type(GlobalSetting)_Name(Singleton))");
                 using (Stream stream = new FileStream(path, FileMode.Create))
                 {
@@ -41,7 +41,7 @@ namespace PopStudio.Settings
         {
             Singleton = null;
             string path = Path.Combine(
-                    Windows.Storage.ApplicationData.Current.LocalFolder.Path,
+                    PlatformAPI.YFFileSystem.GetNativeDirectory(),
                     "PopStudioSetting(Type(GlobalSetting)_Name(Singleton))");
             if (File.Exists(path))
             {

@@ -1,4 +1,5 @@
 ﻿using Microsoft.UI.Xaml.Controls;
+using System;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -13,9 +14,9 @@ namespace PopStudio.Pages
         {
             this.InitializeComponent();
             AddItem(new Page_HomePage());
-            AddItem(new Page_FileExplorer());
+            AddItem(() => new Page_FileExplorer(), Page_FileExplorer.StaticTitle);
             AddItem(new Page_Package());
-            AddItem(new Page_Image());
+            AddItem(() => new Page_Image(), Page_Image.StaticTitle);
             AddItem(new Page_Reanim());
             AddItem(new Page_Particle());
             AddItem(new Page_Trail());
@@ -25,11 +26,21 @@ namespace PopStudio.Pages
             FlyoutItemList.SelectionChanged += Flyout_SelectionChanged;
         }
 
+        private void AddItem(Func<IMenuChoosable> pagector, string title)
+        {
+            FlyoutItemList.Items.Add(new FlyoutButtonItem
+            {
+                GetPage = pagector,
+                Title = title
+            });
+        }
+
         private void AddItem(IMenuChoosable page)
         {
             FlyoutItemList.Items.Add(new FlyoutButtonItem
             {
-                Page = page
+                Page = page,
+                Title = page.Title
             });
         }
 
@@ -64,10 +75,21 @@ namespace PopStudio.Pages
 
     public class FlyoutButtonItem
     {
-        public IMenuChoosable Page { get; set; }
+        private IMenuChoosable _page;
+
+        public IMenuChoosable Page
+        {
+            get => _page ??= GetPage?.Invoke();
+            set => _page = value;
+        }
+
+        public string Title { get; set; }
+
+        public Func<IMenuChoosable> GetPage { get; set; }
+
         public override string ToString()
         {
-            return Page.Title;
+            return Title;
         }
     }
 }

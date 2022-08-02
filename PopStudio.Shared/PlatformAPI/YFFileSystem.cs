@@ -10,6 +10,17 @@ namespace PopStudio.PlatformAPI
 {
     public static class YFFileSystem
     {
+        public async static Task WaitNativeFileSystemLoad()
+        {
+            // Never return anything
+            await Windows.Storage.ApplicationData.Current.LocalFolder.CreateFileAsync("TEMP_FOR_LOAD", Windows.Storage.CreationCollisionOption.OpenIfExists);
+        }
+
+        public static string GetNativeDirectory()
+        {
+            return Windows.Storage.ApplicationData.Current.LocalFolder.Path;
+        }
+
         public static string NormalizeName(string value)
         {
             if (string.IsNullOrEmpty(value)) return "_";
@@ -93,7 +104,7 @@ namespace PopStudio.PlatformAPI
             public string GetNativePath()
             {
                 return Path.Combine(
-                    Windows.Storage.ApplicationData.Current.LocalFolder.Path,
+                    GetNativeDirectory(),
                     RealFileName);
             }
 
@@ -606,7 +617,7 @@ namespace PopStudio.PlatformAPI
             lock (thisLock)
             {
                 string path = Path.Combine(
-                    Windows.Storage.ApplicationData.Current.LocalFolder.Path,
+                    GetNativeDirectory(),
                     "PopStudioSetting(Type(YFDirectory)_Name(Home))");
                 using (Stream stream = new FileStream(path, FileMode.Create))
                 {
@@ -619,7 +630,7 @@ namespace PopStudio.PlatformAPI
         {
             Home = null;
             string path = Path.Combine(
-                    Windows.Storage.ApplicationData.Current.LocalFolder.Path,
+                    GetNativeDirectory(),
                     "PopStudioSetting(Type(YFDirectory)_Name(Home))");
             if (File.Exists(path))
             {

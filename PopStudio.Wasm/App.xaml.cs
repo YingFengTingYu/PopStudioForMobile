@@ -23,18 +23,23 @@ namespace PopStudio
         {
             // Load YFBitmap
             Image.YFBitmap.RegistPlatform<Image.ImageBitmap>();
-            // Load YFFileSystem
-            PlatformAPI.YFFileSystem.Init();
-            // Load Settings
-            Settings.GlobalSetting.Init();
+            InitPlarform = mInit();
             InitializeLogging();
-
             this.InitializeComponent();
 
 #if HAS_UNO || NETFX_CORE
             this.Suspending += OnSuspending;
 #endif
         }
+
+        private async System.Threading.Tasks.Task mInit()
+        {
+            await PlatformAPI.YFFileSystem.WaitNativeFileSystemLoad();
+            PlatformAPI.YFFileSystem.Init();
+            Settings.GlobalSetting.Init();
+        }
+
+        public static System.Threading.Tasks.Task InitPlarform;
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points

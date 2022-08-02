@@ -20,6 +20,7 @@ namespace PopStudio.PlatformAPI
             defaultStartFolder = PickerLocationId.ComputerFolder;
 #endif
             folderPicker.SuggestedStartLocation = defaultStartFolder;
+            folderPicker.FileTypeFilter.Add("*");
             return await folderPicker.PickSingleFolderAsync();
         }
 

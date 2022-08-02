@@ -53,7 +53,13 @@ namespace PopStudio
             }
         }
 
-        private void Image_Tapped(object sender, TappedRoutedEventArgs e) => ChangeShellState();
+        private List<bool> asyncLoad = new List<bool> { false };
+
+        private async void Image_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            await App.InitPlarform;
+            ChangeShellState();
+        }
 
         public void BeginDialog(IDialogClosable p)
         {
