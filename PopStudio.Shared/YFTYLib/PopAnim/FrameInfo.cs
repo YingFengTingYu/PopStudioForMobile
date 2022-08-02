@@ -359,101 +359,31 @@ namespace PopStudio.PopAnim
                     flags |= index;
                 }
                 MoveFlags f7 = 0;
-                if (transform == null || transform.Length < 2)
+                if (transform.Length == 6)
                 {
-                    if (version >= LongCoordsMinVersion)
-                    {
-                        bs.WriteInt32(0);
-                        bs.WriteInt32(0);
-                        f7 |= MoveFlags.LongCoords;
-                    }
-                    else
-                    {   
-                        bs.WriteInt16(0);
-                        bs.WriteInt16(0);
-                    }
+                    f7 |= MoveFlags.Matrix;
+                    bs.WriteInt32((int)(transform[0] * 65536));
+                    bs.WriteInt32((int)(transform[2] * 65536));
+                    bs.WriteInt32((int)(transform[1] * 65536));
+                    bs.WriteInt32((int)(transform[3] * 65536));
                 }
-                else if (transform.Length < 4)
+                else if (transform.Length == 3)
                 {
-                    int v0 = (int)(transform[0] * 20);
-                    int v1 = (int)(transform[1] * 20);
-                    if (version >= LongCoordsMinVersion)
-                    {
-                        bs.WriteInt32(v0);
-                        bs.WriteInt32(v1);
-                        f7 |= MoveFlags.LongCoords;
-                    }
-                    else
-                    {
-                        bs.WriteInt16((short)v0);
-                        bs.WriteInt16((short)v1);
-                    }
+                    f7 |= MoveFlags.Rotate;
+                    bs.WriteInt16((short)(transform[0] * 1000));
                 }
-                else if (transform.Length < 6)
+                int v0 = (int)(transform[^2] * 20);
+                int v1 = (int)(transform[^1] * 20);
+                if (version >= LongCoordsMinVersion)
                 {
-                    if (version >= MatrixMinVersion)
-                    {
-                        f7 |= MoveFlags.Matrix;
-                        bs.WriteInt32((int)(transform[0] * 65536));
-                        bs.WriteInt32((int)(transform[2] * 65536));
-                        bs.WriteInt32((int)(transform[1] * 65536));
-                        bs.WriteInt32((int)(transform[3] * 65536));
-                    }
-                    else
-                    {
-                        f7 |= MoveFlags.Rotate;
-                        double Rcos = Math.Acos(transform[0]);
-                        if (transform[1] * (version == 2 ? -1 : 1) < 0) //sin < 0 => cos + pi
-                        {
-                            Rcos = -Rcos;
-                        }
-                        bs.WriteInt16((short)(Rcos * 1000));
-                    }
-                    if (version >= LongCoordsMinVersion)
-                    {
-                        bs.WriteInt32(0);
-                        bs.WriteInt32(0);
-                        f7 |= MoveFlags.LongCoords;
-                    }
-                    else
-                    {
-                        bs.WriteInt16(0);
-                        bs.WriteInt16(0);
-                    }
+                    bs.WriteInt32(v0);
+                    bs.WriteInt32(v1);
+                    f7 |= MoveFlags.LongCoords;
                 }
                 else
                 {
-                    if (version >= MatrixMinVersion)
-                    {
-                        f7 |= MoveFlags.Matrix;
-                        bs.WriteInt32((int)(transform[0] * 65536));
-                        bs.WriteInt32((int)(transform[2] * 65536));
-                        bs.WriteInt32((int)(transform[1] * 65536));
-                        bs.WriteInt32((int)(transform[3] * 65536));
-                    }
-                    else
-                    {
-                        f7 |= MoveFlags.Rotate;
-                        double Rcos = Math.Acos(transform[0]);
-                        if (transform[1] * (version == 2 ? -1 : 1) < 0) //sin < 0 => cos + pi
-                        {
-                            Rcos = -Rcos;
-                        }
-                        bs.WriteInt16((short)(Rcos * 1000));
-                    }
-                    int v0 = (int)(transform[4] * 20);
-                    int v1 = (int)(transform[5] * 20);
-                    if (version >= LongCoordsMinVersion)
-                    {
-                        bs.WriteInt32(v0);
-                        bs.WriteInt32(v1);
-                        f7 |= MoveFlags.LongCoords;
-                    }
-                    else
-                    {
-                        bs.WriteInt16((short)v0);
-                        bs.WriteInt16((short)v1);
-                    }
+                    bs.WriteInt16((short)v0);
+                    bs.WriteInt16((short)v1);
                 }
                 if (src_rect != null && src_rect.Length >= 4)
                 {
@@ -503,18 +433,9 @@ namespace PopStudio.PopAnim
                 }
                 else if ((f7 & MoveFlags.Rotate) != 0)
                 {
-                    transform = new double[6];
+                    transform = new double[3];
                     double num9 = bs.ReadInt16() / 1000d;
-                    double num10 = Math.Sin((double)num9);
-                    double num11 = Math.Cos((double)num9);
-                    if (version == 2)
-                    {
-                        num10 = -num10;
-                    }
-                    transform[0] = num11;
-                    transform[2] = -num10;
-                    transform[1] = num10;
-                    transform[3] = num11;
+                    transform[0] = num9;
                 }
                 else
                 {

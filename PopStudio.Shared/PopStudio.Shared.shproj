@@ -83,6 +83,7 @@
     <_Globbed_Compile Remove="YFLib\PopAnim\ImageInfo.cs" />
     <_Globbed_Compile Remove="YFLib\PopAnim\JsonTokenConverter.cs" />
     <_Globbed_Compile Remove="YFLib\PopAnim\Pam.cs" />
+    <_Globbed_Compile Remove="YFLib\PopAnim\PamJson.cs" />
     <_Globbed_Compile Remove="YFLib\PopAnim\PopAnimInfo.cs" />
     <_Globbed_Compile Remove="YFLib\PopAnim\SpriteInfo.cs" />
     <_Globbed_Compile Remove="YFLib\Reanim\GameConsole.cs" />

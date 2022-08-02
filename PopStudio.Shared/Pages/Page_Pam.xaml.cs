@@ -108,7 +108,7 @@ namespace PopStudio.Pages
                                     {
                                         try
                                         {
-                                            YFAPI.EncodePam(f, o);
+                                            YFAPI.TranscodePam(f, o, 1, 0);
                                         }
                                         catch (Exception)
                                         {
@@ -121,7 +121,7 @@ namespace PopStudio.Pages
                                     {
                                         try
                                         {
-                                            YFAPI.DecodePam(f, o);
+                                            YFAPI.TranscodePam(f, o, 0, 1);
                                         }
                                         catch (Exception)
                                         {
@@ -149,11 +149,11 @@ namespace PopStudio.Pages
                         .CreateYFFile(inFile.Name + outFormat);
                     if (mode)
                     {
-                        taskList.Add(Task.Run(() => YFAPI.EncodePam(inFile, outFile)));
+                        taskList.Add(Task.Run(() => YFAPI.TranscodePam(inFile, outFile, 1, 0)));
                     }
                     else
                     {
-                        taskList.Add(Task.Run(() => YFAPI.DecodePam(inFile, outFile)));
+                        taskList.Add(Task.Run(() => YFAPI.TranscodePam(inFile, outFile, 0, 1)));
                     }
                 }
                 await Task.WhenAll(taskList);

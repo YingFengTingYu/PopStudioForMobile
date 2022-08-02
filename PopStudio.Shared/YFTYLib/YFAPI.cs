@@ -146,14 +146,20 @@ namespace PopStudio
             }
         }
 
-        public static void DecodePam(YFFile inFile, YFFile outFile)
+        public static void TranscodePam(YFFile inFile, YFFile outFile, int informat, int outformat)
         {
-            PopAnim.Pam.Decode(inFile, outFile);
-        }
-
-        public static void EncodePam(YFFile inFile, YFFile outFile)
-        {
-            PopAnim.Pam.Encode(inFile, outFile);
+            PopAnim.PopAnimInfo pam = informat switch
+            {
+                0 => PopAnim.PamBinary.Decode(inFile),
+                1 => PopAnim.PamJson.Decode(inFile),
+                _ => throw new NotImplementedException()
+            };
+            switch (outformat)
+            {
+                case 0: PopAnim.PamBinary.Encode(pam, outFile); break;
+                case 1: PopAnim.PamJson.Encode(pam, outFile); break;
+                default: throw new NotImplementedException();
+            }
         }
 
         public static void DecodeRton(YFFile inFile, YFFile outFile, int format)

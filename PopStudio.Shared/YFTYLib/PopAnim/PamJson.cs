@@ -1,22 +1,17 @@
-﻿using PopStudio.Plugin;
-using System.IO;
-using System.Text.Encodings.Web;
+﻿using System.Text.Encodings.Web;
 using System.Text.Json;
+using System.IO;
 using static PopStudio.PlatformAPI.YFFileSystem;
 
 namespace PopStudio.PopAnim
 {
-    /// <summary>
-    /// It's all from Disassembling PVZ2 and Zuma's Revenge!
-    /// </summary>
-    internal class Pam
+    internal class PamJson
     {
-        public static void Encode(YFFile inFile, YFFile outFile)
+        public static PopAnimInfo Decode(YFFile inFile)
         {
-            PopAnimInfo pam;
             using (Stream stream = inFile.OpenAsStream())
             {
-                pam = JsonSerializer.Deserialize(
+                return JsonSerializer.Deserialize(
                     stream,
                     typeof(PopAnimInfo),
                     new PopAnimJsonContext(new JsonSerializerOptions
@@ -25,19 +20,10 @@ namespace PopStudio.PopAnim
                     })
                     ) as PopAnimInfo;
             }
-            using (BinaryStream bs = outFile.CreateAsBinaryStream())
-            {
-                pam.Write(bs);
-            }
         }
 
-        public static void Decode(YFFile inFile, YFFile outFile)
+        public static void Encode(PopAnimInfo pam, YFFile outFile)
         {
-            PopAnimInfo pam = new PopAnimInfo();
-            using (BinaryStream bs = inFile.OpenAsBinaryStream())
-            {
-                pam.Read(bs);
-            }
             using (Stream stream = outFile.CreateAsStream())
             {
                 JsonSerializer.Serialize(
