@@ -2,11 +2,28 @@
 using Org.BouncyCastle.Crypto.Modes;
 using Org.BouncyCastle.Crypto.Paddings;
 using Org.BouncyCastle.Crypto.Parameters;
+using Org.BouncyCastle.Crypto.Digests;
+using System.Text;
 
 namespace PopStudio.Plugin
 {
     internal static class RijndaelHelper
     {
+        public static byte[] GetKey(string str)
+        {
+            byte[] src = Encoding.UTF8.GetBytes(str);
+            MD5Digest digest = new MD5Digest();
+            digest.BlockUpdate(src, 0, src.Length);
+            byte[] md5Bytes = new byte[digest.GetDigestSize()];
+            digest.DoFinal(md5Bytes, 0);
+            StringBuilder sb = new StringBuilder();
+            foreach (byte b in md5Bytes)
+            {
+                sb.Append(b.ToString("x2"));
+            }
+            return Encoding.UTF8.GetBytes(sb.ToString());
+        }
+
         public static byte[] Encrypt(byte[] plainTextBytes, byte[] keyBytes, byte[] ivStringBytes, IBlockCipherPadding padding)
         {
             var engine = new RijndaelEngine(ivStringBytes.Length << 3);

@@ -88,7 +88,7 @@ namespace PopStudio.Package.Dz
                                 tempbs.StaticCopyTo(bs2, SubInfo.ZSize_For_Dz, buffer);
                             }
                         }
-                        else if ((flags & DzCompressionFlags.ZLIB) != 0)
+                        else if ((flags & DzCompressionFlags.GZIP) != 0)
                         {
                             //gzip decompress
                             using (BinaryStream bs2 = new BinaryStream())
@@ -104,7 +104,7 @@ namespace PopStudio.Package.Dz
                                 }
                             }
                         }
-                        else if ((flags & DzCompressionFlags.BZIP) != 0)
+                        else if ((flags & DzCompressionFlags.BZIP2) != 0)
                         {
                             //bzip2 decompress
                             //using (BinaryStream bs2 = new BinaryStream())
@@ -257,7 +257,7 @@ namespace PopStudio.Package.Dz
                             bs2.StaticCopyTo(bs, buffer);
                         }
                     }
-                    else if ((flags & DzCompressionFlags.ZLIB) != 0)
+                    else if ((flags & DzCompressionFlags.GZIP) != 0)
                     {
                         //gzip decompress
                         using (BinaryStream bs3 = new BinaryStream())
@@ -275,7 +275,7 @@ namespace PopStudio.Package.Dz
                             bs3.StaticCopyTo(bs, buffer);
                         }
                     }
-                    else if ((flags & DzCompressionFlags.BZIP) != 0)
+                    else if ((flags & DzCompressionFlags.BZIP2) != 0)
                     {
                         //bzip2 decompress
                         //using (BinaryStream bs3 = new BinaryStream())

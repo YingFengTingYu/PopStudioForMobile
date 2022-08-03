@@ -24,7 +24,7 @@ namespace PopStudio.WinUI
             Singleton = this;
 
             m_AppWindow = GetAppWindowForCurrentWindow();
-            m_AppWindow.Title = "App title";
+            m_AppWindow.Title = "PopStudio";
 
             SetTitleBarColors();
         }

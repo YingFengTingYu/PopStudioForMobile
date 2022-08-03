@@ -62,7 +62,8 @@ namespace PopStudio.Rton
             List<byte[]> R0x90List = new List<byte[]>();
             List<byte[]> R0x92List = new List<byte[]>();
             //The key for Rijndael is the MD5 of the enterred key
-            byte[] keybytes = Encoding.UTF8.GetBytes(BitConverter.ToString(System.Security.Cryptography.MD5.Create().ComputeHash(Encoding.UTF8.GetBytes(key))).ToLower().Replace("-", ""));
+            byte[] keybytes = RijndaelHelper.GetKey(key);
+            //byte[] keybytes = Encoding.UTF8.GetBytes(BitConverter.ToString(System.Security.Cryptography.MD5.Create().ComputeHash(Encoding.UTF8.GetBytes(key))).ToLower().Replace("-", ""));
             byte[] ivbytes = new byte[24];
             //The iv for Rijndael is part of the key for Rijndael
             Array.Copy(keybytes, 4, ivbytes, 0, 24);
@@ -530,7 +531,7 @@ namespace PopStudio.Rton
                         source = bs.ToArray();
                     }
                     //The key for Rijndael is the MD5 of the enterred key
-                    byte[] keybytes = Encoding.UTF8.GetBytes(BitConverter.ToString(System.Security.Cryptography.MD5.Create().ComputeHash(Encoding.UTF8.GetBytes(key))).ToLower().Replace("-", ""));
+                    byte[] keybytes = RijndaelHelper.GetKey(key);
                     byte[] ivbytes = new byte[24];
                     //The iv for Rijndael is part of the key for Rijndael
                     Array.Copy(keybytes, 4, ivbytes, 0, 24);

@@ -116,6 +116,7 @@ namespace PopStudio.Pages
                             _dic.Add(6, 8);
                             listView.Items.Add(YFString.GetString("FileExplorer_ViewImage"));
                         }
+                        listView.SelectedIndex = 0;
                         ContentDialog noWifiDialog = new ContentDialog
                         {
                             Title = YFString.GetString("FileExplorer_ChooseOperation"),

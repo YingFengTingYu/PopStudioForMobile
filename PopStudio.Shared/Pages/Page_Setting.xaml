@@ -8,9 +8,199 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <Page.Resources>
+        <Style TargetType="Button">
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="VerticalAlignment" Value="Stretch" />
+            <Setter Property="MinHeight" Value="35" />
+            <Setter Property="CornerRadius" Value="5" />
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="VerticalAlignment" Value="Stretch" />
+        </Style>
+    </Page.Resources>
+
     <ScrollViewer x:Name="ScrollViewer" VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="30 24 30 24">
-            
+            <TextBlock TextWrapping="Wrap" FontSize="23" Margin="0 5 0 5" x:Name="label_rsb" Text="Rsb解包打包设置" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock TextWrapping="Wrap" FontSize="18" Margin="0 5 0 5" x:Name="label_rsb_decodeimage" Text="解包时解码.ptx图像" />
+                <ToggleSwitch Grid.Column="1" x:Name="switch_rsb_decodeimage" />
+                <TextBlock TextWrapping="Wrap" FontSize="18" Margin="0 5 0 5" Grid.Row="1" x:Name="label_rsb_deleteimage" Text="解包时删除解码过的.ptx图像" />
+                <ToggleSwitch Grid.Row="1" Grid.Column="1" x:Name="switch_rsb_deleteimage" />
+            </Grid>
+            <TextBlock TextWrapping="Wrap" FontSize="23" Margin="0 5 0 5" x:Name="label_dz" Text="Dz解包打包设置" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock TextWrapping="Wrap" FontSize="18" Margin="0 5 0 5" x:Name="label_dz_decodeimage" Text="解包时解码.tex/.txz图像" />
+                <ToggleSwitch Grid.Column="1" x:Name="switch_dz_decodeimage" />
+                <TextBlock TextWrapping="Wrap" FontSize="18" Margin="0 5 0 5" Grid.Row="1" x:Name="label_dz_deleteimage" Text="解包时删除解码过的.tex/.txz图像" />
+                <ToggleSwitch Grid.Row="1" Grid.Column="1" x:Name="switch_dz_deleteimage" />
+            </Grid>
+            <TextBlock TextWrapping="Wrap" FontSize="18" Margin="0 5 0 5" x:Name="label_dz_encodecompression" Text="编码时采用的压缩算法" />
+            <ListView x:Name="list_dz_encodecompression"
+                      ItemsSource="{x:Bind DzCompression}"
+                      SelectionMode="None"
+                      IsItemClickEnabled="True"
+                      ScrollViewer.HorizontalScrollMode="Disabled"
+                      ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                      ScrollViewer.VerticalScrollMode="Enabled"
+                      ScrollViewer.VerticalScrollBarVisibility="Auto">
+                <ListView.HeaderTemplate>
+                    <DataTemplate x:DataType="local:TwoItem">
+                        <Grid HorizontalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{x:Bind Item1}"
+                                       FontSize="18"
+                                       Margin="0 5 0 10"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="1"
+                                       Text="{x:Bind Item2}"
+                                       FontSize="18"
+                                       Margin="0 5 0 10"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.HeaderTemplate>
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="local:TwoItem">
+                        <Grid HorizontalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{x:Bind Item1}"
+                                       FontSize="18"
+                                       Margin="0 5 15 10"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="1"
+                                       Text="{x:Bind Item2}"
+                                       FontSize="18"
+                                       Margin="15 5 0 10"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Grid Margin="0 5 0 5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button x:Name="button_dz_encodecompression_add" Content="增加" Margin="0 7 0 7" />
+                <Button x:Name="button_dz_encodecompression_clear" Content="清空" Margin="0 7 0 7" Grid.Column="2" />
+            </Grid>
+            <TextBlock TextWrapping="Wrap" FontSize="23" Margin="0 5 0 5" x:Name="label_pak" Text="Pak解包打包设置" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock TextWrapping="Wrap" FontSize="18" Margin="0 5 0 5" x:Name="label_pak_decodeimage" Text="解包时解码.ptx图像" />
+                <ToggleSwitch Grid.Column="1" x:Name="switch_pak_decodeimage" />
+                <TextBlock TextWrapping="Wrap" FontSize="18" Margin="0 5 0 5" Grid.Row="1" x:Name="label_pak_deleteimage" Text="解包时删除解码过的.ptx图像" />
+                <ToggleSwitch Grid.Row="1" Grid.Column="1" x:Name="switch_pak_deleteimage" />
+            </Grid>
+            <TextBlock TextWrapping="Wrap" FontSize="18" Margin="0 5 0 5" x:Name="label_pak_encodecompression" Text="编码PS3/PSV版Pak时采用的压缩算法" />
+            <ListView x:Name="list_pak_encodecompression"
+                      ItemsSource="{x:Bind PakCompression}"
+                      SelectionMode="None"
+                      IsItemClickEnabled="True"
+                      ScrollViewer.HorizontalScrollMode="Disabled"
+                      ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                      ScrollViewer.VerticalScrollMode="Enabled"
+                      ScrollViewer.VerticalScrollBarVisibility="Auto">
+                <ListView.HeaderTemplate>
+                    <DataTemplate x:DataType="local:TwoItem">
+                        <Grid HorizontalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{x:Bind Item1}"
+                                       FontSize="18"
+                                       Margin="0 5 0 10"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="1"
+                                       Text="{x:Bind Item2}"
+                                       FontSize="18"
+                                       Margin="0 5 0 10"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.HeaderTemplate>
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="local:TwoItem">
+                        <Grid HorizontalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{x:Bind Item1}"
+                                       FontSize="18"
+                                       Margin="0 5 15 10"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="1"
+                                       Text="{x:Bind Item2}"
+                                       FontSize="18"
+                                       Margin="15 5 0 10"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Grid Margin="0 5 0 5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button x:Name="button_pak_encodecompression_add" Content="增加" Margin="0 7 0 7" />
+                <Button x:Name="button_pak_encodecompression_clear" Content="清空" Margin="0 7 0 7" Grid.Column="2" />
+            </Grid>
+            <TextBlock TextWrapping="Wrap" FontSize="23" Margin="0 5 0 5" x:Name="label_rton" Text="Rton解码编码设置" />
+            <TextBlock TextWrapping="Wrap" FontSize="18" Margin="0 5 0 5" x:Name="label_rton_cipher" Text="解码编码加密Rton的密钥" />
+            <Grid Margin="0 5 0 5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="15*" />
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="textbox_rton_cipher" />
+                <Button x:Name="button_rton_cipher" Grid.Column="2" Content="提交" />
+            </Grid>
         </StackPanel>
     </ScrollViewer>
 </Page>

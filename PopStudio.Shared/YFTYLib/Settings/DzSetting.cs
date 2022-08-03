@@ -33,5 +33,48 @@ namespace PopStudio.Settings
                 return CompressDictionary.TryGetValue(format.ToLower(), out Package.Dz.DzCompressionFlags v) ? v : (DefaultFlags ?? Package.Dz.DzCompressionFlags.STORE);
             }
         }
+
+        public bool SetFlags(string format, Package.Dz.DzCompressionFlags flags, bool special)
+        {
+            if (special)
+            {
+                DefaultFlags = flags;
+                return true;
+            }
+            lock (CompressDictionary)
+            {
+                if (CompressDictionary.ContainsKey(format))
+                {
+                    CompressDictionary[format] = flags;
+                    return true;
+                }
+                return false;
+            }
+        }
+
+        public bool AddFlags(string format, Package.Dz.DzCompressionFlags flags)
+        {
+            lock (CompressDictionary)
+            {
+                if (CompressDictionary.ContainsKey(format))
+                {
+                    return false;
+                }
+                CompressDictionary.Add(format, flags);
+                return true;
+            }
+        }
+
+        public bool RemoveFormat(string format)
+        {
+            lock (CompressDictionary)
+            {
+                if (CompressDictionary.ContainsKey(format))
+                {
+                    return CompressDictionary.Remove(format);
+                }
+                return false;
+            }
+        }
     }
 }

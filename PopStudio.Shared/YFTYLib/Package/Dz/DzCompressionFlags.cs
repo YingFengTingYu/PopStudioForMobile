@@ -13,11 +13,11 @@
         /// <summary>
         /// Descript that this chunk is compressed by gzip compression.
         /// </summary>
-        ZLIB = 8,
+        GZIP = 8,
         /// <summary>
         /// Descript that this chunk is compressed by bzip2 compression.
         /// </summary>
-        BZIP = 16,
+        BZIP2 = 16,
         /// <summary>
         /// Descript that this chunk is mp3.
         /// </summary>

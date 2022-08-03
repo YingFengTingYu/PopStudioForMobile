@@ -25,7 +25,7 @@
                   ScrollViewer.HorizontalScrollMode="Disabled"
                   ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                   ScrollViewer.VerticalScrollMode="Enabled"
-                  ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                  ScrollViewer.VerticalScrollBarVisibility="Auto">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:FlyoutButtonItem">
                     <Grid HorizontalAlignment="Center">

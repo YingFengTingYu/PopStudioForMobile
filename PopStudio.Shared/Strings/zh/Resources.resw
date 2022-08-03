@@ -852,4 +852,7 @@
   <data name="Setting_Title" xml:space="preserve">
     <value>设置</value>
   </data>
+  <data name="Setting_Default" xml:space="preserve">
+    <value>默认</value>
+  </data>
 </root>
