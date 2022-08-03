@@ -69,12 +69,10 @@
                     <ColumnDefinition Width="8*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Border CornerRadius="15"
-                    BorderThickness="3"
-                    BorderBrush="Black"
+                <Border CornerRadius="8"
                     Grid.Row="1"
                     Grid.Column="1">
-                    <Grid Background="Black">
+                    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
                             <RowDefinition Height="40" />
@@ -84,8 +82,6 @@
                                         VerticalContentAlignment="Stretch" />
                         <Button x:Name="YFDialongCancel"
                             Grid.Row="1"
-                            Foreground="White"
-                            Background="Black"
                             VerticalAlignment="Stretch"
                             HorizontalAlignment="Stretch"
                             Click="YFDialongCancel_Click" />

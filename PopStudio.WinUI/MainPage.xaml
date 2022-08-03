@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:pages="using:PopStudio.Pages"
-    mc:Ignorable="d"    
+    mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
@@ -32,7 +32,6 @@
             </StackPanel>
             <ContentControl x:Name="PageControl"
                             Grid.Row="1"
-                            Background="White"
                             HorizontalContentAlignment="Stretch"
                             VerticalContentAlignment="Stretch" />
         </Grid>
@@ -68,12 +67,10 @@
                     <ColumnDefinition Width="8*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Border CornerRadius="15"
-                    BorderThickness="3"
-                    BorderBrush="Black"
+                <Border CornerRadius="8"
                     Grid.Row="1"
                     Grid.Column="1">
-                    <Grid Background="Black">
+                    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
                             <RowDefinition Height="40" />
@@ -83,8 +80,6 @@
                                         VerticalContentAlignment="Stretch" />
                         <Button x:Name="YFDialongCancel"
                                 Grid.Row="1"
-                                Foreground="White"
-                                Background="Black"
                                 VerticalAlignment="Stretch"
                                 HorizontalAlignment="Stretch"
                                 Click="YFDialongCancel_Click" />

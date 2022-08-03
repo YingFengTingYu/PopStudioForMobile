@@ -849,4 +849,7 @@
   <data name="HomePage_Version" xml:space="preserve">
     <value>PopStudio 版本号{0}</value>
   </data>
+  <data name="Setting_Title" xml:space="preserve">
+    <value>设置</value>
+  </data>
 </root>

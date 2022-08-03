@@ -22,6 +22,7 @@ namespace PopStudio.Pages
             AddItem(new Page_Trail());
             AddItem(new Page_Pam());
             AddItem(new Page_Rton());
+            AddItem(() => new Page_Setting(), Page_Setting.StaticTitle);
             FlyoutItemList.SelectedIndex = 0;
             FlyoutItemList.SelectionChanged += Flyout_SelectionChanged;
         }
