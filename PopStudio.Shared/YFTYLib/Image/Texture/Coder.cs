@@ -14,6 +14,7 @@ namespace PopStudio.Image.Texture
             { TextureFormat.R5_G5_B5_A1, new TexCoder.R5_G5_B5_A1() },
             { TextureFormat.A1_R5_G5_B5, new TexCoder.A1_R5_G5_B5() },
             { TextureFormat.R5_G6_B5, new TexCoder.R5_G6_B5() },
+            { TextureFormat.R8_G8_B8, new TexCoder.R8_G8_B8() },
             { TextureFormat.R4_G4_B4_A4_BLOCK, new TexCoder.R4_G4_B4_A4_BLOCK() },
             { TextureFormat.R5_G5_B5_A1_BLOCK, new TexCoder.R5_G5_B5_A1_BLOCK() },
             { TextureFormat.R5_G6_B5_BLOCK, new TexCoder.R5_G6_B5_BLOCK() },

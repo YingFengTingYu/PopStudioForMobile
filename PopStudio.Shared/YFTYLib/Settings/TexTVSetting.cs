@@ -75,5 +75,51 @@ namespace PopStudio.Settings
                 return FormatMap?.Find(value => value.Index == index)?.Format ?? TextureFormat.NONE;
             }
         }
+
+        public bool SetFlags(int index, TextureFormat format)
+        {
+            lock (FormatMap)
+            {
+                FormatPair pair = FormatMap.Find(value => value.Index == index);
+                if (pair is not null)
+                {
+                    pair.Format = format;
+                    return true;
+                }
+                return false;
+            }
+        }
+
+        public bool AddFlags(int index, TextureFormat format)
+        {
+            lock (FormatMap)
+            {
+                FormatPair pair = FormatMap.Find(value => value.Index == index);
+                if (pair is not null)
+                {
+                    return false;
+                }
+                FormatMap.Add(new FormatPair
+                {
+                    Index = index,
+                    Format = format
+                });
+                return true;
+            }
+        }
+
+        public bool RemoveFormat(int index)
+        {
+            lock (FormatMap)
+            {
+                FormatPair pair = FormatMap.Find(value => value.Index == index);
+                if (pair is not null)
+                {
+                    FormatMap.Remove(pair);
+                    return true;
+                }
+                return false;
+            }
+        }
     }
 }

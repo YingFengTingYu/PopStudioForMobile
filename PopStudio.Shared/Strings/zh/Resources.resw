@@ -855,4 +855,124 @@
   <data name="Setting_Default" xml:space="preserve">
     <value>默认</value>
   </data>
+  <data name="Setting_Add" xml:space="preserve">
+    <value>增加</value>
+  </data>
+  <data name="Setting_Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="Setting_CdatCipher" xml:space="preserve">
+    <value>解码编码Cdat的密钥</value>
+  </data>
+  <data name="Setting_CdatTitle" xml:space="preserve">
+    <value>Cdat解码编码设置</value>
+  </data>
+  <data name="Setting_Clear" xml:space="preserve">
+    <value>清空</value>
+  </data>
+  <data name="Setting_CompressionAlgorithm" xml:space="preserve">
+    <value>压缩算法</value>
+  </data>
+  <data name="Setting_DeleteThisItem" xml:space="preserve">
+    <value>删除此项</value>
+  </data>
+  <data name="Setting_DzCompression" xml:space="preserve">
+    <value>编码时采用的压缩算法</value>
+  </data>
+  <data name="Setting_DzDecodeImage" xml:space="preserve">
+    <value>解包时解码Tex/Txz图像</value>
+  </data>
+  <data name="Setting_DzDeleteImage" xml:space="preserve">
+    <value>解包时删除解码过的Tex/Txz图像</value>
+  </data>
+  <data name="Setting_DzTitle" xml:space="preserve">
+    <value>Dz解包打包设置</value>
+  </data>
+  <data name="Setting_EnterCompressionInfo" xml:space="preserve">
+    <value>请输入后缀名并选择压缩算法</value>
+  </data>
+  <data name="Setting_EnterTextureInfo" xml:space="preserve">
+    <value>请输入格式序号并选择纹理格式</value>
+  </data>
+  <data name="Setting_FileExtension" xml:space="preserve">
+    <value>文件扩展名</value>
+  </data>
+  <data name="Setting_ModifyCompression" xml:space="preserve">
+    <value>修改压缩方式为{0}</value>
+  </data>
+  <data name="Setting_ModifyTexture" xml:space="preserve">
+    <value>修改纹理格式为{0}</value>
+  </data>
+  <data name="Setting_Number" xml:space="preserve">
+    <value>序号</value>
+  </data>
+  <data name="Setting_OK" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="Setting_PakCompression" xml:space="preserve">
+    <value>编码PS3/PSV版Pak时采用的压缩算法</value>
+  </data>
+  <data name="Setting_PakDecodeImage" xml:space="preserve">
+    <value>解包时解码Ptx图像</value>
+  </data>
+  <data name="Setting_PakDeleteImage" xml:space="preserve">
+    <value>解包时删除解码过的Ptx图像</value>
+  </data>
+  <data name="Setting_PakTitle" xml:space="preserve">
+    <value>Pak解包打包设置</value>
+  </data>
+  <data name="Setting_PtxRsbBigEndianFormat" xml:space="preserve">
+    <value>解码编码大端序Ptx采用纹理格式</value>
+  </data>
+  <data name="Setting_PtxRsbLittleEndianFormat" xml:space="preserve">
+    <value>解码编码小端序Ptx采用纹理格式</value>
+  </data>
+  <data name="Setting_PtxRsbTitle" xml:space="preserve">
+    <value>Ptx(Rsb)解码编码设置</value>
+  </data>
+  <data name="Setting_RsbDecodeImage" xml:space="preserve">
+    <value>解包时解码Ptx图像</value>
+  </data>
+  <data name="Setting_RsbDeleteImage" xml:space="preserve">
+    <value>解包时删除解码过的Ptx图像</value>
+  </data>
+  <data name="Setting_RsbTitle" xml:space="preserve">
+    <value>Rsb解包打包设置</value>
+  </data>
+  <data name="Setting_RtonCipher" xml:space="preserve">
+    <value>解码编码加密Rton的密钥</value>
+  </data>
+  <data name="Setting_RtonTitle" xml:space="preserve">
+    <value>Rton解码编码设置</value>
+  </data>
+  <data name="Setting_SelectOperation" xml:space="preserve">
+    <value>请选择你要进行的操作</value>
+  </data>
+  <data name="Setting_Submit" xml:space="preserve">
+    <value>提交</value>
+  </data>
+  <data name="Setting_TexiOSFormat" xml:space="preserve">
+    <value>解码编码Tex采用纹理格式</value>
+  </data>
+  <data name="Setting_TexiOSTitle" xml:space="preserve">
+    <value>Tex(iOS)解码编码设置</value>
+  </data>
+  <data name="Setting_TextureFormat" xml:space="preserve">
+    <value>纹理格式</value>
+  </data>
+  <data name="Setting_TexTVFormat" xml:space="preserve">
+    <value>解码编码Tex采用纹理格式</value>
+  </data>
+  <data name="Setting_TexTVTitle" xml:space="preserve">
+    <value>Tex(TV)解码编码设置</value>
+  </data>
+  <data name="Setting_TexTVUseZlib" xml:space="preserve">
+    <value>编码时启用ZLIB压缩</value>
+  </data>
+  <data name="Setting_TxzFormat" xml:space="preserve">
+    <value>解码编码Txz采用纹理格式</value>
+  </data>
+  <data name="Setting_TxzTitle" xml:space="preserve">
+    <value>Txz解码编码设置</value>
+  </data>
 </root>

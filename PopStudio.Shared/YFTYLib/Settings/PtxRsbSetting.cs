@@ -1,7 +1,9 @@
 ﻿using PopStudio.Image.Texture;
 using PopStudio.Plugin;
+using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using static Org.BouncyCastle.Bcpg.Attr.ImageAttrib;
 
 namespace PopStudio.Settings
 {
@@ -170,6 +172,126 @@ namespace PopStudio.Settings
                     };
                     return map?.Find(value => value.Index == index)?.Format ?? defaultFormat ?? TextureFormat.NONE;
                 }
+            }
+        }
+
+        public bool SetFlags(int index, Endian endian, TextureFormat format, bool special)
+        {
+            if (endian == Endian.Small)
+            {
+                if (special)
+                {
+                    DefaultFormatSmallEndian = format;
+                    return true;
+                }
+                lock (FormatMapSmallEndian)
+                {
+                    FormatPair pair = FormatMapSmallEndian.Find(value => value.Index == index);
+                    if (pair is not null)
+                    {
+                        pair.Format = format;
+                        return true;
+                    }
+                    return false;
+                }
+            }
+            else if (endian == Endian.Big)
+            {
+                if (special)
+                {
+                    DefaultFormatBigEndian = format;
+                    return true;
+                }
+                lock (FormatMapBigEndian)
+                {
+                    FormatPair pair = FormatMapBigEndian.Find(value => value.Index == index);
+                    if (pair is not null)
+                    {
+                        pair.Format = format;
+                        return true;
+                    }
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool AddFlags(int index, Endian endian, TextureFormat format)
+        {
+            if (endian == Endian.Small)
+            {
+                lock (FormatMapSmallEndian)
+                {
+                    FormatPair pair = FormatMapSmallEndian.Find(value => value.Index == index);
+                    if (pair is not null)
+                    {
+                        return false;
+                    }
+                    FormatMapSmallEndian.Add(new FormatPair
+                    {
+                        Index = index,
+                        Format = format
+                    });
+                    return true;
+                }
+            }
+            else if (endian == Endian.Big)
+            {
+                lock (FormatMapBigEndian)
+                {
+                    FormatPair pair = FormatMapBigEndian.Find(value => value.Index == index);
+                    if (pair is not null)
+                    {
+                        return false;
+                    }
+                    FormatMapBigEndian.Add(new FormatPair
+                    {
+                        Index = index,
+                        Format = format
+                    });
+                    return true;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool RemoveFormat(int index, Endian endian)
+        {
+            if (endian == Endian.Small)
+            {
+                lock (FormatMapSmallEndian)
+                {
+                    FormatPair pair = FormatMapSmallEndian.Find(value => value.Index == index);
+                    if (pair is not null)
+                    {
+                        FormatMapSmallEndian.Remove(pair);
+                        return true;
+                    }
+                    return false;
+                }
+            }
+            else if (endian == Endian.Big)
+            {
+                lock (FormatMapBigEndian)
+                {
+                    FormatPair pair = FormatMapBigEndian.Find(value => value.Index == index);
+                    if (pair is not null)
+                    {
+                        FormatMapBigEndian.Remove(pair);
+                        return true;
+                    }
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
             }
         }
     }

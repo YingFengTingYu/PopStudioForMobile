@@ -855,4 +855,124 @@
   <data name="Setting_Default" xml:space="preserve">
     <value>Default</value>
   </data>
+  <data name="Setting_Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="Setting_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Setting_CdatCipher" xml:space="preserve">
+    <value>Cdat cipher for transcoding</value>
+  </data>
+  <data name="Setting_CdatTitle" xml:space="preserve">
+    <value>Cdat transcoding setting</value>
+  </data>
+  <data name="Setting_Clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="Setting_CompressionAlgorithm" xml:space="preserve">
+    <value>Compression Method</value>
+  </data>
+  <data name="Setting_DeleteThisItem" xml:space="preserve">
+    <value>Delete This Item</value>
+  </data>
+  <data name="Setting_DzCompression" xml:space="preserve">
+    <value>Compression method for encoding</value>
+  </data>
+  <data name="Setting_DzDecodeImage" xml:space="preserve">
+    <value>Decode Tex/Txz image when unpacking</value>
+  </data>
+  <data name="Setting_DzDeleteImage" xml:space="preserve">
+    <value>Delete decoded Tex/Txz image</value>
+  </data>
+  <data name="Setting_DzTitle" xml:space="preserve">
+    <value>Dz unpacking/packing setting</value>
+  </data>
+  <data name="Setting_EnterCompressionInfo" xml:space="preserve">
+    <value>Please enter the extension and select the compression method</value>
+  </data>
+  <data name="Setting_EnterTextureInfo" xml:space="preserve">
+    <value>Please enter the format number and select the texture format</value>
+  </data>
+  <data name="Setting_FileExtension" xml:space="preserve">
+    <value>File Extension</value>
+  </data>
+  <data name="Setting_ModifyCompression" xml:space="preserve">
+    <value>Modify compression method as: {0}</value>
+  </data>
+  <data name="Setting_ModifyTexture" xml:space="preserve">
+    <value>Modify texture format as: {0}</value>
+  </data>
+  <data name="Setting_Number" xml:space="preserve">
+    <value>Number</value>
+  </data>
+  <data name="Setting_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Setting_PakCompression" xml:space="preserve">
+    <value>Compression algorithm for encoding PS3/PSV version</value>
+  </data>
+  <data name="Setting_PakDecodeImage" xml:space="preserve">
+    <value>Decode Ptx image when unpacking</value>
+  </data>
+  <data name="Setting_PakDeleteImage" xml:space="preserve">
+    <value>Delete decoded Ptx image</value>
+  </data>
+  <data name="Setting_PakTitle" xml:space="preserve">
+    <value>Pak unpacking/packing setting</value>
+  </data>
+  <data name="Setting_PtxRsbBigEndianFormat" xml:space="preserve">
+    <value>Texture format for transcoding Ptx big endian</value>
+  </data>
+  <data name="Setting_PtxRsbLittleEndianFormat" xml:space="preserve">
+    <value>Texture format for transcoding Ptx little endian</value>
+  </data>
+  <data name="Setting_PtxRsbTitle" xml:space="preserve">
+    <value>Ptx(Rsb) transcoding setting</value>
+  </data>
+  <data name="Setting_RsbDecodeImage" xml:space="preserve">
+    <value>Decode Ptx image when unpacking</value>
+  </data>
+  <data name="Setting_RsbDeleteImage" xml:space="preserve">
+    <value>Delete decoded Ptx image</value>
+  </data>
+  <data name="Setting_RsbTitle" xml:space="preserve">
+    <value>Rsb unpacking/packing setting</value>
+  </data>
+  <data name="Setting_RtonCipher" xml:space="preserve">
+    <value>Rton cipher for transcoding</value>
+  </data>
+  <data name="Setting_RtonTitle" xml:space="preserve">
+    <value>Rton transcoding setting</value>
+  </data>
+  <data name="Setting_SelectOperation" xml:space="preserve">
+    <value>Please select the operation</value>
+  </data>
+  <data name="Setting_Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="Setting_TexiOSFormat" xml:space="preserve">
+    <value>Texture format for transcoding Tex</value>
+  </data>
+  <data name="Setting_TexiOSTitle" xml:space="preserve">
+    <value>Tex(iOS) transcoding setting</value>
+  </data>
+  <data name="Setting_TextureFormat" xml:space="preserve">
+    <value>Texture Format</value>
+  </data>
+  <data name="Setting_TexTVFormat" xml:space="preserve">
+    <value>Texture format for transcoding Tex</value>
+  </data>
+  <data name="Setting_TexTVTitle" xml:space="preserve">
+    <value>Tex(TV) transcoding setting</value>
+  </data>
+  <data name="Setting_TexTVUseZlib" xml:space="preserve">
+    <value>Enable zlib compression for encoding</value>
+  </data>
+  <data name="Setting_TxzFormat" xml:space="preserve">
+    <value>Texture format for transcoding Txz</value>
+  </data>
+  <data name="Setting_TxzTitle" xml:space="preserve">
+    <value>Txz transcoding setting</value>
+  </data>
 </root>

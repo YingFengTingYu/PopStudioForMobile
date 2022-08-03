@@ -97,6 +97,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)YFTYLib\Image\Texture\TexCoder\R5_G6_B5.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFTYLib\Image\Texture\TexCoder\R5_G5_B5_A1.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFTYLib\Image\Texture\TexCoder\R4_G4_B4_A4.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFTYLib\Image\Texture\TexCoder\R8_G8_B8.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFTYLib\Image\Texture\TexCoder\R8_G8_B8_A8_A8.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFTYLib\Image\Texture\TexCoder\R8_G8_B8_A8.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFTYLib\Image\Texture\TexCoder\B8_G8_R8_A8.cs" />
