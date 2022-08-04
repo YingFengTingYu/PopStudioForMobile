@@ -9,19 +9,27 @@ namespace PopStudio.PlatformAPI
     {
         public static async Task<StorageFolder> PickFolderAsync()
         {
-            FolderPicker folderPicker = new FolderPicker();
+            try
+            {
+                FolderPicker folderPicker = new FolderPicker();
 #if WinUI
             WinRT.Interop.InitializeWithWindow.Initialize(folderPicker, WinUI.MainWindow.Handle);
 #endif
-            PickerLocationId defaultStartFolder;
+                PickerLocationId defaultStartFolder;
 #if WASM
-            defaultStartFolder = PickerLocationId.DocumentsLibrary;
+                defaultStartFolder = PickerLocationId.Desktop;
 #else
             defaultStartFolder = PickerLocationId.ComputerFolder;
 #endif
-            folderPicker.SuggestedStartLocation = defaultStartFolder;
-            folderPicker.FileTypeFilter.Add("*");
-            return await folderPicker.PickSingleFolderAsync();
+                folderPicker.SuggestedStartLocation = defaultStartFolder;
+                folderPicker.FileTypeFilter.Add("*");
+                return await folderPicker.PickSingleFolderAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+            }
         }
 
         public static async Task<StorageFile> PickOpenFileAsync()
@@ -32,7 +40,7 @@ namespace PopStudio.PlatformAPI
 #endif
             PickerLocationId defaultStartFolder;
 #if WASM
-            defaultStartFolder = PickerLocationId.DocumentsLibrary;
+            defaultStartFolder = PickerLocationId.Desktop;
 #else
             defaultStartFolder = PickerLocationId.ComputerFolder;
 #endif
@@ -51,7 +59,7 @@ namespace PopStudio.PlatformAPI
             PickerLocationId defaultStartFolder;
 #if WASM
             defaultExtension = ".popstudio";
-            defaultStartFolder = PickerLocationId.DocumentsLibrary;
+            defaultStartFolder = PickerLocationId.Desktop;
 #else
             defaultExtension = ".";
             defaultStartFolder = PickerLocationId.ComputerFolder;
