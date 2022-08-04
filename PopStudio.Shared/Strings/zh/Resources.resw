@@ -975,4 +975,7 @@
   <data name="Setting_TxzTitle" xml:space="preserve">
     <value>Txz解码编码设置</value>
   </data>
+  <data name="Setting_ResetSetting" xml:space="preserve">
+    <value>恢复默认设置</value>
+  </data>
 </root>

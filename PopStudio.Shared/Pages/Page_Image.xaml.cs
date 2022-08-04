@@ -24,6 +24,7 @@ namespace PopStudio.Pages
         public Page_Image()
         {
             this.InitializeComponent();
+            OnShow += LoadFont_InternalFormat;
             LoadFont();
         }
 

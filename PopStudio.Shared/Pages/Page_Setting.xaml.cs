@@ -70,13 +70,21 @@ namespace PopStudio.Pages
             label_rton.Text = YFString.GetString("Setting_RtonTitle");
             label_rton_cipher.Text = YFString.GetString("Setting_RtonCipher");
             button_rton_cipher.Content = YFString.GetString("Setting_Submit");
-            list_dz_encodecompression.Header = new TwoItem(YFString.GetString("Setting_FileExtension"), YFString.GetString("Setting_CompressionAlgorithm"));
-            list_pak_encodecompression.Header = new TwoItem(YFString.GetString("Setting_FileExtension"), YFString.GetString("Setting_CompressionAlgorithm"));
-            list_ptxrsb_littleendianformat.Header = new TwoItem(YFString.GetString("Setting_Number"), YFString.GetString("Setting_TextureFormat"));
-            list_ptxrsb_bigendianformat.Header = new TwoItem(YFString.GetString("Setting_Number"), YFString.GetString("Setting_TextureFormat"));
-            list_textv_format.Header = new TwoItem(YFString.GetString("Setting_Number"), YFString.GetString("Setting_TextureFormat"));
-            list_texios_format.Header = new TwoItem(YFString.GetString("Setting_Number"), YFString.GetString("Setting_TextureFormat"));
-            list_txz_format.Header = new TwoItem(YFString.GetString("Setting_Number"), YFString.GetString("Setting_TextureFormat"));
+            label_list_dz_encodecompression_1.Text = YFString.GetString("Setting_FileExtension");
+            label_list_dz_encodecompression_2.Text = YFString.GetString("Setting_CompressionAlgorithm");
+            label_list_pak_encodecompression_1.Text = YFString.GetString("Setting_FileExtension");
+            label_list_pak_encodecompression_2.Text = YFString.GetString("Setting_CompressionAlgorithm");
+            label_list_ptxrsb_littleendianformat_1.Text = YFString.GetString("Setting_Number");
+            label_list_ptxrsb_littleendianformat_2.Text = YFString.GetString("Setting_TextureFormat");
+            label_list_ptxrsb_bigendianformat_1.Text = YFString.GetString("Setting_Number");
+            label_list_ptxrsb_bigendianformat_2.Text = YFString.GetString("Setting_TextureFormat");
+            label_list_textv_format_1.Text = YFString.GetString("Setting_Number");
+            label_list_textv_format_2.Text = YFString.GetString("Setting_TextureFormat");
+            label_list_texios_format_1.Text = YFString.GetString("Setting_Number");
+            label_list_texios_format_2.Text = YFString.GetString("Setting_TextureFormat");
+            label_list_txz_format_1.Text = YFString.GetString("Setting_Number");
+            label_list_txz_format_2.Text = YFString.GetString("Setting_TextureFormat");
+            button_reset_setting.Content = YFString.GetString("Setting_ResetSetting");
         }
 
         void LoadData()
@@ -145,28 +153,32 @@ namespace PopStudio.Pages
                         if (listView.SelectedIndex == 0)
                         {
                             item.Item2 = Package.Dz.DzCompressionFlags.STORE.ToString();
-                            DzCompression[DzCompression.IndexOf(item)] = item;
+                            list_dz_encodecompression.ItemsSource = null;
+                            list_dz_encodecompression.ItemsSource = DzCompression;
                             GlobalSetting.Singleton.Dz.SetFlags(item.Item1, Package.Dz.DzCompressionFlags.STORE, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 1)
                         {
                             item.Item2 = Package.Dz.DzCompressionFlags.LZMA.ToString();
-                            DzCompression[DzCompression.IndexOf(item)] = item;
+                            list_dz_encodecompression.ItemsSource = null;
+                            list_dz_encodecompression.ItemsSource = DzCompression;
                             GlobalSetting.Singleton.Dz.SetFlags(item.Item1, Package.Dz.DzCompressionFlags.LZMA, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 2)
                         {
                             item.Item2 = Package.Dz.DzCompressionFlags.GZIP.ToString();
-                            DzCompression[DzCompression.IndexOf(item)] = item;
+                            list_dz_encodecompression.ItemsSource = null;
+                            list_dz_encodecompression.ItemsSource = DzCompression;
                             GlobalSetting.Singleton.Dz.SetFlags(item.Item1, Package.Dz.DzCompressionFlags.GZIP, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 3)
                         {
                             item.Item2 = Package.Dz.DzCompressionFlags.BZIP2.ToString();
-                            DzCompression[DzCompression.IndexOf(item)] = item;
+                            list_dz_encodecompression.ItemsSource = null;
+                            list_dz_encodecompression.ItemsSource = DzCompression;
                             GlobalSetting.Singleton.Dz.SetFlags(item.Item1, Package.Dz.DzCompressionFlags.BZIP2, item.Special);
                             GlobalSetting.Save();
                         }
@@ -299,14 +311,16 @@ namespace PopStudio.Pages
                         if (listView.SelectedIndex == 0)
                         {
                             item.Item2 = Package.Pak.PakCompressionFlags.STORE.ToString();
-                            PakCompression[PakCompression.IndexOf(item)] = item;
+                            list_pak_encodecompression.ItemsSource = null;
+                            list_pak_encodecompression.ItemsSource = PakCompression;
                             GlobalSetting.Singleton.Pak.SetFlags(item.Item1, Package.Pak.PakCompressionFlags.STORE, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 1)
                         {
                             item.Item2 = Package.Pak.PakCompressionFlags.ZLIB.ToString();
-                            PakCompression[PakCompression.IndexOf(item)] = item;
+                            list_pak_encodecompression.ItemsSource = null;
+                            list_pak_encodecompression.ItemsSource = PakCompression;
                             GlobalSetting.Singleton.Pak.SetFlags(item.Item1, Package.Pak.PakCompressionFlags.ZLIB, item.Special);
                             GlobalSetting.Save();
                         }
@@ -457,252 +471,288 @@ namespace PopStudio.Pages
                         if (listView.SelectedIndex == 0)
                         {
                             item.Item2 = Image.Texture.TextureFormat.NONE.ToString();
-                            PtxRsbLittleEndian[PtxRsbLittleEndian.IndexOf(item)] = item;
+                            list_ptxrsb_littleendianformat.ItemsSource = null;
+                            list_ptxrsb_littleendianformat.ItemsSource = PtxRsbLittleEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Small, Image.Texture.TextureFormat.NONE, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 1)
                         {
                             item.Item2 = Image.Texture.TextureFormat.B8_G8_R8_A8.ToString();
-                            PtxRsbLittleEndian[PtxRsbLittleEndian.IndexOf(item)] = item;
+                            list_ptxrsb_littleendianformat.ItemsSource = null;
+                            list_ptxrsb_littleendianformat.ItemsSource = PtxRsbLittleEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Small, Image.Texture.TextureFormat.B8_G8_R8_A8, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 2)
                         {
                             item.Item2 = Image.Texture.TextureFormat.B8_G8_R8_A8_ADD_A8.ToString();
-                            PtxRsbLittleEndian[PtxRsbLittleEndian.IndexOf(item)] = item;
+                            list_ptxrsb_littleendianformat.ItemsSource = null;
+                            list_ptxrsb_littleendianformat.ItemsSource = PtxRsbLittleEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Small, Image.Texture.TextureFormat.B8_G8_R8_A8_ADD_A8, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 3)
                         {
                             item.Item2 = Image.Texture.TextureFormat.R8_G8_B8_A8.ToString();
-                            PtxRsbLittleEndian[PtxRsbLittleEndian.IndexOf(item)] = item;
+                            list_ptxrsb_littleendianformat.ItemsSource = null;
+                            list_ptxrsb_littleendianformat.ItemsSource = PtxRsbLittleEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Small, Image.Texture.TextureFormat.R8_G8_B8_A8, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 4)
                         {
                             item.Item2 = Image.Texture.TextureFormat.R8_G8_B8_A8_ADD_A8.ToString();
-                            PtxRsbLittleEndian[PtxRsbLittleEndian.IndexOf(item)] = item;
+                            list_ptxrsb_littleendianformat.ItemsSource = null;
+                            list_ptxrsb_littleendianformat.ItemsSource = PtxRsbLittleEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Small, Image.Texture.TextureFormat.R8_G8_B8_A8_ADD_A8, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 5)
                         {
                             item.Item2 = Image.Texture.TextureFormat.A8_R8_G8_B8.ToString();
-                            PtxRsbLittleEndian[PtxRsbLittleEndian.IndexOf(item)] = item;
+                            list_ptxrsb_littleendianformat.ItemsSource = null;
+                            list_ptxrsb_littleendianformat.ItemsSource = PtxRsbLittleEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Small, Image.Texture.TextureFormat.A8_R8_G8_B8, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 6)
                         {
                             item.Item2 = Image.Texture.TextureFormat.A8_R8_G8_B8_PADDING.ToString();
-                            PtxRsbLittleEndian[PtxRsbLittleEndian.IndexOf(item)] = item;
+                            list_ptxrsb_littleendianformat.ItemsSource = null;
+                            list_ptxrsb_littleendianformat.ItemsSource = PtxRsbLittleEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Small, Image.Texture.TextureFormat.A8_R8_G8_B8_PADDING, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 7)
                         {
                             item.Item2 = Image.Texture.TextureFormat.R4_G4_B4_A4.ToString();
-                            PtxRsbLittleEndian[PtxRsbLittleEndian.IndexOf(item)] = item;
+                            list_ptxrsb_littleendianformat.ItemsSource = null;
+                            list_ptxrsb_littleendianformat.ItemsSource = PtxRsbLittleEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Small, Image.Texture.TextureFormat.R4_G4_B4_A4, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 8)
                         {
                             item.Item2 = Image.Texture.TextureFormat.R4_G4_B4_A4_BLOCK.ToString();
-                            PtxRsbLittleEndian[PtxRsbLittleEndian.IndexOf(item)] = item;
+                            list_ptxrsb_littleendianformat.ItemsSource = null;
+                            list_ptxrsb_littleendianformat.ItemsSource = PtxRsbLittleEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Small, Image.Texture.TextureFormat.R4_G4_B4_A4_BLOCK, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 9)
                         {
                             item.Item2 = Image.Texture.TextureFormat.A4_R4_G4_B4.ToString();
-                            PtxRsbLittleEndian[PtxRsbLittleEndian.IndexOf(item)] = item;
+                            list_ptxrsb_littleendianformat.ItemsSource = null;
+                            list_ptxrsb_littleendianformat.ItemsSource = PtxRsbLittleEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Small, Image.Texture.TextureFormat.A4_R4_G4_B4, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 10)
                         {
                             item.Item2 = Image.Texture.TextureFormat.R5_G5_B5_A1.ToString();
-                            PtxRsbLittleEndian[PtxRsbLittleEndian.IndexOf(item)] = item;
+                            list_ptxrsb_littleendianformat.ItemsSource = null;
+                            list_ptxrsb_littleendianformat.ItemsSource = PtxRsbLittleEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Small, Image.Texture.TextureFormat.R5_G5_B5_A1, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 11)
                         {
                             item.Item2 = Image.Texture.TextureFormat.R5_G5_B5_A1_BLOCK.ToString();
-                            PtxRsbLittleEndian[PtxRsbLittleEndian.IndexOf(item)] = item;
+                            list_ptxrsb_littleendianformat.ItemsSource = null;
+                            list_ptxrsb_littleendianformat.ItemsSource = PtxRsbLittleEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Small, Image.Texture.TextureFormat.R5_G5_B5_A1_BLOCK, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 12)
                         {
                             item.Item2 = Image.Texture.TextureFormat.A1_R5_G5_B5.ToString();
-                            PtxRsbLittleEndian[PtxRsbLittleEndian.IndexOf(item)] = item;
+                            list_ptxrsb_littleendianformat.ItemsSource = null;
+                            list_ptxrsb_littleendianformat.ItemsSource = PtxRsbLittleEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Small, Image.Texture.TextureFormat.A1_R5_G5_B5, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 13)
                         {
                             item.Item2 = Image.Texture.TextureFormat.R5_G6_B5.ToString();
-                            PtxRsbLittleEndian[PtxRsbLittleEndian.IndexOf(item)] = item;
+                            list_ptxrsb_littleendianformat.ItemsSource = null;
+                            list_ptxrsb_littleendianformat.ItemsSource = PtxRsbLittleEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Small, Image.Texture.TextureFormat.R5_G6_B5, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 14)
                         {
                             item.Item2 = Image.Texture.TextureFormat.R5_G6_B5_BLOCK.ToString();
-                            PtxRsbLittleEndian[PtxRsbLittleEndian.IndexOf(item)] = item;
+                            list_ptxrsb_littleendianformat.ItemsSource = null;
+                            list_ptxrsb_littleendianformat.ItemsSource = PtxRsbLittleEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Small, Image.Texture.TextureFormat.R5_G6_B5_BLOCK, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 15)
                         {
                             item.Item2 = Image.Texture.TextureFormat.R8_G8_B8.ToString();
-                            PtxRsbLittleEndian[PtxRsbLittleEndian.IndexOf(item)] = item;
+                            list_ptxrsb_littleendianformat.ItemsSource = null;
+                            list_ptxrsb_littleendianformat.ItemsSource = PtxRsbLittleEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Small, Image.Texture.TextureFormat.R8_G8_B8, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 16)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGB_DXT1.ToString();
-                            PtxRsbLittleEndian[PtxRsbLittleEndian.IndexOf(item)] = item;
+                            list_ptxrsb_littleendianformat.ItemsSource = null;
+                            list_ptxrsb_littleendianformat.ItemsSource = PtxRsbLittleEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Small, Image.Texture.TextureFormat.RGB_DXT1, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 17)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_DXT1.ToString();
-                            PtxRsbLittleEndian[PtxRsbLittleEndian.IndexOf(item)] = item;
+                            list_ptxrsb_littleendianformat.ItemsSource = null;
+                            list_ptxrsb_littleendianformat.ItemsSource = PtxRsbLittleEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Small, Image.Texture.TextureFormat.RGBA_DXT1, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 18)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_DXT3.ToString();
-                            PtxRsbLittleEndian[PtxRsbLittleEndian.IndexOf(item)] = item;
+                            list_ptxrsb_littleendianformat.ItemsSource = null;
+                            list_ptxrsb_littleendianformat.ItemsSource = PtxRsbLittleEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Small, Image.Texture.TextureFormat.RGBA_DXT3, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 19)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_DXT5.ToString();
-                            PtxRsbLittleEndian[PtxRsbLittleEndian.IndexOf(item)] = item;
+                            list_ptxrsb_littleendianformat.ItemsSource = null;
+                            list_ptxrsb_littleendianformat.ItemsSource = PtxRsbLittleEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Small, Image.Texture.TextureFormat.RGBA_DXT5, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 20)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_DXT5_BLOCK_MORTON.ToString();
-                            PtxRsbLittleEndian[PtxRsbLittleEndian.IndexOf(item)] = item;
+                            list_ptxrsb_littleendianformat.ItemsSource = null;
+                            list_ptxrsb_littleendianformat.ItemsSource = PtxRsbLittleEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Small, Image.Texture.TextureFormat.RGBA_DXT5_BLOCK_MORTON, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 21)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_DXT5_REFLECTEDMORTON.ToString();
-                            PtxRsbLittleEndian[PtxRsbLittleEndian.IndexOf(item)] = item;
+                            list_ptxrsb_littleendianformat.ItemsSource = null;
+                            list_ptxrsb_littleendianformat.ItemsSource = PtxRsbLittleEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Small, Image.Texture.TextureFormat.RGBA_DXT5_REFLECTEDMORTON, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 22)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_DXT5_BIGENDIAN_PADDING.ToString();
-                            PtxRsbLittleEndian[PtxRsbLittleEndian.IndexOf(item)] = item;
+                            list_ptxrsb_littleendianformat.ItemsSource = null;
+                            list_ptxrsb_littleendianformat.ItemsSource = PtxRsbLittleEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Small, Image.Texture.TextureFormat.RGBA_DXT5_BIGENDIAN_PADDING, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 23)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGB_ETC1.ToString();
-                            PtxRsbLittleEndian[PtxRsbLittleEndian.IndexOf(item)] = item;
+                            list_ptxrsb_littleendianformat.ItemsSource = null;
+                            list_ptxrsb_littleendianformat.ItemsSource = PtxRsbLittleEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Small, Image.Texture.TextureFormat.RGB_ETC1, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 24)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGB_ETC1_ADD_A8.ToString();
-                            PtxRsbLittleEndian[PtxRsbLittleEndian.IndexOf(item)] = item;
+                            list_ptxrsb_littleendianformat.ItemsSource = null;
+                            list_ptxrsb_littleendianformat.ItemsSource = PtxRsbLittleEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Small, Image.Texture.TextureFormat.RGB_ETC1_ADD_A8, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 25)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGB_ETC1_ADD_A_PALETTE.ToString();
-                            PtxRsbLittleEndian[PtxRsbLittleEndian.IndexOf(item)] = item;
+                            list_ptxrsb_littleendianformat.ItemsSource = null;
+                            list_ptxrsb_littleendianformat.ItemsSource = PtxRsbLittleEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Small, Image.Texture.TextureFormat.RGB_ETC1_ADD_A_PALETTE, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 26)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGB_PVRTCI_4BPP.ToString();
-                            PtxRsbLittleEndian[PtxRsbLittleEndian.IndexOf(item)] = item;
+                            list_ptxrsb_littleendianformat.ItemsSource = null;
+                            list_ptxrsb_littleendianformat.ItemsSource = PtxRsbLittleEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Small, Image.Texture.TextureFormat.RGB_PVRTCI_4BPP, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 27)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_PVRTCI_4BPP.ToString();
-                            PtxRsbLittleEndian[PtxRsbLittleEndian.IndexOf(item)] = item;
+                            list_ptxrsb_littleendianformat.ItemsSource = null;
+                            list_ptxrsb_littleendianformat.ItemsSource = PtxRsbLittleEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Small, Image.Texture.TextureFormat.RGBA_PVRTCI_4BPP, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 28)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_PVRTCI_4BPP_ADD_A8.ToString();
-                            PtxRsbLittleEndian[PtxRsbLittleEndian.IndexOf(item)] = item;
+                            list_ptxrsb_littleendianformat.ItemsSource = null;
+                            list_ptxrsb_littleendianformat.ItemsSource = PtxRsbLittleEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Small, Image.Texture.TextureFormat.RGBA_PVRTCI_4BPP_ADD_A8, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 29)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGB_PVRTCI_2BPP.ToString();
-                            PtxRsbLittleEndian[PtxRsbLittleEndian.IndexOf(item)] = item;
+                            list_ptxrsb_littleendianformat.ItemsSource = null;
+                            list_ptxrsb_littleendianformat.ItemsSource = PtxRsbLittleEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Small, Image.Texture.TextureFormat.RGB_PVRTCI_2BPP, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 30)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_PVRTCI_2BPP.ToString();
-                            PtxRsbLittleEndian[PtxRsbLittleEndian.IndexOf(item)] = item;
+                            list_ptxrsb_littleendianformat.ItemsSource = null;
+                            list_ptxrsb_littleendianformat.ItemsSource = PtxRsbLittleEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Small, Image.Texture.TextureFormat.RGBA_PVRTCI_2BPP, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 31)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_PVRTCII_4BPP.ToString();
-                            PtxRsbLittleEndian[PtxRsbLittleEndian.IndexOf(item)] = item;
+                            list_ptxrsb_littleendianformat.ItemsSource = null;
+                            list_ptxrsb_littleendianformat.ItemsSource = PtxRsbLittleEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Small, Image.Texture.TextureFormat.RGBA_PVRTCII_4BPP, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 32)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_PVRTCII_2BPP.ToString();
-                            PtxRsbLittleEndian[PtxRsbLittleEndian.IndexOf(item)] = item;
+                            list_ptxrsb_littleendianformat.ItemsSource = null;
+                            list_ptxrsb_littleendianformat.ItemsSource = PtxRsbLittleEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Small, Image.Texture.TextureFormat.RGBA_PVRTCII_2BPP, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 33)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGB_ATC.ToString();
-                            PtxRsbLittleEndian[PtxRsbLittleEndian.IndexOf(item)] = item;
+                            list_ptxrsb_littleendianformat.ItemsSource = null;
+                            list_ptxrsb_littleendianformat.ItemsSource = PtxRsbLittleEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Small, Image.Texture.TextureFormat.RGB_ATC, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 34)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGB_A_EXPLICIT_ATC.ToString();
-                            PtxRsbLittleEndian[PtxRsbLittleEndian.IndexOf(item)] = item;
+                            list_ptxrsb_littleendianformat.ItemsSource = null;
+                            list_ptxrsb_littleendianformat.ItemsSource = PtxRsbLittleEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Small, Image.Texture.TextureFormat.RGB_A_EXPLICIT_ATC, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 35)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGB_A_INTERPOLATED_ATC.ToString();
-                            PtxRsbLittleEndian[PtxRsbLittleEndian.IndexOf(item)] = item;
+                            list_ptxrsb_littleendianformat.ItemsSource = null;
+                            list_ptxrsb_littleendianformat.ItemsSource = PtxRsbLittleEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Small, Image.Texture.TextureFormat.RGB_A_INTERPOLATED_ATC, item.Special);
                             GlobalSetting.Save();
                         }
@@ -921,252 +971,288 @@ namespace PopStudio.Pages
                         if (listView.SelectedIndex == 0)
                         {
                             item.Item2 = Image.Texture.TextureFormat.NONE.ToString();
-                            PtxRsbBigEndian[PtxRsbBigEndian.IndexOf(item)] = item;
+                            list_ptxrsb_bigendianformat.ItemsSource = null;
+                            list_ptxrsb_bigendianformat.ItemsSource = PtxRsbBigEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Big, Image.Texture.TextureFormat.NONE, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 1)
                         {
                             item.Item2 = Image.Texture.TextureFormat.B8_G8_R8_A8.ToString();
-                            PtxRsbBigEndian[PtxRsbBigEndian.IndexOf(item)] = item;
+                            list_ptxrsb_bigendianformat.ItemsSource = null;
+                            list_ptxrsb_bigendianformat.ItemsSource = PtxRsbBigEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Big, Image.Texture.TextureFormat.B8_G8_R8_A8, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 2)
                         {
                             item.Item2 = Image.Texture.TextureFormat.B8_G8_R8_A8_ADD_A8.ToString();
-                            PtxRsbBigEndian[PtxRsbBigEndian.IndexOf(item)] = item;
+                            list_ptxrsb_bigendianformat.ItemsSource = null;
+                            list_ptxrsb_bigendianformat.ItemsSource = PtxRsbBigEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Big, Image.Texture.TextureFormat.B8_G8_R8_A8_ADD_A8, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 3)
                         {
                             item.Item2 = Image.Texture.TextureFormat.R8_G8_B8_A8.ToString();
-                            PtxRsbBigEndian[PtxRsbBigEndian.IndexOf(item)] = item;
+                            list_ptxrsb_bigendianformat.ItemsSource = null;
+                            list_ptxrsb_bigendianformat.ItemsSource = PtxRsbBigEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Big, Image.Texture.TextureFormat.R8_G8_B8_A8, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 4)
                         {
                             item.Item2 = Image.Texture.TextureFormat.R8_G8_B8_A8_ADD_A8.ToString();
-                            PtxRsbBigEndian[PtxRsbBigEndian.IndexOf(item)] = item;
+                            list_ptxrsb_bigendianformat.ItemsSource = null;
+                            list_ptxrsb_bigendianformat.ItemsSource = PtxRsbBigEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Big, Image.Texture.TextureFormat.R8_G8_B8_A8_ADD_A8, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 5)
                         {
                             item.Item2 = Image.Texture.TextureFormat.A8_R8_G8_B8.ToString();
-                            PtxRsbBigEndian[PtxRsbBigEndian.IndexOf(item)] = item;
+                            list_ptxrsb_bigendianformat.ItemsSource = null;
+                            list_ptxrsb_bigendianformat.ItemsSource = PtxRsbBigEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Big, Image.Texture.TextureFormat.A8_R8_G8_B8, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 6)
                         {
                             item.Item2 = Image.Texture.TextureFormat.A8_R8_G8_B8_PADDING.ToString();
-                            PtxRsbBigEndian[PtxRsbBigEndian.IndexOf(item)] = item;
+                            list_ptxrsb_bigendianformat.ItemsSource = null;
+                            list_ptxrsb_bigendianformat.ItemsSource = PtxRsbBigEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Big, Image.Texture.TextureFormat.A8_R8_G8_B8_PADDING, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 7)
                         {
                             item.Item2 = Image.Texture.TextureFormat.R4_G4_B4_A4.ToString();
-                            PtxRsbBigEndian[PtxRsbBigEndian.IndexOf(item)] = item;
+                            list_ptxrsb_bigendianformat.ItemsSource = null;
+                            list_ptxrsb_bigendianformat.ItemsSource = PtxRsbBigEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Big, Image.Texture.TextureFormat.R4_G4_B4_A4, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 8)
                         {
                             item.Item2 = Image.Texture.TextureFormat.R4_G4_B4_A4_BLOCK.ToString();
-                            PtxRsbBigEndian[PtxRsbBigEndian.IndexOf(item)] = item;
+                            list_ptxrsb_bigendianformat.ItemsSource = null;
+                            list_ptxrsb_bigendianformat.ItemsSource = PtxRsbBigEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Big, Image.Texture.TextureFormat.R4_G4_B4_A4_BLOCK, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 9)
                         {
                             item.Item2 = Image.Texture.TextureFormat.A4_R4_G4_B4.ToString();
-                            PtxRsbBigEndian[PtxRsbBigEndian.IndexOf(item)] = item;
+                            list_ptxrsb_bigendianformat.ItemsSource = null;
+                            list_ptxrsb_bigendianformat.ItemsSource = PtxRsbBigEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Big, Image.Texture.TextureFormat.A4_R4_G4_B4, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 10)
                         {
                             item.Item2 = Image.Texture.TextureFormat.R5_G5_B5_A1.ToString();
-                            PtxRsbBigEndian[PtxRsbBigEndian.IndexOf(item)] = item;
+                            list_ptxrsb_bigendianformat.ItemsSource = null;
+                            list_ptxrsb_bigendianformat.ItemsSource = PtxRsbBigEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Big, Image.Texture.TextureFormat.R5_G5_B5_A1, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 11)
                         {
                             item.Item2 = Image.Texture.TextureFormat.R5_G5_B5_A1_BLOCK.ToString();
-                            PtxRsbBigEndian[PtxRsbBigEndian.IndexOf(item)] = item;
+                            list_ptxrsb_bigendianformat.ItemsSource = null;
+                            list_ptxrsb_bigendianformat.ItemsSource = PtxRsbBigEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Big, Image.Texture.TextureFormat.R5_G5_B5_A1_BLOCK, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 12)
                         {
                             item.Item2 = Image.Texture.TextureFormat.A1_R5_G5_B5.ToString();
-                            PtxRsbBigEndian[PtxRsbBigEndian.IndexOf(item)] = item;
+                            list_ptxrsb_bigendianformat.ItemsSource = null;
+                            list_ptxrsb_bigendianformat.ItemsSource = PtxRsbBigEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Big, Image.Texture.TextureFormat.A1_R5_G5_B5, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 13)
                         {
                             item.Item2 = Image.Texture.TextureFormat.R5_G6_B5.ToString();
-                            PtxRsbBigEndian[PtxRsbBigEndian.IndexOf(item)] = item;
+                            list_ptxrsb_bigendianformat.ItemsSource = null;
+                            list_ptxrsb_bigendianformat.ItemsSource = PtxRsbBigEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Big, Image.Texture.TextureFormat.R5_G6_B5, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 14)
                         {
                             item.Item2 = Image.Texture.TextureFormat.R5_G6_B5_BLOCK.ToString();
-                            PtxRsbBigEndian[PtxRsbBigEndian.IndexOf(item)] = item;
+                            list_ptxrsb_bigendianformat.ItemsSource = null;
+                            list_ptxrsb_bigendianformat.ItemsSource = PtxRsbBigEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Big, Image.Texture.TextureFormat.R5_G6_B5_BLOCK, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 15)
                         {
                             item.Item2 = Image.Texture.TextureFormat.R8_G8_B8.ToString();
-                            PtxRsbBigEndian[PtxRsbBigEndian.IndexOf(item)] = item;
+                            list_ptxrsb_bigendianformat.ItemsSource = null;
+                            list_ptxrsb_bigendianformat.ItemsSource = PtxRsbBigEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Big, Image.Texture.TextureFormat.R8_G8_B8, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 16)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGB_DXT1.ToString();
-                            PtxRsbBigEndian[PtxRsbBigEndian.IndexOf(item)] = item;
+                            list_ptxrsb_bigendianformat.ItemsSource = null;
+                            list_ptxrsb_bigendianformat.ItemsSource = PtxRsbBigEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Big, Image.Texture.TextureFormat.RGB_DXT1, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 17)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_DXT1.ToString();
-                            PtxRsbBigEndian[PtxRsbBigEndian.IndexOf(item)] = item;
+                            list_ptxrsb_bigendianformat.ItemsSource = null;
+                            list_ptxrsb_bigendianformat.ItemsSource = PtxRsbBigEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Big, Image.Texture.TextureFormat.RGBA_DXT1, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 18)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_DXT3.ToString();
-                            PtxRsbBigEndian[PtxRsbBigEndian.IndexOf(item)] = item;
+                            list_ptxrsb_bigendianformat.ItemsSource = null;
+                            list_ptxrsb_bigendianformat.ItemsSource = PtxRsbBigEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Big, Image.Texture.TextureFormat.RGBA_DXT3, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 19)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_DXT5.ToString();
-                            PtxRsbBigEndian[PtxRsbBigEndian.IndexOf(item)] = item;
+                            list_ptxrsb_bigendianformat.ItemsSource = null;
+                            list_ptxrsb_bigendianformat.ItemsSource = PtxRsbBigEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Big, Image.Texture.TextureFormat.RGBA_DXT5, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 20)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_DXT5_BLOCK_MORTON.ToString();
-                            PtxRsbBigEndian[PtxRsbBigEndian.IndexOf(item)] = item;
+                            list_ptxrsb_bigendianformat.ItemsSource = null;
+                            list_ptxrsb_bigendianformat.ItemsSource = PtxRsbBigEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Big, Image.Texture.TextureFormat.RGBA_DXT5_BLOCK_MORTON, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 21)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_DXT5_REFLECTEDMORTON.ToString();
-                            PtxRsbBigEndian[PtxRsbBigEndian.IndexOf(item)] = item;
+                            list_ptxrsb_bigendianformat.ItemsSource = null;
+                            list_ptxrsb_bigendianformat.ItemsSource = PtxRsbBigEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Big, Image.Texture.TextureFormat.RGBA_DXT5_REFLECTEDMORTON, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 22)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_DXT5_BIGENDIAN_PADDING.ToString();
-                            PtxRsbBigEndian[PtxRsbBigEndian.IndexOf(item)] = item;
+                            list_ptxrsb_bigendianformat.ItemsSource = null;
+                            list_ptxrsb_bigendianformat.ItemsSource = PtxRsbBigEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Big, Image.Texture.TextureFormat.RGBA_DXT5_BIGENDIAN_PADDING, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 23)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGB_ETC1.ToString();
-                            PtxRsbBigEndian[PtxRsbBigEndian.IndexOf(item)] = item;
+                            list_ptxrsb_bigendianformat.ItemsSource = null;
+                            list_ptxrsb_bigendianformat.ItemsSource = PtxRsbBigEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Big, Image.Texture.TextureFormat.RGB_ETC1, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 24)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGB_ETC1_ADD_A8.ToString();
-                            PtxRsbBigEndian[PtxRsbBigEndian.IndexOf(item)] = item;
+                            list_ptxrsb_bigendianformat.ItemsSource = null;
+                            list_ptxrsb_bigendianformat.ItemsSource = PtxRsbBigEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Big, Image.Texture.TextureFormat.RGB_ETC1_ADD_A8, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 25)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGB_ETC1_ADD_A_PALETTE.ToString();
-                            PtxRsbBigEndian[PtxRsbBigEndian.IndexOf(item)] = item;
+                            list_ptxrsb_bigendianformat.ItemsSource = null;
+                            list_ptxrsb_bigendianformat.ItemsSource = PtxRsbBigEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Big, Image.Texture.TextureFormat.RGB_ETC1_ADD_A_PALETTE, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 26)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGB_PVRTCI_4BPP.ToString();
-                            PtxRsbBigEndian[PtxRsbBigEndian.IndexOf(item)] = item;
+                            list_ptxrsb_bigendianformat.ItemsSource = null;
+                            list_ptxrsb_bigendianformat.ItemsSource = PtxRsbBigEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Big, Image.Texture.TextureFormat.RGB_PVRTCI_4BPP, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 27)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_PVRTCI_4BPP.ToString();
-                            PtxRsbBigEndian[PtxRsbBigEndian.IndexOf(item)] = item;
+                            list_ptxrsb_bigendianformat.ItemsSource = null;
+                            list_ptxrsb_bigendianformat.ItemsSource = PtxRsbBigEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Big, Image.Texture.TextureFormat.RGBA_PVRTCI_4BPP, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 28)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_PVRTCI_4BPP_ADD_A8.ToString();
-                            PtxRsbBigEndian[PtxRsbBigEndian.IndexOf(item)] = item;
+                            list_ptxrsb_bigendianformat.ItemsSource = null;
+                            list_ptxrsb_bigendianformat.ItemsSource = PtxRsbBigEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Big, Image.Texture.TextureFormat.RGBA_PVRTCI_4BPP_ADD_A8, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 29)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGB_PVRTCI_2BPP.ToString();
-                            PtxRsbBigEndian[PtxRsbBigEndian.IndexOf(item)] = item;
+                            list_ptxrsb_bigendianformat.ItemsSource = null;
+                            list_ptxrsb_bigendianformat.ItemsSource = PtxRsbBigEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Big, Image.Texture.TextureFormat.RGB_PVRTCI_2BPP, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 30)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_PVRTCI_2BPP.ToString();
-                            PtxRsbBigEndian[PtxRsbBigEndian.IndexOf(item)] = item;
+                            list_ptxrsb_bigendianformat.ItemsSource = null;
+                            list_ptxrsb_bigendianformat.ItemsSource = PtxRsbBigEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Big, Image.Texture.TextureFormat.RGBA_PVRTCI_2BPP, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 31)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_PVRTCII_4BPP.ToString();
-                            PtxRsbBigEndian[PtxRsbBigEndian.IndexOf(item)] = item;
+                            list_ptxrsb_bigendianformat.ItemsSource = null;
+                            list_ptxrsb_bigendianformat.ItemsSource = PtxRsbBigEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Big, Image.Texture.TextureFormat.RGBA_PVRTCII_4BPP, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 32)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_PVRTCII_2BPP.ToString();
-                            PtxRsbBigEndian[PtxRsbBigEndian.IndexOf(item)] = item;
+                            list_ptxrsb_bigendianformat.ItemsSource = null;
+                            list_ptxrsb_bigendianformat.ItemsSource = PtxRsbBigEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Big, Image.Texture.TextureFormat.RGBA_PVRTCII_2BPP, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 33)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGB_ATC.ToString();
-                            PtxRsbBigEndian[PtxRsbBigEndian.IndexOf(item)] = item;
+                            list_ptxrsb_bigendianformat.ItemsSource = null;
+                            list_ptxrsb_bigendianformat.ItemsSource = PtxRsbBigEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Big, Image.Texture.TextureFormat.RGB_ATC, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 34)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGB_A_EXPLICIT_ATC.ToString();
-                            PtxRsbBigEndian[PtxRsbBigEndian.IndexOf(item)] = item;
+                            list_ptxrsb_bigendianformat.ItemsSource = null;
+                            list_ptxrsb_bigendianformat.ItemsSource = PtxRsbBigEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Big, Image.Texture.TextureFormat.RGB_A_EXPLICIT_ATC, item.Special);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 35)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGB_A_INTERPOLATED_ATC.ToString();
-                            PtxRsbBigEndian[PtxRsbBigEndian.IndexOf(item)] = item;
+                            list_ptxrsb_bigendianformat.ItemsSource = null;
+                            list_ptxrsb_bigendianformat.ItemsSource = PtxRsbBigEndian;
                             GlobalSetting.Singleton.PtxRsb.SetFlags(TryParseInt(item.Item1), Plugin.Endian.Big, Image.Texture.TextureFormat.RGB_A_INTERPOLATED_ATC, item.Special);
                             GlobalSetting.Save();
                         }
@@ -1387,252 +1473,288 @@ namespace PopStudio.Pages
                         if (listView.SelectedIndex == 0)
                         {
                             item.Item2 = Image.Texture.TextureFormat.NONE.ToString();
-                            TexTVFormat[TexTVFormat.IndexOf(item)] = item;
+                            list_textv_format.ItemsSource = null;
+                            list_textv_format.ItemsSource = TexTVFormat;
                             GlobalSetting.Singleton.TexTV.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.NONE);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 1)
                         {
                             item.Item2 = Image.Texture.TextureFormat.B8_G8_R8_A8.ToString();
-                            TexTVFormat[TexTVFormat.IndexOf(item)] = item;
+                            list_textv_format.ItemsSource = null;
+                            list_textv_format.ItemsSource = TexTVFormat;
                             GlobalSetting.Singleton.TexTV.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.B8_G8_R8_A8);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 2)
                         {
                             item.Item2 = Image.Texture.TextureFormat.B8_G8_R8_A8_ADD_A8.ToString();
-                            TexTVFormat[TexTVFormat.IndexOf(item)] = item;
+                            list_textv_format.ItemsSource = null;
+                            list_textv_format.ItemsSource = TexTVFormat;
                             GlobalSetting.Singleton.TexTV.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.B8_G8_R8_A8_ADD_A8);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 3)
                         {
                             item.Item2 = Image.Texture.TextureFormat.R8_G8_B8_A8.ToString();
-                            TexTVFormat[TexTVFormat.IndexOf(item)] = item;
+                            list_textv_format.ItemsSource = null;
+                            list_textv_format.ItemsSource = TexTVFormat;
                             GlobalSetting.Singleton.TexTV.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.R8_G8_B8_A8);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 4)
                         {
                             item.Item2 = Image.Texture.TextureFormat.R8_G8_B8_A8_ADD_A8.ToString();
-                            TexTVFormat[TexTVFormat.IndexOf(item)] = item;
+                            list_textv_format.ItemsSource = null;
+                            list_textv_format.ItemsSource = TexTVFormat;
                             GlobalSetting.Singleton.TexTV.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.R8_G8_B8_A8_ADD_A8);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 5)
                         {
                             item.Item2 = Image.Texture.TextureFormat.A8_R8_G8_B8.ToString();
-                            TexTVFormat[TexTVFormat.IndexOf(item)] = item;
+                            list_textv_format.ItemsSource = null;
+                            list_textv_format.ItemsSource = TexTVFormat;
                             GlobalSetting.Singleton.TexTV.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.A8_R8_G8_B8);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 6)
                         {
                             item.Item2 = Image.Texture.TextureFormat.A8_R8_G8_B8_PADDING.ToString();
-                            TexTVFormat[TexTVFormat.IndexOf(item)] = item;
+                            list_textv_format.ItemsSource = null;
+                            list_textv_format.ItemsSource = TexTVFormat;
                             GlobalSetting.Singleton.TexTV.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.A8_R8_G8_B8_PADDING);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 7)
                         {
                             item.Item2 = Image.Texture.TextureFormat.R4_G4_B4_A4.ToString();
-                            TexTVFormat[TexTVFormat.IndexOf(item)] = item;
+                            list_textv_format.ItemsSource = null;
+                            list_textv_format.ItemsSource = TexTVFormat;
                             GlobalSetting.Singleton.TexTV.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.R4_G4_B4_A4);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 8)
                         {
                             item.Item2 = Image.Texture.TextureFormat.R4_G4_B4_A4_BLOCK.ToString();
-                            TexTVFormat[TexTVFormat.IndexOf(item)] = item;
+                            list_textv_format.ItemsSource = null;
+                            list_textv_format.ItemsSource = TexTVFormat;
                             GlobalSetting.Singleton.TexTV.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.R4_G4_B4_A4_BLOCK);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 9)
                         {
                             item.Item2 = Image.Texture.TextureFormat.A4_R4_G4_B4.ToString();
-                            TexTVFormat[TexTVFormat.IndexOf(item)] = item;
+                            list_textv_format.ItemsSource = null;
+                            list_textv_format.ItemsSource = TexTVFormat;
                             GlobalSetting.Singleton.TexTV.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.A4_R4_G4_B4);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 10)
                         {
                             item.Item2 = Image.Texture.TextureFormat.R5_G5_B5_A1.ToString();
-                            TexTVFormat[TexTVFormat.IndexOf(item)] = item;
+                            list_textv_format.ItemsSource = null;
+                            list_textv_format.ItemsSource = TexTVFormat;
                             GlobalSetting.Singleton.TexTV.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.R5_G5_B5_A1);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 11)
                         {
                             item.Item2 = Image.Texture.TextureFormat.R5_G5_B5_A1_BLOCK.ToString();
-                            TexTVFormat[TexTVFormat.IndexOf(item)] = item;
+                            list_textv_format.ItemsSource = null;
+                            list_textv_format.ItemsSource = TexTVFormat;
                             GlobalSetting.Singleton.TexTV.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.R5_G5_B5_A1_BLOCK);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 12)
                         {
                             item.Item2 = Image.Texture.TextureFormat.A1_R5_G5_B5.ToString();
-                            TexTVFormat[TexTVFormat.IndexOf(item)] = item;
+                            list_textv_format.ItemsSource = null;
+                            list_textv_format.ItemsSource = TexTVFormat;
                             GlobalSetting.Singleton.TexTV.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.A1_R5_G5_B5);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 13)
                         {
                             item.Item2 = Image.Texture.TextureFormat.R5_G6_B5.ToString();
-                            TexTVFormat[TexTVFormat.IndexOf(item)] = item;
+                            list_textv_format.ItemsSource = null;
+                            list_textv_format.ItemsSource = TexTVFormat;
                             GlobalSetting.Singleton.TexTV.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.R5_G6_B5);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 14)
                         {
                             item.Item2 = Image.Texture.TextureFormat.R5_G6_B5_BLOCK.ToString();
-                            TexTVFormat[TexTVFormat.IndexOf(item)] = item;
+                            list_textv_format.ItemsSource = null;
+                            list_textv_format.ItemsSource = TexTVFormat;
                             GlobalSetting.Singleton.TexTV.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.R5_G6_B5_BLOCK);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 15)
                         {
                             item.Item2 = Image.Texture.TextureFormat.R8_G8_B8.ToString();
-                            TexTVFormat[TexTVFormat.IndexOf(item)] = item;
+                            list_textv_format.ItemsSource = null;
+                            list_textv_format.ItemsSource = TexTVFormat;
                             GlobalSetting.Singleton.TexTV.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.R8_G8_B8);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 16)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGB_DXT1.ToString();
-                            TexTVFormat[TexTVFormat.IndexOf(item)] = item;
+                            list_textv_format.ItemsSource = null;
+                            list_textv_format.ItemsSource = TexTVFormat;
                             GlobalSetting.Singleton.TexTV.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGB_DXT1);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 17)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_DXT1.ToString();
-                            TexTVFormat[TexTVFormat.IndexOf(item)] = item;
+                            list_textv_format.ItemsSource = null;
+                            list_textv_format.ItemsSource = TexTVFormat;
                             GlobalSetting.Singleton.TexTV.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGBA_DXT1);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 18)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_DXT3.ToString();
-                            TexTVFormat[TexTVFormat.IndexOf(item)] = item;
+                            list_textv_format.ItemsSource = null;
+                            list_textv_format.ItemsSource = TexTVFormat;
                             GlobalSetting.Singleton.TexTV.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGBA_DXT3);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 19)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_DXT5.ToString();
-                            TexTVFormat[TexTVFormat.IndexOf(item)] = item;
+                            list_textv_format.ItemsSource = null;
+                            list_textv_format.ItemsSource = TexTVFormat;
                             GlobalSetting.Singleton.TexTV.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGBA_DXT5);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 20)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_DXT5_BLOCK_MORTON.ToString();
-                            TexTVFormat[TexTVFormat.IndexOf(item)] = item;
+                            list_textv_format.ItemsSource = null;
+                            list_textv_format.ItemsSource = TexTVFormat;
                             GlobalSetting.Singleton.TexTV.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGBA_DXT5_BLOCK_MORTON);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 21)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_DXT5_REFLECTEDMORTON.ToString();
-                            TexTVFormat[TexTVFormat.IndexOf(item)] = item;
+                            list_textv_format.ItemsSource = null;
+                            list_textv_format.ItemsSource = TexTVFormat;
                             GlobalSetting.Singleton.TexTV.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGBA_DXT5_REFLECTEDMORTON);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 22)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_DXT5_BIGENDIAN_PADDING.ToString();
-                            TexTVFormat[TexTVFormat.IndexOf(item)] = item;
+                            list_textv_format.ItemsSource = null;
+                            list_textv_format.ItemsSource = TexTVFormat;
                             GlobalSetting.Singleton.TexTV.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGBA_DXT5_BIGENDIAN_PADDING);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 23)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGB_ETC1.ToString();
-                            TexTVFormat[TexTVFormat.IndexOf(item)] = item;
+                            list_textv_format.ItemsSource = null;
+                            list_textv_format.ItemsSource = TexTVFormat;
                             GlobalSetting.Singleton.TexTV.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGB_ETC1);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 24)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGB_ETC1_ADD_A8.ToString();
-                            TexTVFormat[TexTVFormat.IndexOf(item)] = item;
+                            list_textv_format.ItemsSource = null;
+                            list_textv_format.ItemsSource = TexTVFormat;
                             GlobalSetting.Singleton.TexTV.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGB_ETC1_ADD_A8);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 25)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGB_ETC1_ADD_A_PALETTE.ToString();
-                            TexTVFormat[TexTVFormat.IndexOf(item)] = item;
+                            list_textv_format.ItemsSource = null;
+                            list_textv_format.ItemsSource = TexTVFormat;
                             GlobalSetting.Singleton.TexTV.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGB_ETC1_ADD_A_PALETTE);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 26)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGB_PVRTCI_4BPP.ToString();
-                            TexTVFormat[TexTVFormat.IndexOf(item)] = item;
+                            list_textv_format.ItemsSource = null;
+                            list_textv_format.ItemsSource = TexTVFormat;
                             GlobalSetting.Singleton.TexTV.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGB_PVRTCI_4BPP);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 27)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_PVRTCI_4BPP.ToString();
-                            TexTVFormat[TexTVFormat.IndexOf(item)] = item;
+                            list_textv_format.ItemsSource = null;
+                            list_textv_format.ItemsSource = TexTVFormat;
                             GlobalSetting.Singleton.TexTV.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGBA_PVRTCI_4BPP);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 28)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_PVRTCI_4BPP_ADD_A8.ToString();
-                            TexTVFormat[TexTVFormat.IndexOf(item)] = item;
+                            list_textv_format.ItemsSource = null;
+                            list_textv_format.ItemsSource = TexTVFormat;
                             GlobalSetting.Singleton.TexTV.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGBA_PVRTCI_4BPP_ADD_A8);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 29)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGB_PVRTCI_2BPP.ToString();
-                            TexTVFormat[TexTVFormat.IndexOf(item)] = item;
+                            list_textv_format.ItemsSource = null;
+                            list_textv_format.ItemsSource = TexTVFormat;
                             GlobalSetting.Singleton.TexTV.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGB_PVRTCI_2BPP);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 30)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_PVRTCI_2BPP.ToString();
-                            TexTVFormat[TexTVFormat.IndexOf(item)] = item;
+                            list_textv_format.ItemsSource = null;
+                            list_textv_format.ItemsSource = TexTVFormat;
                             GlobalSetting.Singleton.TexTV.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGBA_PVRTCI_2BPP);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 31)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_PVRTCII_4BPP.ToString();
-                            TexTVFormat[TexTVFormat.IndexOf(item)] = item;
+                            list_textv_format.ItemsSource = null;
+                            list_textv_format.ItemsSource = TexTVFormat;
                             GlobalSetting.Singleton.TexTV.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGBA_PVRTCII_4BPP);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 32)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_PVRTCII_2BPP.ToString();
-                            TexTVFormat[TexTVFormat.IndexOf(item)] = item;
+                            list_textv_format.ItemsSource = null;
+                            list_textv_format.ItemsSource = TexTVFormat;
                             GlobalSetting.Singleton.TexTV.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGBA_PVRTCII_2BPP);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 33)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGB_ATC.ToString();
-                            TexTVFormat[TexTVFormat.IndexOf(item)] = item;
+                            list_textv_format.ItemsSource = null;
+                            list_textv_format.ItemsSource = TexTVFormat;
                             GlobalSetting.Singleton.TexTV.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGB_ATC);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 34)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGB_A_EXPLICIT_ATC.ToString();
-                            TexTVFormat[TexTVFormat.IndexOf(item)] = item;
+                            list_textv_format.ItemsSource = null;
+                            list_textv_format.ItemsSource = TexTVFormat;
                             GlobalSetting.Singleton.TexTV.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGB_A_EXPLICIT_ATC);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 35)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGB_A_INTERPOLATED_ATC.ToString();
-                            TexTVFormat[TexTVFormat.IndexOf(item)] = item;
+                            list_textv_format.ItemsSource = null;
+                            list_textv_format.ItemsSource = TexTVFormat;
                             GlobalSetting.Singleton.TexTV.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGB_A_INTERPOLATED_ATC);
                             GlobalSetting.Save();
                         }
@@ -1860,252 +1982,288 @@ namespace PopStudio.Pages
                         if (listView.SelectedIndex == 0)
                         {
                             item.Item2 = Image.Texture.TextureFormat.NONE.ToString();
-                            TexiOSFormat[TexiOSFormat.IndexOf(item)] = item;
+                            list_texios_format.ItemsSource = null;
+                            list_texios_format.ItemsSource = TexiOSFormat;
                             GlobalSetting.Singleton.TexIOS.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.NONE);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 1)
                         {
                             item.Item2 = Image.Texture.TextureFormat.B8_G8_R8_A8.ToString();
-                            TexiOSFormat[TexiOSFormat.IndexOf(item)] = item;
+                            list_texios_format.ItemsSource = null;
+                            list_texios_format.ItemsSource = TexiOSFormat;
                             GlobalSetting.Singleton.TexIOS.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.B8_G8_R8_A8);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 2)
                         {
                             item.Item2 = Image.Texture.TextureFormat.B8_G8_R8_A8_ADD_A8.ToString();
-                            TexiOSFormat[TexiOSFormat.IndexOf(item)] = item;
+                            list_texios_format.ItemsSource = null;
+                            list_texios_format.ItemsSource = TexiOSFormat;
                             GlobalSetting.Singleton.TexIOS.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.B8_G8_R8_A8_ADD_A8);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 3)
                         {
                             item.Item2 = Image.Texture.TextureFormat.R8_G8_B8_A8.ToString();
-                            TexiOSFormat[TexiOSFormat.IndexOf(item)] = item;
+                            list_texios_format.ItemsSource = null;
+                            list_texios_format.ItemsSource = TexiOSFormat;
                             GlobalSetting.Singleton.TexIOS.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.R8_G8_B8_A8);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 4)
                         {
                             item.Item2 = Image.Texture.TextureFormat.R8_G8_B8_A8_ADD_A8.ToString();
-                            TexiOSFormat[TexiOSFormat.IndexOf(item)] = item;
+                            list_texios_format.ItemsSource = null;
+                            list_texios_format.ItemsSource = TexiOSFormat;
                             GlobalSetting.Singleton.TexIOS.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.R8_G8_B8_A8_ADD_A8);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 5)
                         {
                             item.Item2 = Image.Texture.TextureFormat.A8_R8_G8_B8.ToString();
-                            TexiOSFormat[TexiOSFormat.IndexOf(item)] = item;
+                            list_texios_format.ItemsSource = null;
+                            list_texios_format.ItemsSource = TexiOSFormat;
                             GlobalSetting.Singleton.TexIOS.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.A8_R8_G8_B8);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 6)
                         {
                             item.Item2 = Image.Texture.TextureFormat.A8_R8_G8_B8_PADDING.ToString();
-                            TexiOSFormat[TexiOSFormat.IndexOf(item)] = item;
+                            list_texios_format.ItemsSource = null;
+                            list_texios_format.ItemsSource = TexiOSFormat;
                             GlobalSetting.Singleton.TexIOS.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.A8_R8_G8_B8_PADDING);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 7)
                         {
                             item.Item2 = Image.Texture.TextureFormat.R4_G4_B4_A4.ToString();
-                            TexiOSFormat[TexiOSFormat.IndexOf(item)] = item;
+                            list_texios_format.ItemsSource = null;
+                            list_texios_format.ItemsSource = TexiOSFormat;
                             GlobalSetting.Singleton.TexIOS.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.R4_G4_B4_A4);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 8)
                         {
                             item.Item2 = Image.Texture.TextureFormat.R4_G4_B4_A4_BLOCK.ToString();
-                            TexiOSFormat[TexiOSFormat.IndexOf(item)] = item;
+                            list_texios_format.ItemsSource = null;
+                            list_texios_format.ItemsSource = TexiOSFormat;
                             GlobalSetting.Singleton.TexIOS.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.R4_G4_B4_A4_BLOCK);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 9)
                         {
                             item.Item2 = Image.Texture.TextureFormat.A4_R4_G4_B4.ToString();
-                            TexiOSFormat[TexiOSFormat.IndexOf(item)] = item;
+                            list_texios_format.ItemsSource = null;
+                            list_texios_format.ItemsSource = TexiOSFormat;
                             GlobalSetting.Singleton.TexIOS.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.A4_R4_G4_B4);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 10)
                         {
                             item.Item2 = Image.Texture.TextureFormat.R5_G5_B5_A1.ToString();
-                            TexiOSFormat[TexiOSFormat.IndexOf(item)] = item;
+                            list_texios_format.ItemsSource = null;
+                            list_texios_format.ItemsSource = TexiOSFormat;
                             GlobalSetting.Singleton.TexIOS.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.R5_G5_B5_A1);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 11)
                         {
                             item.Item2 = Image.Texture.TextureFormat.R5_G5_B5_A1_BLOCK.ToString();
-                            TexiOSFormat[TexiOSFormat.IndexOf(item)] = item;
+                            list_texios_format.ItemsSource = null;
+                            list_texios_format.ItemsSource = TexiOSFormat;
                             GlobalSetting.Singleton.TexIOS.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.R5_G5_B5_A1_BLOCK);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 12)
                         {
                             item.Item2 = Image.Texture.TextureFormat.A1_R5_G5_B5.ToString();
-                            TexiOSFormat[TexiOSFormat.IndexOf(item)] = item;
+                            list_texios_format.ItemsSource = null;
+                            list_texios_format.ItemsSource = TexiOSFormat;
                             GlobalSetting.Singleton.TexIOS.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.A1_R5_G5_B5);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 13)
                         {
                             item.Item2 = Image.Texture.TextureFormat.R5_G6_B5.ToString();
-                            TexiOSFormat[TexiOSFormat.IndexOf(item)] = item;
+                            list_texios_format.ItemsSource = null;
+                            list_texios_format.ItemsSource = TexiOSFormat;
                             GlobalSetting.Singleton.TexIOS.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.R5_G6_B5);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 14)
                         {
                             item.Item2 = Image.Texture.TextureFormat.R5_G6_B5_BLOCK.ToString();
-                            TexiOSFormat[TexiOSFormat.IndexOf(item)] = item;
+                            list_texios_format.ItemsSource = null;
+                            list_texios_format.ItemsSource = TexiOSFormat;
                             GlobalSetting.Singleton.TexIOS.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.R5_G6_B5_BLOCK);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 15)
                         {
                             item.Item2 = Image.Texture.TextureFormat.R8_G8_B8.ToString();
-                            TexiOSFormat[TexiOSFormat.IndexOf(item)] = item;
+                            list_texios_format.ItemsSource = null;
+                            list_texios_format.ItemsSource = TexiOSFormat;
                             GlobalSetting.Singleton.TexIOS.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.R8_G8_B8);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 16)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGB_DXT1.ToString();
-                            TexiOSFormat[TexiOSFormat.IndexOf(item)] = item;
+                            list_texios_format.ItemsSource = null;
+                            list_texios_format.ItemsSource = TexiOSFormat;
                             GlobalSetting.Singleton.TexIOS.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGB_DXT1);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 17)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_DXT1.ToString();
-                            TexiOSFormat[TexiOSFormat.IndexOf(item)] = item;
+                            list_texios_format.ItemsSource = null;
+                            list_texios_format.ItemsSource = TexiOSFormat;
                             GlobalSetting.Singleton.TexIOS.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGBA_DXT1);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 18)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_DXT3.ToString();
-                            TexiOSFormat[TexiOSFormat.IndexOf(item)] = item;
+                            list_texios_format.ItemsSource = null;
+                            list_texios_format.ItemsSource = TexiOSFormat;
                             GlobalSetting.Singleton.TexIOS.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGBA_DXT3);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 19)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_DXT5.ToString();
-                            TexiOSFormat[TexiOSFormat.IndexOf(item)] = item;
+                            list_texios_format.ItemsSource = null;
+                            list_texios_format.ItemsSource = TexiOSFormat;
                             GlobalSetting.Singleton.TexIOS.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGBA_DXT5);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 20)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_DXT5_BLOCK_MORTON.ToString();
-                            TexiOSFormat[TexiOSFormat.IndexOf(item)] = item;
+                            list_texios_format.ItemsSource = null;
+                            list_texios_format.ItemsSource = TexiOSFormat;
                             GlobalSetting.Singleton.TexIOS.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGBA_DXT5_BLOCK_MORTON);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 21)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_DXT5_REFLECTEDMORTON.ToString();
-                            TexiOSFormat[TexiOSFormat.IndexOf(item)] = item;
+                            list_texios_format.ItemsSource = null;
+                            list_texios_format.ItemsSource = TexiOSFormat;
                             GlobalSetting.Singleton.TexIOS.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGBA_DXT5_REFLECTEDMORTON);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 22)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_DXT5_BIGENDIAN_PADDING.ToString();
-                            TexiOSFormat[TexiOSFormat.IndexOf(item)] = item;
+                            list_texios_format.ItemsSource = null;
+                            list_texios_format.ItemsSource = TexiOSFormat;
                             GlobalSetting.Singleton.TexIOS.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGBA_DXT5_BIGENDIAN_PADDING);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 23)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGB_ETC1.ToString();
-                            TexiOSFormat[TexiOSFormat.IndexOf(item)] = item;
+                            list_texios_format.ItemsSource = null;
+                            list_texios_format.ItemsSource = TexiOSFormat;
                             GlobalSetting.Singleton.TexIOS.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGB_ETC1);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 24)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGB_ETC1_ADD_A8.ToString();
-                            TexiOSFormat[TexiOSFormat.IndexOf(item)] = item;
+                            list_texios_format.ItemsSource = null;
+                            list_texios_format.ItemsSource = TexiOSFormat;
                             GlobalSetting.Singleton.TexIOS.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGB_ETC1_ADD_A8);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 25)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGB_ETC1_ADD_A_PALETTE.ToString();
-                            TexiOSFormat[TexiOSFormat.IndexOf(item)] = item;
+                            list_texios_format.ItemsSource = null;
+                            list_texios_format.ItemsSource = TexiOSFormat;
                             GlobalSetting.Singleton.TexIOS.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGB_ETC1_ADD_A_PALETTE);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 26)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGB_PVRTCI_4BPP.ToString();
-                            TexiOSFormat[TexiOSFormat.IndexOf(item)] = item;
+                            list_texios_format.ItemsSource = null;
+                            list_texios_format.ItemsSource = TexiOSFormat;
                             GlobalSetting.Singleton.TexIOS.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGB_PVRTCI_4BPP);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 27)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_PVRTCI_4BPP.ToString();
-                            TexiOSFormat[TexiOSFormat.IndexOf(item)] = item;
+                            list_texios_format.ItemsSource = null;
+                            list_texios_format.ItemsSource = TexiOSFormat;
                             GlobalSetting.Singleton.TexIOS.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGBA_PVRTCI_4BPP);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 28)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_PVRTCI_4BPP_ADD_A8.ToString();
-                            TexiOSFormat[TexiOSFormat.IndexOf(item)] = item;
+                            list_texios_format.ItemsSource = null;
+                            list_texios_format.ItemsSource = TexiOSFormat;
                             GlobalSetting.Singleton.TexIOS.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGBA_PVRTCI_4BPP_ADD_A8);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 29)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGB_PVRTCI_2BPP.ToString();
-                            TexiOSFormat[TexiOSFormat.IndexOf(item)] = item;
+                            list_texios_format.ItemsSource = null;
+                            list_texios_format.ItemsSource = TexiOSFormat;
                             GlobalSetting.Singleton.TexIOS.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGB_PVRTCI_2BPP);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 30)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_PVRTCI_2BPP.ToString();
-                            TexiOSFormat[TexiOSFormat.IndexOf(item)] = item;
+                            list_texios_format.ItemsSource = null;
+                            list_texios_format.ItemsSource = TexiOSFormat;
                             GlobalSetting.Singleton.TexIOS.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGBA_PVRTCI_2BPP);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 31)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_PVRTCII_4BPP.ToString();
-                            TexiOSFormat[TexiOSFormat.IndexOf(item)] = item;
+                            list_texios_format.ItemsSource = null;
+                            list_texios_format.ItemsSource = TexiOSFormat;
                             GlobalSetting.Singleton.TexIOS.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGBA_PVRTCII_4BPP);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 32)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_PVRTCII_2BPP.ToString();
-                            TexiOSFormat[TexiOSFormat.IndexOf(item)] = item;
+                            list_texios_format.ItemsSource = null;
+                            list_texios_format.ItemsSource = TexiOSFormat;
                             GlobalSetting.Singleton.TexIOS.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGBA_PVRTCII_2BPP);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 33)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGB_ATC.ToString();
-                            TexiOSFormat[TexiOSFormat.IndexOf(item)] = item;
+                            list_texios_format.ItemsSource = null;
+                            list_texios_format.ItemsSource = TexiOSFormat;
                             GlobalSetting.Singleton.TexIOS.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGB_ATC);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 34)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGB_A_EXPLICIT_ATC.ToString();
-                            TexiOSFormat[TexiOSFormat.IndexOf(item)] = item;
+                            list_texios_format.ItemsSource = null;
+                            list_texios_format.ItemsSource = TexiOSFormat;
                             GlobalSetting.Singleton.TexIOS.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGB_A_EXPLICIT_ATC);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 35)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGB_A_INTERPOLATED_ATC.ToString();
-                            TexiOSFormat[TexiOSFormat.IndexOf(item)] = item;
+                            list_texios_format.ItemsSource = null;
+                            list_texios_format.ItemsSource = TexiOSFormat;
                             GlobalSetting.Singleton.TexIOS.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGB_A_INTERPOLATED_ATC);
                             GlobalSetting.Save();
                         }
@@ -2320,252 +2478,288 @@ namespace PopStudio.Pages
                         if (listView.SelectedIndex == 0)
                         {
                             item.Item2 = Image.Texture.TextureFormat.NONE.ToString();
-                            TxzFormat[TxzFormat.IndexOf(item)] = item;
+                            list_txz_format.ItemsSource = null;
+                            list_txz_format.ItemsSource = TxzFormat;
                             GlobalSetting.Singleton.Txz.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.NONE);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 1)
                         {
                             item.Item2 = Image.Texture.TextureFormat.B8_G8_R8_A8.ToString();
-                            TxzFormat[TxzFormat.IndexOf(item)] = item;
+                            list_txz_format.ItemsSource = null;
+                            list_txz_format.ItemsSource = TxzFormat;
                             GlobalSetting.Singleton.Txz.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.B8_G8_R8_A8);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 2)
                         {
                             item.Item2 = Image.Texture.TextureFormat.B8_G8_R8_A8_ADD_A8.ToString();
-                            TxzFormat[TxzFormat.IndexOf(item)] = item;
+                            list_txz_format.ItemsSource = null;
+                            list_txz_format.ItemsSource = TxzFormat;
                             GlobalSetting.Singleton.Txz.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.B8_G8_R8_A8_ADD_A8);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 3)
                         {
                             item.Item2 = Image.Texture.TextureFormat.R8_G8_B8_A8.ToString();
-                            TxzFormat[TxzFormat.IndexOf(item)] = item;
+                            list_txz_format.ItemsSource = null;
+                            list_txz_format.ItemsSource = TxzFormat;
                             GlobalSetting.Singleton.Txz.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.R8_G8_B8_A8);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 4)
                         {
                             item.Item2 = Image.Texture.TextureFormat.R8_G8_B8_A8_ADD_A8.ToString();
-                            TxzFormat[TxzFormat.IndexOf(item)] = item;
+                            list_txz_format.ItemsSource = null;
+                            list_txz_format.ItemsSource = TxzFormat;
                             GlobalSetting.Singleton.Txz.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.R8_G8_B8_A8_ADD_A8);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 5)
                         {
                             item.Item2 = Image.Texture.TextureFormat.A8_R8_G8_B8.ToString();
-                            TxzFormat[TxzFormat.IndexOf(item)] = item;
+                            list_txz_format.ItemsSource = null;
+                            list_txz_format.ItemsSource = TxzFormat;
                             GlobalSetting.Singleton.Txz.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.A8_R8_G8_B8);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 6)
                         {
                             item.Item2 = Image.Texture.TextureFormat.A8_R8_G8_B8_PADDING.ToString();
-                            TxzFormat[TxzFormat.IndexOf(item)] = item;
+                            list_txz_format.ItemsSource = null;
+                            list_txz_format.ItemsSource = TxzFormat;
                             GlobalSetting.Singleton.Txz.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.A8_R8_G8_B8_PADDING);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 7)
                         {
                             item.Item2 = Image.Texture.TextureFormat.R4_G4_B4_A4.ToString();
-                            TxzFormat[TxzFormat.IndexOf(item)] = item;
+                            list_txz_format.ItemsSource = null;
+                            list_txz_format.ItemsSource = TxzFormat;
                             GlobalSetting.Singleton.Txz.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.R4_G4_B4_A4);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 8)
                         {
                             item.Item2 = Image.Texture.TextureFormat.R4_G4_B4_A4_BLOCK.ToString();
-                            TxzFormat[TxzFormat.IndexOf(item)] = item;
+                            list_txz_format.ItemsSource = null;
+                            list_txz_format.ItemsSource = TxzFormat;
                             GlobalSetting.Singleton.Txz.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.R4_G4_B4_A4_BLOCK);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 9)
                         {
                             item.Item2 = Image.Texture.TextureFormat.A4_R4_G4_B4.ToString();
-                            TxzFormat[TxzFormat.IndexOf(item)] = item;
+                            list_txz_format.ItemsSource = null;
+                            list_txz_format.ItemsSource = TxzFormat;
                             GlobalSetting.Singleton.Txz.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.A4_R4_G4_B4);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 10)
                         {
                             item.Item2 = Image.Texture.TextureFormat.R5_G5_B5_A1.ToString();
-                            TxzFormat[TxzFormat.IndexOf(item)] = item;
+                            list_txz_format.ItemsSource = null;
+                            list_txz_format.ItemsSource = TxzFormat;
                             GlobalSetting.Singleton.Txz.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.R5_G5_B5_A1);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 11)
                         {
                             item.Item2 = Image.Texture.TextureFormat.R5_G5_B5_A1_BLOCK.ToString();
-                            TxzFormat[TxzFormat.IndexOf(item)] = item;
+                            list_txz_format.ItemsSource = null;
+                            list_txz_format.ItemsSource = TxzFormat;
                             GlobalSetting.Singleton.Txz.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.R5_G5_B5_A1_BLOCK);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 12)
                         {
                             item.Item2 = Image.Texture.TextureFormat.A1_R5_G5_B5.ToString();
-                            TxzFormat[TxzFormat.IndexOf(item)] = item;
+                            list_txz_format.ItemsSource = null;
+                            list_txz_format.ItemsSource = TxzFormat;
                             GlobalSetting.Singleton.Txz.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.A1_R5_G5_B5);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 13)
                         {
                             item.Item2 = Image.Texture.TextureFormat.R5_G6_B5.ToString();
-                            TxzFormat[TxzFormat.IndexOf(item)] = item;
+                            list_txz_format.ItemsSource = null;
+                            list_txz_format.ItemsSource = TxzFormat;
                             GlobalSetting.Singleton.Txz.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.R5_G6_B5);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 14)
                         {
                             item.Item2 = Image.Texture.TextureFormat.R5_G6_B5_BLOCK.ToString();
-                            TxzFormat[TxzFormat.IndexOf(item)] = item;
+                            list_txz_format.ItemsSource = null;
+                            list_txz_format.ItemsSource = TxzFormat;
                             GlobalSetting.Singleton.Txz.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.R5_G6_B5_BLOCK);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 15)
                         {
                             item.Item2 = Image.Texture.TextureFormat.R8_G8_B8.ToString();
-                            TxzFormat[TxzFormat.IndexOf(item)] = item;
+                            list_txz_format.ItemsSource = null;
+                            list_txz_format.ItemsSource = TxzFormat;
                             GlobalSetting.Singleton.Txz.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.R8_G8_B8);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 16)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGB_DXT1.ToString();
-                            TxzFormat[TxzFormat.IndexOf(item)] = item;
+                            list_txz_format.ItemsSource = null;
+                            list_txz_format.ItemsSource = TxzFormat;
                             GlobalSetting.Singleton.Txz.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGB_DXT1);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 17)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_DXT1.ToString();
-                            TxzFormat[TxzFormat.IndexOf(item)] = item;
+                            list_txz_format.ItemsSource = null;
+                            list_txz_format.ItemsSource = TxzFormat;
                             GlobalSetting.Singleton.Txz.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGBA_DXT1);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 18)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_DXT3.ToString();
-                            TxzFormat[TxzFormat.IndexOf(item)] = item;
+                            list_txz_format.ItemsSource = null;
+                            list_txz_format.ItemsSource = TxzFormat;
                             GlobalSetting.Singleton.Txz.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGBA_DXT3);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 19)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_DXT5.ToString();
-                            TxzFormat[TxzFormat.IndexOf(item)] = item;
+                            list_txz_format.ItemsSource = null;
+                            list_txz_format.ItemsSource = TxzFormat;
                             GlobalSetting.Singleton.Txz.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGBA_DXT5);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 20)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_DXT5_BLOCK_MORTON.ToString();
-                            TxzFormat[TxzFormat.IndexOf(item)] = item;
+                            list_txz_format.ItemsSource = null;
+                            list_txz_format.ItemsSource = TxzFormat;
                             GlobalSetting.Singleton.Txz.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGBA_DXT5_BLOCK_MORTON);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 21)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_DXT5_REFLECTEDMORTON.ToString();
-                            TxzFormat[TxzFormat.IndexOf(item)] = item;
+                            list_txz_format.ItemsSource = null;
+                            list_txz_format.ItemsSource = TxzFormat;
                             GlobalSetting.Singleton.Txz.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGBA_DXT5_REFLECTEDMORTON);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 22)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_DXT5_BIGENDIAN_PADDING.ToString();
-                            TxzFormat[TxzFormat.IndexOf(item)] = item;
+                            list_txz_format.ItemsSource = null;
+                            list_txz_format.ItemsSource = TxzFormat;
                             GlobalSetting.Singleton.Txz.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGBA_DXT5_BIGENDIAN_PADDING);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 23)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGB_ETC1.ToString();
-                            TxzFormat[TxzFormat.IndexOf(item)] = item;
+                            list_txz_format.ItemsSource = null;
+                            list_txz_format.ItemsSource = TxzFormat;
                             GlobalSetting.Singleton.Txz.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGB_ETC1);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 24)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGB_ETC1_ADD_A8.ToString();
-                            TxzFormat[TxzFormat.IndexOf(item)] = item;
+                            list_txz_format.ItemsSource = null;
+                            list_txz_format.ItemsSource = TxzFormat;
                             GlobalSetting.Singleton.Txz.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGB_ETC1_ADD_A8);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 25)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGB_ETC1_ADD_A_PALETTE.ToString();
-                            TxzFormat[TxzFormat.IndexOf(item)] = item;
+                            list_txz_format.ItemsSource = null;
+                            list_txz_format.ItemsSource = TxzFormat;
                             GlobalSetting.Singleton.Txz.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGB_ETC1_ADD_A_PALETTE);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 26)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGB_PVRTCI_4BPP.ToString();
-                            TxzFormat[TxzFormat.IndexOf(item)] = item;
+                            list_txz_format.ItemsSource = null;
+                            list_txz_format.ItemsSource = TxzFormat;
                             GlobalSetting.Singleton.Txz.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGB_PVRTCI_4BPP);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 27)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_PVRTCI_4BPP.ToString();
-                            TxzFormat[TxzFormat.IndexOf(item)] = item;
+                            list_txz_format.ItemsSource = null;
+                            list_txz_format.ItemsSource = TxzFormat;
                             GlobalSetting.Singleton.Txz.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGBA_PVRTCI_4BPP);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 28)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_PVRTCI_4BPP_ADD_A8.ToString();
-                            TxzFormat[TxzFormat.IndexOf(item)] = item;
+                            list_txz_format.ItemsSource = null;
+                            list_txz_format.ItemsSource = TxzFormat;
                             GlobalSetting.Singleton.Txz.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGBA_PVRTCI_4BPP_ADD_A8);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 29)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGB_PVRTCI_2BPP.ToString();
-                            TxzFormat[TxzFormat.IndexOf(item)] = item;
+                            list_txz_format.ItemsSource = null;
+                            list_txz_format.ItemsSource = TxzFormat;
                             GlobalSetting.Singleton.Txz.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGB_PVRTCI_2BPP);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 30)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_PVRTCI_2BPP.ToString();
-                            TxzFormat[TxzFormat.IndexOf(item)] = item;
+                            list_txz_format.ItemsSource = null;
+                            list_txz_format.ItemsSource = TxzFormat;
                             GlobalSetting.Singleton.Txz.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGBA_PVRTCI_2BPP);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 31)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_PVRTCII_4BPP.ToString();
-                            TxzFormat[TxzFormat.IndexOf(item)] = item;
+                            list_txz_format.ItemsSource = null;
+                            list_txz_format.ItemsSource = TxzFormat;
                             GlobalSetting.Singleton.Txz.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGBA_PVRTCII_4BPP);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 32)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGBA_PVRTCII_2BPP.ToString();
-                            TxzFormat[TxzFormat.IndexOf(item)] = item;
+                            list_txz_format.ItemsSource = null;
+                            list_txz_format.ItemsSource = TxzFormat;
                             GlobalSetting.Singleton.Txz.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGBA_PVRTCII_2BPP);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 33)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGB_ATC.ToString();
-                            TxzFormat[TxzFormat.IndexOf(item)] = item;
+                            list_txz_format.ItemsSource = null;
+                            list_txz_format.ItemsSource = TxzFormat;
                             GlobalSetting.Singleton.Txz.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGB_ATC);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 34)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGB_A_EXPLICIT_ATC.ToString();
-                            TxzFormat[TxzFormat.IndexOf(item)] = item;
+                            list_txz_format.ItemsSource = null;
+                            list_txz_format.ItemsSource = TxzFormat;
                             GlobalSetting.Singleton.Txz.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGB_A_EXPLICIT_ATC);
                             GlobalSetting.Save();
                         }
                         else if (listView.SelectedIndex == 35)
                         {
                             item.Item2 = Image.Texture.TextureFormat.RGB_A_INTERPOLATED_ATC.ToString();
-                            TxzFormat[TxzFormat.IndexOf(item)] = item;
+                            list_txz_format.ItemsSource = null;
+                            list_txz_format.ItemsSource = TxzFormat;
                             GlobalSetting.Singleton.Txz.SetFlags(TryParseInt(item.Item1), Image.Texture.TextureFormat.RGB_A_INTERPOLATED_ATC);
                             GlobalSetting.Save();
                         }
@@ -2719,6 +2913,46 @@ namespace PopStudio.Pages
                 {
                     GlobalSetting.Singleton.Rton.Cipher = textbox_rton_cipher.Text;
                     GlobalSetting.Save();
+                }
+                catch (Exception)
+                {
+
+                }
+            };
+            button_reset_setting.Click += async (s, e) =>
+            {
+                try
+                {
+                    ContentDialog noWifiDialog = new ContentDialog
+                    {
+                        Title = YFString.GetString("Setting_ResetSetting"),
+                        Content = "你确定要恢复默认设置吗？此操作无法撤销，且恢复后需要立即重启程序！",
+                        PrimaryButtonText = YFString.GetString("Setting_OK"),
+                        CloseButtonText = YFString.GetString("Setting_Cancel")
+                    };
+#if WinUI
+                    noWifiDialog.XamlRoot = this.Content.XamlRoot;
+#endif
+                    ContentDialogResult result = await noWifiDialog.ShowAsync();
+                    if (result == ContentDialogResult.Primary)
+                    {
+                        GlobalSetting.Recover();
+                        ContentDialog noWifiDialog2 = new ContentDialog
+                        {
+                            Title = YFString.GetString("Setting_ResetSetting"),
+                            Content = "恢复完成，请立即重启程序",
+                            PrimaryButtonText = YFString.GetString("Setting_OK"),
+                        };
+#if WinUI
+                        noWifiDialog2.XamlRoot = this.Content.XamlRoot;
+#endif
+                        await noWifiDialog2.ShowAsync();
+#if WASM
+                        Uno.Foundation.WebAssemblyRuntime.InvokeJS("location.reload();");
+#else
+                        Environment.Exit(0);
+#endif
+                    }
                 }
                 catch (Exception)
                 {

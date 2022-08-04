@@ -46,8 +46,8 @@
         </Grid>
         <TextBox Grid.Row="1"
                  x:Name="text"
-                 ScrollViewer.HorizontalScrollMode="Disabled"
-                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 ScrollViewer.HorizontalScrollMode="Enabled"
+                 ScrollViewer.HorizontalScrollBarVisibility="Auto"
                  ScrollViewer.VerticalScrollMode="Enabled"
                  ScrollViewer.VerticalScrollBarVisibility="Auto"
                  />

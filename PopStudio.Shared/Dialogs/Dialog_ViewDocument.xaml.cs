@@ -63,7 +63,6 @@ namespace PopStudio.Dialogs
                 _currentFile = null;
                 _lastSavedString = string.Empty;
             }
-            text.TextWrapping = TextWrapping.Wrap;
             text.AcceptsReturn = true;
             text.Text = _lastSavedString;
             OnClose += async () =>

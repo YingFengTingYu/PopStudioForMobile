@@ -37,6 +37,32 @@ namespace PopStudio.Settings
             }
         }
 
+        public static void Recover()
+        {
+            Singleton = new GlobalSetting();
+            Singleton.Rsb = new RsbSetting();
+            Singleton.Rsb.Init();
+            Singleton.Dz = new DzSetting();
+            Singleton.Dz.Init();
+            Singleton.Pak = new PakSetting();
+            Singleton.Pak.Init();
+            Singleton.PtxRsb = new PtxRsbSetting();
+            Singleton.PtxRsb.Init();
+            Singleton.TexTV = new TexTVSetting();
+            Singleton.TexTV.Init();
+            Singleton.Cdat = new CdatSetting();
+            Singleton.Cdat.Init();
+            Singleton.TexIOS = new TexIOSSetting();
+            Singleton.TexIOS.Init();
+            Singleton.Txz = new TxzSetting();
+            Singleton.Txz.Init();
+            Singleton.ImageLabel = new ImageLabelSetting();
+            Singleton.ImageLabel.Init();
+            Singleton.Rton = new RtonSetting();
+            Singleton.Rton.Init();
+            Save();
+        }
+
         public static void Init()
         {
             Singleton = null;

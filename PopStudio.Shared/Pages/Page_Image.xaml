@@ -22,7 +22,7 @@
     </Page.Resources>
 
     <ScrollViewer x:Name="ScrollViewer" VerticalScrollBarVisibility="Auto">
-        <StackPanel Margin="30 24 30 24">
+        <StackPanel Padding="30 24 30 24">
             <Grid Margin="0 5 0 5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>

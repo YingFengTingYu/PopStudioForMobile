@@ -975,4 +975,7 @@
   <data name="Setting_TxzTitle" xml:space="preserve">
     <value>Txz transcoding setting</value>
   </data>
+  <data name="Setting_ResetSetting" xml:space="preserve">
+    <value>Recover default setting</value>
+  </data>
 </root>

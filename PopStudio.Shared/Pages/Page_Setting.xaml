@@ -22,12 +22,12 @@
     </Page.Resources>
 
     <ScrollViewer x:Name="ScrollViewer" VerticalScrollBarVisibility="Auto">
-        <StackPanel Margin="30 24 30 24">
+        <StackPanel Padding="30 24 30 24">
             <TextBlock TextWrapping="Wrap" FontSize="23" Margin="0 5 0 5" x:Name="label_rsb" />
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="50" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -42,7 +42,7 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="50" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -54,6 +54,23 @@
                 <ToggleSwitch Grid.Row="1" Grid.Column="1" x:Name="switch_dz_deleteimage" />
             </Grid>
             <TextBlock TextWrapping="Wrap" FontSize="18" Margin="0 5 0 5" x:Name="label_dz_encodecompression" />
+            <Grid HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="label_list_dz_encodecompression_1"
+                           FontSize="18"
+                           Margin="0 5 0 10"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="1"
+                           x:Name="label_list_dz_encodecompression_2"
+                           FontSize="18"
+                           Margin="0 5 0 10"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+            </Grid>
             <ListView x:Name="list_dz_encodecompression"
                       ItemsSource="{x:Bind DzCompression}"
                       SelectionMode="None"
@@ -62,27 +79,6 @@
                       ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                       ScrollViewer.VerticalScrollMode="Enabled"
                       ScrollViewer.VerticalScrollBarVisibility="Auto">
-                <ListView.HeaderTemplate>
-                    <DataTemplate x:DataType="local:TwoItem">
-                        <Grid HorizontalAlignment="Stretch">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="{x:Bind Item1}"
-                                       FontSize="18"
-                                       Margin="0 5 0 10"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center"/>
-                            <TextBlock Grid.Column="1"
-                                       Text="{x:Bind Item2}"
-                                       FontSize="18"
-                                       Margin="0 5 0 10"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center"/>
-                        </Grid>
-                    </DataTemplate>
-                </ListView.HeaderTemplate>
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="local:TwoItem">
                         <Grid HorizontalAlignment="Stretch">
@@ -118,7 +114,7 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="50" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -130,6 +126,23 @@
                 <ToggleSwitch Grid.Row="1" Grid.Column="1" x:Name="switch_pak_deleteimage" />
             </Grid>
             <TextBlock TextWrapping="Wrap" FontSize="18" Margin="0 5 0 5" x:Name="label_pak_encodecompression" />
+            <Grid HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="label_list_pak_encodecompression_1"
+                           FontSize="18"
+                           Margin="0 5 0 10"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="1"
+                           x:Name="label_list_pak_encodecompression_2"
+                           FontSize="18"
+                           Margin="0 5 0 10"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+            </Grid>
             <ListView x:Name="list_pak_encodecompression"
                       ItemsSource="{x:Bind PakCompression}"
                       SelectionMode="None"
@@ -138,27 +151,6 @@
                       ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                       ScrollViewer.VerticalScrollMode="Enabled"
                       ScrollViewer.VerticalScrollBarVisibility="Auto">
-                <ListView.HeaderTemplate>
-                    <DataTemplate x:DataType="local:TwoItem">
-                        <Grid HorizontalAlignment="Stretch">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="{x:Bind Item1}"
-                                       FontSize="18"
-                                       Margin="0 5 0 10"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center"/>
-                            <TextBlock Grid.Column="1"
-                                       Text="{x:Bind Item2}"
-                                       FontSize="18"
-                                       Margin="0 5 0 10"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center"/>
-                        </Grid>
-                    </DataTemplate>
-                </ListView.HeaderTemplate>
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="local:TwoItem">
                         <Grid HorizontalAlignment="Stretch">
@@ -192,6 +184,23 @@
             </Grid>
             <TextBlock TextWrapping="Wrap" FontSize="23" Margin="0 5 0 5" x:Name="label_ptxrsb" />
             <TextBlock TextWrapping="Wrap" FontSize="18" Margin="0 5 0 5" x:Name="label_ptxrsb_littleendianformat" />
+            <Grid HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="4*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="label_list_ptxrsb_littleendianformat_1"
+                           FontSize="18"
+                           Margin="0 5 0 10"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="1"
+                           x:Name="label_list_ptxrsb_littleendianformat_2"
+                           FontSize="18"
+                           Margin="0 5 0 10"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+            </Grid>
             <ListView x:Name="list_ptxrsb_littleendianformat"
                       ItemsSource="{x:Bind PtxRsbLittleEndian}"
                       SelectionMode="None"
@@ -200,33 +209,12 @@
                       ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                       ScrollViewer.VerticalScrollMode="Enabled"
                       ScrollViewer.VerticalScrollBarVisibility="Auto">
-                <ListView.HeaderTemplate>
-                    <DataTemplate x:DataType="local:TwoItem">
-                        <Grid HorizontalAlignment="Stretch">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="{x:Bind Item1}"
-                                       FontSize="18"
-                                       Margin="0 5 0 10"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center"/>
-                            <TextBlock Grid.Column="1"
-                                       Text="{x:Bind Item2}"
-                                       FontSize="18"
-                                       Margin="0 5 0 10"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center"/>
-                        </Grid>
-                    </DataTemplate>
-                </ListView.HeaderTemplate>
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="local:TwoItem">
                         <Grid HorizontalAlignment="Stretch">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="4*" />
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="{x:Bind Item1}"
                                        FontSize="18"
@@ -253,6 +241,23 @@
                 <Button x:Name="button_ptxrsb_littleendianformat_clear" Margin="0 7 0 7" Grid.Column="2" />
             </Grid>
             <TextBlock TextWrapping="Wrap" FontSize="18" Margin="0 5 0 5" x:Name="label_ptxrsb_bigendianformat" />
+            <Grid HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="4*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="label_list_ptxrsb_bigendianformat_1"
+                           FontSize="18"
+                           Margin="0 5 0 10"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="1"
+                           x:Name="label_list_ptxrsb_bigendianformat_2"
+                           FontSize="18"
+                           Margin="0 5 0 10"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+            </Grid>
             <ListView x:Name="list_ptxrsb_bigendianformat"
                       ItemsSource="{x:Bind PtxRsbBigEndian}"
                       SelectionMode="None"
@@ -266,7 +271,7 @@
                         <Grid HorizontalAlignment="Stretch">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="4*" />
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="{x:Bind Item1}"
                                        FontSize="18"
@@ -287,7 +292,7 @@
                         <Grid HorizontalAlignment="Stretch">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="4*" />
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="{x:Bind Item1}"
                                        FontSize="18"
@@ -317,12 +322,29 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="50" />
                 </Grid.ColumnDefinitions>
                 <TextBlock TextWrapping="Wrap" FontSize="18" Margin="0 5 0 5" x:Name="label_textv_encodezlib" />
                 <ToggleSwitch Grid.Column="1" x:Name="switch_textv_encodezlib" />
             </Grid>
             <TextBlock TextWrapping="Wrap" FontSize="18" Margin="0 5 0 5" x:Name="label_textv_format" />
+            <Grid HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="4*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="label_list_textv_format_1"
+                           FontSize="18"
+                           Margin="0 5 0 10"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="1"
+                           x:Name="label_list_textv_format_2"
+                           FontSize="18"
+                           Margin="0 5 0 10"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+            </Grid>
             <ListView x:Name="list_textv_format"
                       ItemsSource="{x:Bind TexTVFormat}"
                       SelectionMode="None"
@@ -331,33 +353,12 @@
                       ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                       ScrollViewer.VerticalScrollMode="Enabled"
                       ScrollViewer.VerticalScrollBarVisibility="Auto">
-                <ListView.HeaderTemplate>
-                    <DataTemplate x:DataType="local:TwoItem">
-                        <Grid HorizontalAlignment="Stretch">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="{x:Bind Item1}"
-                                       FontSize="18"
-                                       Margin="0 5 0 10"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center"/>
-                            <TextBlock Grid.Column="1"
-                                       Text="{x:Bind Item2}"
-                                       FontSize="18"
-                                       Margin="0 5 0 10"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center"/>
-                        </Grid>
-                    </DataTemplate>
-                </ListView.HeaderTemplate>
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="local:TwoItem">
                         <Grid HorizontalAlignment="Stretch">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="4*" />
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="{x:Bind Item1}"
                                        FontSize="18"
@@ -396,6 +397,23 @@
             </Grid>
             <TextBlock TextWrapping="Wrap" FontSize="23" Margin="0 5 0 5" x:Name="label_texios" />
             <TextBlock TextWrapping="Wrap" FontSize="18" Margin="0 5 0 5" x:Name="label_texios_format" />
+            <Grid HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="4*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="label_list_texios_format_1"
+                           FontSize="18"
+                           Margin="0 5 0 10"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="1"
+                           x:Name="label_list_texios_format_2"
+                           FontSize="18"
+                           Margin="0 5 0 10"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+            </Grid>
             <ListView x:Name="list_texios_format"
                       ItemsSource="{x:Bind TexiOSFormat}"
                       SelectionMode="None"
@@ -404,33 +422,12 @@
                       ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                       ScrollViewer.VerticalScrollMode="Enabled"
                       ScrollViewer.VerticalScrollBarVisibility="Auto">
-                <ListView.HeaderTemplate>
-                    <DataTemplate x:DataType="local:TwoItem">
-                        <Grid HorizontalAlignment="Stretch">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="{x:Bind Item1}"
-                                       FontSize="18"
-                                       Margin="0 5 0 10"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center"/>
-                            <TextBlock Grid.Column="1"
-                                       Text="{x:Bind Item2}"
-                                       FontSize="18"
-                                       Margin="0 5 0 10"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center"/>
-                        </Grid>
-                    </DataTemplate>
-                </ListView.HeaderTemplate>
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="local:TwoItem">
                         <Grid HorizontalAlignment="Stretch">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="4*" />
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="{x:Bind Item1}"
                                        FontSize="18"
@@ -458,6 +455,23 @@
             </Grid>
             <TextBlock TextWrapping="Wrap" FontSize="23" Margin="0 5 0 5" x:Name="label_txz" />
             <TextBlock TextWrapping="Wrap" FontSize="18" Margin="0 5 0 5" x:Name="label_txz_format" />
+            <Grid HorizontalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="4*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="label_list_txz_format_1"
+                           FontSize="18"
+                           Margin="0 5 0 10"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="1"
+                           x:Name="label_list_txz_format_2"
+                           FontSize="18"
+                           Margin="0 5 0 10"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+            </Grid>
             <ListView x:Name="list_txz_format"
                       ItemsSource="{x:Bind TxzFormat}"
                       SelectionMode="None"
@@ -466,33 +480,12 @@
                       ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                       ScrollViewer.VerticalScrollMode="Enabled"
                       ScrollViewer.VerticalScrollBarVisibility="Auto">
-                <ListView.HeaderTemplate>
-                    <DataTemplate x:DataType="local:TwoItem">
-                        <Grid HorizontalAlignment="Stretch">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="{x:Bind Item1}"
-                                       FontSize="18"
-                                       Margin="0 5 0 10"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center"/>
-                            <TextBlock Grid.Column="1"
-                                       Text="{x:Bind Item2}"
-                                       FontSize="18"
-                                       Margin="0 5 0 10"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center"/>
-                        </Grid>
-                    </DataTemplate>
-                </ListView.HeaderTemplate>
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="local:TwoItem">
                         <Grid HorizontalAlignment="Stretch">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="4*" />
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="{x:Bind Item1}"
                                        FontSize="18"
@@ -529,6 +522,7 @@
                 <TextBox x:Name="textbox_rton_cipher" />
                 <Button x:Name="button_rton_cipher" Grid.Column="2" />
             </Grid>
+            <Button x:Name="button_reset_setting" Margin="0 5 0 5" />
         </StackPanel>
     </ScrollViewer>
 </Page>
