@@ -7,29 +7,25 @@ namespace PopStudio.PlatformAPI
 {
     public static class YFNativeFilePicker
     {
-        public static async Task<StorageFolder> PickFolderAsync()
+        public static async Task<StorageFolder> PickFolderAsync(string name_in = null)
         {
-            try
-            {
-                FolderPicker folderPicker = new FolderPicker();
+            FolderPicker folderPicker = new FolderPicker();
 #if WinUI
             WinRT.Interop.InitializeWithWindow.Initialize(folderPicker, WinUI.MainWindow.Handle);
 #endif
-                PickerLocationId defaultStartFolder;
+            PickerLocationId defaultStartFolder;
 #if WASM
-                defaultStartFolder = PickerLocationId.Desktop;
+            defaultStartFolder = PickerLocationId.Desktop;
 #else
             defaultStartFolder = PickerLocationId.ComputerFolder;
 #endif
-                folderPicker.SuggestedStartLocation = defaultStartFolder;
-                folderPicker.FileTypeFilter.Add("*");
-                return await folderPicker.PickSingleFolderAsync();
-            }
-            catch (Exception ex)
+            if (name_in is not null)
             {
-                Console.WriteLine(ex.Message);
-                throw;
+                folderPicker.SuggestedFileName = name_in;
             }
+            folderPicker.SuggestedStartLocation = defaultStartFolder;
+            folderPicker.FileTypeFilter.Add("*");
+            return await folderPicker.PickSingleFolderAsync();
         }
 
         public static async Task<StorageFile> PickOpenFileAsync()

@@ -2926,7 +2926,7 @@ namespace PopStudio.Pages
                     ContentDialog noWifiDialog = new ContentDialog
                     {
                         Title = YFString.GetString("Setting_ResetSetting"),
-                        Content = "你确定要恢复默认设置吗？此操作无法撤销，且恢复后需要立即重启程序！",
+                        Content = YFString.GetString("Setting_ResetSetting_Ask"),
                         PrimaryButtonText = YFString.GetString("Setting_OK"),
                         CloseButtonText = YFString.GetString("Setting_Cancel")
                     };
@@ -2940,7 +2940,7 @@ namespace PopStudio.Pages
                         ContentDialog noWifiDialog2 = new ContentDialog
                         {
                             Title = YFString.GetString("Setting_ResetSetting"),
-                            Content = "恢复完成，请立即重启程序",
+                            Content = YFString.GetString("Setting_ResetSetting_Finish"),
                             PrimaryButtonText = YFString.GetString("Setting_OK"),
                         };
 #if WinUI

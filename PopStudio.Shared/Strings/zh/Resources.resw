@@ -978,4 +978,16 @@
   <data name="Setting_ResetSetting" xml:space="preserve">
     <value>恢复默认设置</value>
   </data>
+  <data name="Setting_ResetSetting_Ask" xml:space="preserve">
+    <value>你确定要恢复默认设置吗？此操作无法撤销，且恢复后需要立即重启程序！</value>
+  </data>
+  <data name="Setting_ResetSetting_Finish" xml:space="preserve">
+    <value>恢复完成，请立即重启程序</value>
+  </data>
+  <data name="FileExplorer_CannotSelectFolder" xml:space="preserve">
+    <value>无法选择文件夹</value>
+  </data>
+  <data name="FileExplorer_CannotSelectFolderText" xml:space="preserve">
+    <value>无法选择文件夹，你可以将文件夹压缩成.zip/.rar/.tar/.7z等格式然后导入。</value>
+  </data>
 </root>

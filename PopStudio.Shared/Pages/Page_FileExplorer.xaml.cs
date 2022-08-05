@@ -580,7 +580,7 @@ namespace PopStudio.Pages
             // 导出
             try
             {
-                StorageFolder saveFile = await YFNativeFilePicker.PickFolderAsync();
+                StorageFolder saveFile = await YFNativeFilePicker.PickFolderAsync(CurrentDirectory.Name);
                 if (saveFile is not null)
                 {
                     Task tsk = YFFileSystem.ExportDirectoryAsync(CurrentDirectory, saveFile);
@@ -590,7 +590,21 @@ namespace PopStudio.Pages
             }
             catch (Exception)
             {
+                // 不支持文件夹选取器，自动回退到文件保存器
+                try
+                {
+                    StorageFile saveFile = await YFNativeFilePicker.PickSaveFileAsync(CurrentDirectory.Name + ".zip");
+                    if (saveFile is not null)
+                    {
+                        Task tsk = YFFileSystem.ExportDirectoryAsZipAsync(CurrentDirectory, saveFile);
+                        Task tsk2 = YFDialogHelper.OpenDialogWithoutCancelButton<Dialog_Wait>(tsk);
+                        await Task.WhenAll(tsk, tsk2);
+                    }
+                }
+                catch (Exception)
+                {
 
+                }
             }
         }
 
@@ -696,57 +710,73 @@ namespace PopStudio.Pages
 
         private async void MenuLoadDirectory_Click(object sender, RoutedEventArgs e)
         {
-            StorageFolder pickedFile = await YFNativeFilePicker.PickFolderAsync();
-            if (pickedFile is not null)
+            try
             {
-                string name = pickedFile.Name;
-                int mode = 0;
-                if (CurrentDirectory.FileExist(name)) mode |= 1;
-                if (CurrentDirectory.DirectoryExist(name)) mode |= 2;
-                bool create = true;
-                if (mode != 0)
+                StorageFolder pickedFile = await YFNativeFilePicker.PickFolderAsync();
+                if (pickedFile is not null)
                 {
-                    ContentDialog fileExistDialog = new ContentDialog
+                    string name = pickedFile.Name;
+                    int mode = 0;
+                    if (CurrentDirectory.FileExist(name)) mode |= 1;
+                    if (CurrentDirectory.DirectoryExist(name)) mode |= 2;
+                    bool create = true;
+                    if (mode != 0)
                     {
-                        Title = YFString.GetString("FileExplorer_CannotCreate"),
-                        Content = string.Format(YFString.GetString("FileExplorer_CannotCreateInfo"), name),
-                        CloseButtonText = YFString.GetString("FileExplorer_Cancel"),
-                        PrimaryButtonText = YFString.GetString("FileExplorer_Rename")
-                    };
-                    if ((mode & 1) == 0)
-                    {
-                        fileExistDialog.SecondaryButtonText = YFString.GetString("FileExplorer_Merge");
-                    }
-#if WinUI
-                    fileExistDialog.XamlRoot = this.Content.XamlRoot;
-#endif
-                    ContentDialogResult result = await fileExistDialog.ShowAsync();
-                    if (result == ContentDialogResult.Primary)
-                    {
-                        string name_filename = name;
-                        int i = 2;
-                        do
+                        ContentDialog fileExistDialog = new ContentDialog
                         {
-                            name = name_filename + " (" + (i++) + ")";
+                            Title = YFString.GetString("FileExplorer_CannotCreate"),
+                            Content = string.Format(YFString.GetString("FileExplorer_CannotCreateInfo"), name),
+                            CloseButtonText = YFString.GetString("FileExplorer_Cancel"),
+                            PrimaryButtonText = YFString.GetString("FileExplorer_Rename")
+                        };
+                        if ((mode & 1) == 0)
+                        {
+                            fileExistDialog.SecondaryButtonText = YFString.GetString("FileExplorer_Merge");
                         }
-                        while (CurrentDirectory.Exist(name));
-                    }
-                    else if (result == ContentDialogResult.Secondary)
-                    {
+#if WinUI
+                        fileExistDialog.XamlRoot = this.Content.XamlRoot;
+#endif
+                        ContentDialogResult result = await fileExistDialog.ShowAsync();
+                        if (result == ContentDialogResult.Primary)
+                        {
+                            string name_filename = name;
+                            int i = 2;
+                            do
+                            {
+                                name = name_filename + " (" + (i++) + ")";
+                            }
+                            while (CurrentDirectory.Exist(name));
+                        }
+                        else if (result == ContentDialogResult.Secondary)
+                        {
 
+                        }
+                        else
+                        {
+                            create = false;
+                        }
                     }
-                    else
+                    if (create)
                     {
-                        create = false;
+                        Task tsk = YFFileSystem.ImportDirectoryAsync(pickedFile, CurrentDirectory, name);
+                        Task tsk2 = YFDialogHelper.OpenDialogWithoutCancelButton<Dialog_Wait>(tsk);
+                        await Task.WhenAll(tsk, tsk2);
+                        Update();
                     }
                 }
-                if (create)
+            }
+            catch (Exception)
+            {
+                ContentDialog createFileDialog = new ContentDialog
                 {
-                    Task tsk = YFFileSystem.ImportDirectoryAsync(pickedFile, CurrentDirectory, name);
-                    Task tsk2 = YFDialogHelper.OpenDialogWithoutCancelButton<Dialog_Wait>(tsk);
-                    await Task.WhenAll(tsk, tsk2);
-                    Update();
-                }
+                    Title = YFString.GetString("FileExplorer_CannotSelectFolder"),
+                    Content = YFString.GetString("FileExplorer_CannotSelectFolderText"),
+                    CloseButtonText = YFString.GetString("FileExplorer_Cancel")
+                };
+#if WinUI
+                createFileDialog.XamlRoot = this.Content.XamlRoot;
+#endif
+                await createFileDialog.ShowAsync();
             }
         }
 

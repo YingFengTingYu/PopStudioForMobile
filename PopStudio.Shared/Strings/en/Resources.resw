@@ -978,4 +978,16 @@
   <data name="Setting_ResetSetting" xml:space="preserve">
     <value>Recover default setting</value>
   </data>
+  <data name="Setting_ResetSetting_Ask" xml:space="preserve">
+    <value>Are you sure you want to restore the default settings? This operation cannot be undone, and the program needs to be restarted immediately after recovery! (By Baidu translation)</value>
+  </data>
+  <data name="Setting_ResetSetting_Finish" xml:space="preserve">
+    <value>Recovery is complete, please restart the program immediately. (By Baidu translation)</value>
+  </data>
+  <data name="FileExplorer_CannotSelectFolder" xml:space="preserve">
+    <value>Can't select folder</value>
+  </data>
+  <data name="FileExplorer_CannotSelectFolderText" xml:space="preserve">
+    <value>Cannot select a folder. You can compress the folder into. Zip /. Rar /. Tar /. 7z or other formats to import.</value>
+  </data>
 </root>

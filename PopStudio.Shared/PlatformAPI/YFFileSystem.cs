@@ -5,6 +5,8 @@ using PopStudio.Plugin;
 using System.Text.Json;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using SharpCompress.Writers;
+using SharpCompress.Common;
 
 namespace PopStudio.PlatformAPI
 {
@@ -887,6 +889,36 @@ namespace PopStudio.PlatformAPI
                     yield return fd;
                 }
             }
+        }
+
+        public static async Task ExportDirectoryAsZipAsync(YFDirectory yfDirectory, Windows.Storage.StorageFile m_file)
+        {
+            Windows.Storage.CachedFileManager.DeferUpdates(m_file);
+            using (Stream stream = await m_file.OpenStreamForWriteAsync())
+            {
+                using (var writer = WriterFactory.Open(stream, ArchiveType.Zip, CompressionType.Deflate))
+                {
+                    async Task WriteFolderInArchive(YFDirectory m_dir)
+                    {
+                        foreach (YFFile f in m_dir.FileMap)
+                        {
+                            await Task.Run(() =>
+                            {
+                                using (Stream stream2 = f.OpenAsStream())
+                                {
+                                    writer.Write(f.GetPath(yfDirectory), stream2, f.Time);
+                                }
+                            });
+                        }
+                        foreach (YFDirectory f in m_dir.DirectoryMap)
+                        {
+                            await WriteFolderInArchive(f);
+                        }
+                    }
+                    await WriteFolderInArchive(yfDirectory);
+                }
+            }
+            await Windows.Storage.CachedFileManager.CompleteUpdatesAsync(m_file);
         }
 
         public static async Task ExportDirectoryAsync(YFDirectory yfDirectory, Windows.Storage.StorageFolder m_folder)

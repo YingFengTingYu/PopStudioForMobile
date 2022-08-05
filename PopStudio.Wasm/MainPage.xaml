@@ -14,6 +14,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="50" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <StackPanel Orientation="Horizontal"
                         Background="CornflowerBlue" >
@@ -35,6 +36,10 @@
                             HorizontalContentAlignment="Stretch"
                             VerticalContentAlignment="Stretch"
                             Background="White" />
+            <StackPanel Orientation="Horizontal"
+                        Grid.Row="2">
+                <HyperlinkButton Content="陕ICP备2022009077号-1" NavigateUri="https://beian.miit.gov.cn/"/>
+            </StackPanel>
         </Grid>
 
         <Grid x:Name="menu"
