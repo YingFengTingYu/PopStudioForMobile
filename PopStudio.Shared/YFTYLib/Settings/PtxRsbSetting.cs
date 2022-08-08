@@ -3,7 +3,6 @@ using PopStudio.Plugin;
 using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
-using static Org.BouncyCastle.Bcpg.Attr.ImageAttrib;
 
 namespace PopStudio.Settings
 {
@@ -114,16 +113,31 @@ namespace PopStudio.Settings
                 new FormatPair
                 {
                     Index = 0,
-                    Format = TextureFormat.A8_R8_G8_B8
+                    Format = TextureFormat.A8_R8_G8_B8_PADDING
+                },
+                new FormatPair
+                {
+                    Index = 1,
+                    Format = TextureFormat.A4_R4_G4_B4_BIGENDIAN_PADDING
+                },
+                new FormatPair
+                {
+                    Index = 2,
+                    Format = TextureFormat.R5_G6_B5_BIGENDIAN_PADDING
                 },
                 new FormatPair
                 {
                     Index = 5,
-                    Format = TextureFormat.RGBA_DXT5
+                    Format = TextureFormat.RGBA_DXT5  // Padding? Just for rsb v4
+                },
+                new FormatPair
+                {
+                    Index = 256,
+                    Format = TextureFormat.RGBA_DXT5  // Padding? Just for rsb v3
                 }
             };
             DefaultFormatSmallEndian ??= TextureFormat.R4_G4_B4_A4;
-            DefaultFormatBigEndian ??= TextureFormat.NONE;
+            DefaultFormatBigEndian ??= TextureFormat.A4_R4_G4_B4_BIGENDIAN_PADDING;
         }
 
         [JsonPropertyName("format_little_endian")]

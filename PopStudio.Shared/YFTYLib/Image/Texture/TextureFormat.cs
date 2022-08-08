@@ -38,5 +38,7 @@
         RGB_ATC,
         RGB_A_EXPLICIT_ATC,
         RGB_A_INTERPOLATED_ATC,
+        A4_R4_G4_B4_BIGENDIAN_PADDING,
+        R5_G6_B5_BIGENDIAN_PADDING,
     }
 }

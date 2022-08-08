@@ -42,6 +42,8 @@ namespace PopStudio.Image.Texture
             { TextureFormat.A8_R8_G8_B8_PADDING, new TexCoder.A8_R8_G8_B8_PADDING() },
             { TextureFormat.RGBA_DXT5_BIGENDIAN_PADDING, new TexCoder.RGBA_DXT5_BIGENDIAN_PADDING() },
             { TextureFormat.RGBA_DXT5_REFLECTEDMORTON, new TexCoder.RGBA_DXT5_REFLECTEDMORTON() },
+            { TextureFormat.A4_R4_G4_B4_BIGENDIAN_PADDING, new TexCoder.A4_R4_G4_B4_BIGENDIAN_PADDING() },
+            { TextureFormat.R5_G6_B5_BIGENDIAN_PADDING, new TexCoder.R5_G6_B5_BIGENDIAN_PADDING() },
         };
 
         static ICoder GetTexCoder(TextureFormat fmt)
@@ -75,6 +77,7 @@ namespace PopStudio.Image.Texture
                 && coder.CheckHeight(tex.Height)
                 && coder.CheckWidthHeight(tex.Width, tex.Height))
             {
+                tex.Check = coder.GetCheck(tex.Width);
                 tex.TexData = new byte[coder.GetSize(tex.Width, tex.Height)];
                 coder.Encode(tex, (YFColor*)bitmap.Pixels.ToPointer());
                 return tex;

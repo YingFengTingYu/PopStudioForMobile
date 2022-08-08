@@ -88,6 +88,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)YFTYLib\Image\Texture\ICoder.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFTYLib\Image\Texture\TexCoder\A1_R5_G5_B5.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFTYLib\Image\Texture\TexCoder\A4_R4_G4_B4.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFTYLib\Image\Texture\TexCoder\R5_G6_B5_BIGENDIAN_PADDING.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)YFTYLib\Image\Texture\TexCoder\A4_R4_G4_B4_BIGENDIAN_PADDING.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFTYLib\Image\Texture\TexCoder\A8_R8_G8_B8_PADDING.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFTYLib\Image\Texture\TexCoder\A8_R8_G8_B8.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)YFTYLib\Image\Texture\TexCoder\B8_G8_R8_A8_ADD_A8.cs" />

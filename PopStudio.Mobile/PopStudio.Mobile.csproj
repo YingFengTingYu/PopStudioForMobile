@@ -20,27 +20,36 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0-android|AnyCPU'">
     <DefineConstants>$(DefineConstants)TRACE;ANDROID</DefineConstants>
+    <MtouchLink>Full</MtouchLink>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net6.0-android|AnyCPU'">
     <DefineConstants>$(DefineConstants)TRACE;ANDROID</DefineConstants>
+    <MtouchLink>Full</MtouchLink>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0-ios|AnyCPU'">
     <DefineConstants>$(DefineConstants)TRACE;IOS</DefineConstants>
+    <MtouchLink>Full</MtouchLink>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net6.0-ios|AnyCPU'">
     <DefineConstants>$(DefineConstants)TRACE;IOS</DefineConstants>
+    <MtouchLink>Full</MtouchLink>
+    <BuildIpa>False</BuildIpa>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0-maccatalyst|AnyCPU'">
     <DefineConstants>$(DefineConstants)TRACE;MACCATALYST</DefineConstants>
+    <MtouchLink>Full</MtouchLink>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net6.0-maccatalyst|AnyCPU'">
     <DefineConstants>$(DefineConstants)TRACE;MACCATALYST</DefineConstants>
+    <MtouchLink>Full</MtouchLink>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0-macos|AnyCPU'">
     <DefineConstants>$(DefineConstants)TRACE;MACOS</DefineConstants>
+    <MtouchLink>Full</MtouchLink>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net6.0-macos|AnyCPU'">
     <DefineConstants>$(DefineConstants)TRACE;MACOS</DefineConstants>
+    <MtouchLink>Full</MtouchLink>
   </PropertyGroup>
   <ItemGroup>
 	<PackageReference Include="LZMA-SDK" Version="19.0.0" />

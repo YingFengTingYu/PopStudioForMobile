@@ -898,24 +898,21 @@ namespace PopStudio.PlatformAPI
             {
                 using (var writer = WriterFactory.Open(stream, ArchiveType.Zip, CompressionType.Deflate))
                 {
-                    async Task WriteFolderInArchive(YFDirectory m_dir)
+                    void WriteFolderInArchive(YFDirectory m_dir)
                     {
                         foreach (YFFile f in m_dir.FileMap)
                         {
-                            await Task.Run(() =>
+                            using (Stream stream2 = f.OpenAsStream())
                             {
-                                using (Stream stream2 = f.OpenAsStream())
-                                {
-                                    writer.Write(f.GetPath(yfDirectory), stream2, f.Time);
-                                }
-                            });
+                                writer.Write(f.GetPath(yfDirectory), stream2, f.Time);
+                            }
                         }
                         foreach (YFDirectory f in m_dir.DirectoryMap)
                         {
-                            await WriteFolderInArchive(f);
+                            WriteFolderInArchive(f);
                         }
                     }
-                    await WriteFolderInArchive(yfDirectory);
+                    WriteFolderInArchive(yfDirectory);
                 }
             }
             await Windows.Storage.CachedFileManager.CompleteUpdatesAsync(m_file);

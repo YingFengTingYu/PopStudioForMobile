@@ -14,15 +14,27 @@ namespace PopStudio.Pages
         {
             this.InitializeComponent();
             AddItem(new Page_HomePage());
+#if WASM
             AddItem(() => new Page_FileExplorer(), Page_FileExplorer.StaticTitle);
+#else
+            AddItem(new Page_FileExplorer());
+#endif
             AddItem(new Page_Package());
+#if WASM
             AddItem(() => new Page_Image(), Page_Image.StaticTitle);
+#else
+            AddItem(new Page_Image());
+#endif
             AddItem(new Page_Reanim());
             AddItem(new Page_Particle());
             AddItem(new Page_Trail());
             AddItem(new Page_Pam());
             AddItem(new Page_Rton());
+#if WASM
             AddItem(() => new Page_Setting(), Page_Setting.StaticTitle);
+#else
+            AddItem(new Page_Setting());
+#endif
             FlyoutItemList.SelectedIndex = 0;
             FlyoutItemList.SelectionChanged += Flyout_SelectionChanged;
         }
